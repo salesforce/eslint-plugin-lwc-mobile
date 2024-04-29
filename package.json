@@ -1,0 +1,71 @@
+{
+    "name": "@salesforce/eslint-plugin-lwc-mobile",
+    "version": "0.0.1",
+    "description": "ESLint plugin for LWC mobility",
+    "contributors": [
+        {
+            "name": "Kevin Hawkins",
+            "url": "https://github.com/khawkins"
+        },
+        {
+            "name": "Meisam Seyed Aliroteh",
+            "url": "https://github.com/maliroteh-sf"
+        },
+        {
+            "name": "Takashi Arai",
+            "url": "https://github.com/sfdctaka"
+        },
+        {
+            "name": "Haifeng Li",
+            "url": "https://github.com/haifeng-li-at-salesforce"
+        },
+        {
+            "name": "Ben Zhang",
+            "url": "https://github.com/ben-zhang-li-at-salesforce"
+        }
+    ],
+    "homepage": "https://github.com/salesforce/eslint-plugin-lwc-mobile",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/salesforce/eslint-plugin-lwc-mobile"
+    },
+    "scripts": {
+        "format": "prettier --list-different \"**/*.js\"",
+        "format:fix": "prettier --write \"**/*.{js,json}\"",
+        "test": "jest"
+    },
+    "jestSonar": {
+        "sonar56x": true,
+        "reportPath": "reports/coverage",
+        "reportFile": "sonar-report.xml",
+        "indent": 4
+    },
+    "prettier": {
+        "printWidth": 100,
+        "tabWidth": 4,
+        "singleQuote": true,
+        "trailingComma": "none"
+    },
+    "engines": {
+        "node": ">=18"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.24.5",
+        "@babel/preset-env": "^7.24.5",
+        "babel-jest": "^29.7.0",
+        "jest": "^29.7.0",
+        "jest-chain": "^1.1.6",
+        "jest-extended": "^4.0.2",
+        "jest-sonar-reporter": "^2.0.0",
+        "prettier": "^3.0.2"
+    },
+    "dependencies": {
+        "@babel/core": "^7.24.5"
+    },
+    "volta": {
+        "node": "18.18.2",
+        "yarn": "4.0.2"
+    },
+    "packageManager": "yarn@4.0.2"
+}

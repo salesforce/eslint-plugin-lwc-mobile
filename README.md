@@ -1,0 +1,1 @@
+# @salesforce/eslint-plugin-lwc-mobile
