@@ -11,7 +11,7 @@ const RULE_TESTER_CONFIG = {
             }
         }
     },
-    plugins: ['@salesforce/lwc-gmobile']
+    plugins: ['@salesforce/lwc-mobile']
 };
 
 module.exports = {
