@@ -33,7 +33,8 @@
     "scripts": {
         "format": "prettier --list-different \"**/*.js\"",
         "format:fix": "prettier --write \"**/*.{js,json}\"",
-        "test": "jest"
+        "lint": "eslint lib test",
+        "test": "yarn jest --coverage"
     },
     "jestSonar": {
         "sonar56x": true,
