@@ -18,7 +18,7 @@ $ npm install --save-dev @salesforce/eslint-plugin-lwc-mobile
 
 ## Configuration
 
-Here's an example snippet of a `.eslintrc.json` configuration file, that will configure the `eslint-plugin-lwc-graph-analyzer` plugin. Extending the `plugin:@salesforce/lwc-mobile/recommended` ESLint configuration will enable static analysis on all `.js` files used in your Lightning web components.
+Here's an example snippet of a `.eslintrc.json` configuration file, that will configure the `eslint-plugin-lwc-mobile` plugin. Extending the `plugin:@salesforce/lwc-mobile/recommended` ESLint configuration will enable static analysis on all `.js` files used in your Lightning web components.
 
 ```json
 {
