@@ -4,15 +4,6 @@
         "eslint:recommended",
         "plugin:node/recommended"
     ],
-    "overrides": [
-        {
-            "files": ["lib/rules/*.{js,ts}"],
-            "extends": ["plugin:eslint-plugin/rules-recommended"],
-            "rules": {
-                "eslint-plugin/prefer-message-ids": "off"  // Messages come straight from Komaci.
-            }
-        }
-    ],
     "env": {
         "es6": true,
         "jest": true,
