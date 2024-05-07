@@ -10,17 +10,18 @@
 module.exports = {
     displayName: 'Unit Tests',
     setupFilesAfterEnv: ['jest-extended', 'jest-chain'],
+    preset: "ts-jest",
     testMatch: [
-        '<rootDir>/test/plugin.js',
-        '<rootDir>/test/lib/rules/**/*.js',
-        '!**/test/lib/rules/shared.js'
+        '<rootDir>/test/plugin.ts',
+        '<rootDir>/test/lib/rules/**/*.ts',
+        '!**/test/lib/rules/shared.ts'
     ],
-    moduleFileExtensions: ['js', 'json'],
+    moduleFileExtensions: ['ts', 'js', 'json'],
     testResultsProcessor: 'jest-sonar-reporter',
     testPathIgnorePatterns: ['/node_modules/', '<rootDir>/lib/'],
     moduleDirectories: ['node_modules'],
     collectCoverage: true,
-    collectCoverageFrom: ['lib/**/*.js'],
+    collectCoverageFrom: ['lib/**/*.ts'],
     coverageDirectory: 'reports/coverage',
     reporters: [
         'default',
