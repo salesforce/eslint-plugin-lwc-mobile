@@ -10,7 +10,7 @@
 module.exports = {
     displayName: 'Unit Tests',
     setupFilesAfterEnv: ['jest-extended', 'jest-chain'],
-    preset: "ts-jest",
+    preset: 'ts-jest',
     testMatch: [
         '<rootDir>/test/plugin.ts',
         '<rootDir>/test/lib/rules/**/*.ts',

@@ -31,8 +31,8 @@
         "url": "https://github.com/salesforce/eslint-plugin-lwc-mobile"
     },
     "scripts": {
-        "format": "prettier --list-different \"**/*.js\"",
-        "format:fix": "prettier --write \"**/*.{js,json}\"",
+        "format": "prettier --list-different \"**/*.{ts,js}\"",
+        "format:fix": "prettier --write \"**/*.{ts,js,json}\"",
         "lint": "eslint lib test",
         "test": "jest --coverage"
     },
