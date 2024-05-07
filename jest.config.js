@@ -5,9 +5,7 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  */
 
-'use strict';
-
-module.exports = {
+export default {
     displayName: 'Unit Tests',
     setupFilesAfterEnv: ['jest-extended', 'jest-chain'],
     preset: 'ts-jest',
@@ -17,6 +15,7 @@ module.exports = {
         '!**/test/lib/rules/shared.ts'
     ],
     moduleFileExtensions: ['ts', 'js', 'json'],
+
     testResultsProcessor: 'jest-sonar-reporter',
     testPathIgnorePatterns: ['/node_modules/', '<rootDir>/lib/'],
     moduleDirectories: ['node_modules'],

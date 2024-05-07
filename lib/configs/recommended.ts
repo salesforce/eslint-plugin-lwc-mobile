@@ -5,8 +5,9 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  */
 
-'use strict';
-
-module.exports = {
-    plugins: ['@salesforce/lwc-mobile']
+export default {
+    extends: ['./configs/base'],
+    rules: {
+        '@salesforce/lwc-mobile/enforce-foo-bar': 'warn'
+    }
 };

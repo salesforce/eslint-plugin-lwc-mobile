@@ -5,14 +5,10 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  */
 
-'use strict';
-
-const base = require('./configs/base');
-const recommended = require('./configs/recommended');
-
-const enforceFooBar = require('./rules/enforce-foo-bar');
-
-module.exports = {
+import base from './configs/base';
+import recommended from './configs/recommended';
+import enforceFooBar from './rules/enforce-foo-bar';
+export default {
     rules: {
         'enforce-foo-bar': enforceFooBar
     },
