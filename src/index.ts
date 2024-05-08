@@ -5,9 +5,9 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  */
 
-import base from './configs/base';
-import recommended from './configs/recommended';
-import enforceFooBar from './rules/enforce-foo-bar';
+import base from './configs/base.js';
+import recommended from './configs/recommended.js';
+import enforceFooBar from './rules/enforce-foo-bar.js';
 export default {
     rules: {
         'enforce-foo-bar': enforceFooBar

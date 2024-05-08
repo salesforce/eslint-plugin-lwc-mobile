@@ -11,11 +11,10 @@ export default {
     preset: 'ts-jest',
     testMatch: [
         '<rootDir>/test/plugin.ts',
-        '<rootDir>/test/lib/rules/**/*.ts',
-        '!**/test/lib/rules/shared.ts'
+        '<rootDir>/test/rules/**/*.ts',
+        '!**/test/rules/shared.ts'
     ],
     moduleFileExtensions: ['ts', 'js', 'json'],
-
     testResultsProcessor: 'jest-sonar-reporter',
     testPathIgnorePatterns: ['/node_modules/', '<rootDir>/lib/'],
     moduleDirectories: ['node_modules'],

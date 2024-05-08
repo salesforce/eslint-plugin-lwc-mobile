@@ -31,9 +31,10 @@
         "url": "https://github.com/salesforce/eslint-plugin-lwc-mobile"
     },
     "scripts": {
+        "build": "tsc", 
         "format": "prettier --list-different \"**/*.{ts,js}\"",
         "format:fix": "prettier --write \"**/*.{ts,js,json}\"",
-        "lint": "eslint lib test",
+        "lint": "eslint src test",
         "test": "jest --coverage"
     },
     "jestSonar": {
@@ -52,14 +53,14 @@
         "node": ">=18"
     },
     "type": "module",
-    "main": "lib/index.js",
+    "main": "dist/src/index.js",
     "directories": {
-        "lib": "lib",
-        "rules": "lib/rules",
+        "lib": "src",
+        "rules": "src/rules",
         "test": "test"
     },
     "files": [
-        "/lib",
+        "/src",
         "!**/test/"
     ],
     "devDependencies": {
