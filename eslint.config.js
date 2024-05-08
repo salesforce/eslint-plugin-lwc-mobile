@@ -5,7 +5,7 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  */
 
-import eslint from "@eslint/js";
+import eslint from '@eslint/js';
 import tsEslint from 'typescript-eslint';
 
 export default tsEslint.config(
@@ -15,8 +15,8 @@ export default tsEslint.config(
 
     {
         rules: {
-            "strict": ["error", "global"],
-            "@typescript-eslint/no-extra-non-null-assertion": "off"
+            strict: ['error', 'global'],
+            '@typescript-eslint/no-extra-non-null-assertion': 'off'
         }
     }
 );
