@@ -52,7 +52,7 @@
     "engines": {
         "node": ">=18"
     },
-    "type": "module",
+    "type": "commonjs",
     "main": "dist/src/index.js",
     "directories": {
         "lib": "src",
@@ -60,7 +60,7 @@
         "test": "test"
     },
     "files": [
-        "/src",
+        "/dist",
         "!**/test/"
     ],
     "devDependencies": {

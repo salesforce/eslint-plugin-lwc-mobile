@@ -8,11 +8,11 @@
 import base from './configs/base.js';
 import recommended from './configs/recommended.js';
 import enforceFooBar from './rules/enforce-foo-bar.js';
-export default {
+export = {
     rules: {
         'enforce-foo-bar': enforceFooBar
     },
-    config: {
+    configs: {
         base,
         recommended
     }
