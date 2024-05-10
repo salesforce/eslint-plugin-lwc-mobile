@@ -18,5 +18,5 @@ export default tsEslint.config(
             strict: ['error', 'global'],
             '@typescript-eslint/no-extra-non-null-assertion': 'off'
         }
-    }
+    },
 );

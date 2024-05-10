@@ -21,7 +21,7 @@ const config: Config = {
     testPathIgnorePatterns: ['/node_modules/', '<rootDir>/lib/'],
     moduleDirectories: ['node_modules'],
     collectCoverage: true,
-    collectCoverageFrom: ['lib/**/*.ts'],
+    collectCoverageFrom: ['src/**/*.ts'],
     coverageDirectory: 'reports/coverage',
     reporters: [
         'default',
