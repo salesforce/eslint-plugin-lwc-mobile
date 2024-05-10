@@ -53,7 +53,7 @@
         "node": ">=18"
     },
     "type": "commonjs",
-    "main": "dist/src/index.js",
+    "main": "dist/index.js",
     "files": [
         "/dist"
     ],
