@@ -5,7 +5,9 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  */
 
-export default {
+import type { Config } from 'jest';
+
+const config: Config = {
     displayName: 'Unit Tests',
     setupFilesAfterEnv: ['jest-extended', 'jest-chain'],
     preset: 'ts-jest',
@@ -32,3 +34,5 @@ export default {
         ]
     ]
 };
+
+export default config;
