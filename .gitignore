@@ -3,5 +3,4 @@
 /dist
 test-report.xml
 junit.xml
-
-
+tsconfig.tsbuildinfo
