@@ -5,22 +5,23 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  */
 
-'use strict';
+import type { Config } from 'jest';
 
-module.exports = {
+const config: Config = {
     displayName: 'Unit Tests',
     setupFilesAfterEnv: ['jest-extended', 'jest-chain'],
+    preset: 'ts-jest',
     testMatch: [
-        '<rootDir>/test/plugin.js',
-        '<rootDir>/test/lib/rules/**/*.js',
-        '!**/test/lib/rules/shared.js'
+        '<rootDir>/test/plugin.ts',
+        '<rootDir>/test/rules/**/*.ts',
+        '!**/test/rules/shared.ts'
     ],
-    moduleFileExtensions: ['js', 'json'],
+    moduleFileExtensions: ['ts', 'js', 'json'],
     testResultsProcessor: 'jest-sonar-reporter',
     testPathIgnorePatterns: ['/node_modules/', '<rootDir>/lib/'],
     moduleDirectories: ['node_modules'],
     collectCoverage: true,
-    collectCoverageFrom: ['lib/**/*.js'],
+    collectCoverageFrom: ['src/**/*.ts'],
     coverageDirectory: 'reports/coverage',
     reporters: [
         'default',
@@ -33,3 +34,5 @@ module.exports = {
         ]
     ]
 };
+
+export default config;
