@@ -6,9 +6,8 @@
  */
 
 import { ESLintUtils } from '@typescript-eslint/utils';
+import { version, homepage } from '../../package.json';
 
 export default ESLintUtils.RuleCreator(
-    // TODO: Add path to the doc like it is done here when the docs are ready
-    //       https://github.com/salesforce/eslint-plugin-lwc-graph-analyzer/blob/main/lib/util/doc-url.js
-    (_name) => ``
+    name => `${homepage}/blob/v${version}/lib/docs/${name}.md`
 );
