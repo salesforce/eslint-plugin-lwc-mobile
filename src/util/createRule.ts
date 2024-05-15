@@ -9,5 +9,5 @@ import { ESLintUtils } from '@typescript-eslint/utils';
 import { version, homepage } from '../../package.json';
 
 export default ESLintUtils.RuleCreator(
-    name => `${homepage}/blob/v${version}/lib/docs/${name}.md`
+    (name) => `${homepage}/blob/v${version}/lib/docs/${name}.md`
 );
