@@ -9,7 +9,7 @@ import type { Linter } from '@typescript-eslint/utils/ts-eslint';
 
 import base from './configs/base.js';
 import recommended from './configs/recommended.js';
-import enforceFooBar from './rules/enforce-foo-bar.js';
+import enforceFooBar from './rules/dummy/enforce-foo-bar.js';
 import { name, version } from '../package.json';
 export = {
     configs: {
