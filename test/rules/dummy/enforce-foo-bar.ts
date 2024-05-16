@@ -1,6 +1,6 @@
 import { RuleTester } from '@typescript-eslint/rule-tester';
 
-import ruleEnforceFoorBar from '../../src/rules/enforce-foo-bar';
+import ruleEnforceFoorBar from '../../../src/rules/dummy/enforce-foo-bar';
 
 const ruleTester = new RuleTester({
     parser: '@typescript-eslint/parser'
