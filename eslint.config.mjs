@@ -14,7 +14,8 @@ export default tsEslint.config(
     {
         rules: {
             strict: ['error', 'global'],
-            '@typescript-eslint/no-extra-non-null-assertion': 'off'
+            '@typescript-eslint/no-extra-non-null-assertion': 'off',
+            '@typescript-eslint/no-explicit-any':'off'
         }
     },
 );
