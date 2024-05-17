@@ -11,20 +11,22 @@ export const rule: GraphQLESLintRule = {
             description:
                 'Inform that aggregate operation in graphql query is not supported for mobile offline.',
             // url:
-            examples: [{
-                title: 'Incorrect',
-                code: /* GraphQL */ `
-                    query AvgOpportunityExample {
-                        uiapi {
-                            aggregate {
-                                Opportunity {
-                                    edges {
-                                        node {
-                                            aggregate {
-                                                Amount {
-                                                    avg {
-                                                        value
-                                                        displayValue
+            examples: [
+                {
+                    title: 'Incorrect',
+                    code: /* GraphQL */ `
+                        query AvgOpportunityExample {
+                            uiapi {
+                                aggregate {
+                                    Opportunity {
+                                        edges {
+                                            node {
+                                                aggregate {
+                                                    Amount {
+                                                        avg {
+                                                            value
+                                                            displayValue
+                                                        }
                                                     }
                                                 }
                                             }
@@ -33,9 +35,9 @@ export const rule: GraphQLESLintRule = {
                                 }
                             }
                         }
-                    }                    
-                `
-            }]
+                    `
+                }
+            ]
         },
         messages: {
             [NO_AGGREGATE_QUERY_SUPPORTED_RULE_ID]:

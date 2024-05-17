@@ -1,5 +1,8 @@
 import { RuleTester } from '@typescript-eslint/rule-tester';
-import { rule } from '../../../src/rules/graphql/no-aggregate-query-supported';
+import {
+    rule,
+    NO_AGGREGATE_QUERY_SUPPORTED_RULE_ID
+} from '../../../src/rules/graphql/no-aggregate-query-supported';
 
 const ruleTester = new RuleTester({
     parser: '@graphql-eslint/eslint-plugin',
@@ -34,7 +37,7 @@ ruleTester.run('@salesforce/lwc-mobile/no-aggregate-query-supported', rule as an
                     }
                 }
             `,
-            errors: [{ messageId: 'aggregateQueryNotSupported' }]
+            errors: [{ messageId: NO_AGGREGATE_QUERY_SUPPORTED_RULE_ID }]
         }
     ]
 });
