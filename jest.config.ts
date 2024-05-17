@@ -17,12 +17,7 @@ const config: Config = {
     testPathIgnorePatterns: ['/node_modules/', '<rootDir>/lib/'],
     moduleDirectories: ['node_modules'],
     collectCoverage: true,
-    collectCoverageFrom: [
-        'src/**/*.ts',
-        '!src/index.ts',
-        '!src/configs/*.ts',
-        '!src/graphql/types.ts'
-    ],
+    collectCoverageFrom: ['src/**/*.ts', '!src/index.ts', '!src/configs/*.ts'],
     coverageDirectory: 'reports/coverage',
     reporters: [
         'default',
