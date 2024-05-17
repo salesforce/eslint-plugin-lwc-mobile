@@ -1,5 +1,8 @@
 import { RuleTester } from '@typescript-eslint/rule-tester';
-import { rule, MESSAGE_ID } from '../../../src/rules/graphql/mutation-not-supported';
+import {
+    rule,
+    NO_MUTATION_SUPPORTED_RULE_ID
+} from '../../../src/rules/graphql/no-mutation-supported';
 
 const ruleTester = new RuleTester({
     parser: '@graphql-eslint/eslint-plugin',
@@ -8,7 +11,7 @@ const ruleTester = new RuleTester({
     }
 });
 
-ruleTester.run('@salesforce/lwc-mobile/mutation-not-supported', rule as any, {
+ruleTester.run('@salesforce/lwc-mobile/no-mutation-supported', rule as any, {
     valid: [],
     invalid: [
         {
@@ -26,7 +29,7 @@ ruleTester.run('@salesforce/lwc-mobile/mutation-not-supported', rule as any, {
                     }
                 }
             `,
-            errors: [{ messageId: MESSAGE_ID }]
+            errors: [{ messageId: NO_MUTATION_SUPPORTED_RULE_ID }]
         }
     ]
 });

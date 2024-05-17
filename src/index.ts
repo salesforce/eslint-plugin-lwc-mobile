@@ -8,7 +8,10 @@
 import base from './configs/base.js';
 import recommended from './configs/recommended.js';
 import enforceFooBar from './rules/dummy/enforce-foo-bar.js';
-import { rule as mutionNotSupported } from './rules/graphql/mutation-not-supported.js';
+import {
+    rule as mutionNotSupported,
+    NO_MUTATION_SUPPORTED_RULE_ID
+} from './rules/graphql/no-mutation-supported.js';
 import { name, version } from '../package.json';
 export = {
     configs: {
@@ -21,6 +24,6 @@ export = {
     },
     rules: {
         'enforce-foo-bar': enforceFooBar,
-        'mutation-not-supported': mutionNotSupported
+        [NO_MUTATION_SUPPORTED_RULE_ID]: mutionNotSupported
     }
 };

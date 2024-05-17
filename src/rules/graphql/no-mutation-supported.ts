@@ -1,7 +1,7 @@
 import { GraphQLESLintRule, GraphQLESLintRuleContext } from '@graphql-eslint/eslint-plugin';
 
 import { getLocation } from '../utils';
-export const MESSAGE_ID = 'mutation-not-supported';
+export const NO_MUTATION_SUPPORTED_RULE_ID = 'no-mutation-supported';
 
 export const rule: GraphQLESLintRule = {
     meta: {
@@ -32,7 +32,7 @@ export const rule: GraphQLESLintRule = {
             ]
         },
         messages: {
-            [MESSAGE_ID]: 'Mutation is not supported offline'
+            [NO_MUTATION_SUPPORTED_RULE_ID]: 'Mutation is not supported offline'
         },
         schema: []
     },
@@ -42,7 +42,7 @@ export const rule: GraphQLESLintRule = {
             OperationDefinition(node) {
                 if (node.operation === 'mutation') {
                     context.report({
-                        messageId: MESSAGE_ID,
+                        messageId: NO_MUTATION_SUPPORTED_RULE_ID,
                         loc: getLocation(node.loc.start, node.operation)
                     });
                 }
