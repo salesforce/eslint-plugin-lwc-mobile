@@ -1,17 +1,44 @@
 import { FieldNode } from 'graphql';
 import { GraphQLESLintRule, GraphQLESLintRuleContext } from '@graphql-eslint/eslint-plugin';
 
+export const NO_AGGREGATE_QUERY_SUPPORTED_RULE_ID = 'no-aggregate-query-supported';
+
 export const rule: GraphQLESLintRule = {
     meta: {
         type: 'suggestion',
         docs: {
             category: 'Operations',
             description:
-                'Inform that aggregate operation in graphql query is not supported for mobile offline.'
+                'Inform that aggregate operation in graphql query is not supported for mobile offline.',
             // url:
+            examples: [{
+                title: 'Incorrect',
+                code: /* GraphQL */ `
+                    query AvgOpportunityExample {
+                        uiapi {
+                            aggregate {
+                                Opportunity {
+                                    edges {
+                                        node {
+                                            aggregate {
+                                                Amount {
+                                                    avg {
+                                                        value
+                                                        displayValue
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }                    
+                `
+            }]
         },
         messages: {
-            aggregateQueryNotSupported:
+            [NO_AGGREGATE_QUERY_SUPPORTED_RULE_ID]:
                 'Aggregate operation in graphql query is not supported for mobile offline'
         },
         schema: []
@@ -20,7 +47,7 @@ export const rule: GraphQLESLintRule = {
     create(context: GraphQLESLintRuleContext) {
         return {
             Field(node) {
-                // report
+                // report lint issue if the graphql is like '... uiapi { aggregate { ...'
                 if (
                     node.name.value !== 'aggregate' ||
                     node.parent?.parent === undefined ||
@@ -34,7 +61,7 @@ export const rule: GraphQLESLintRule = {
                 if (upperField.name.value === 'uiapi') {
                     context.report({
                         node: node.name,
-                        messageId: 'aggregateQueryNotSupported'
+                        messageId: NO_AGGREGATE_QUERY_SUPPORTED_RULE_ID
                     });
                 }
             }

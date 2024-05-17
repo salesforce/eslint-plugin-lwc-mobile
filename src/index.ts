@@ -8,7 +8,10 @@
 import base from './configs/base.js';
 import recommended from './configs/recommended.js';
 import enforceFooBar from './rules/dummy/enforce-foo-bar.js';
-import { rule as noAggregateQuerySupported } from './rules/graphql/no-aggregate-query-supported.js';
+import { 
+    NO_AGGREGATE_QUERY_SUPPORTED_RULE_ID, 
+    rule as noAggregateQuerySupported 
+} from './rules/graphql/no-aggregate-query-supported.js';
 
 import { name, version } from '../package.json';
 
@@ -23,6 +26,6 @@ export = {
     },
     rules: {
         'enforce-foo-bar': enforceFooBar,
-        'no-aggregate-query-supported': noAggregateQuerySupported
+        [NO_AGGREGATE_QUERY_SUPPORTED_RULE_ID]: noAggregateQuerySupported
     }
 };
