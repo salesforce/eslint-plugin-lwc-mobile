@@ -5,11 +5,10 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  */
 
-import type { Linter } from '@typescript-eslint/utils/ts-eslint';
-
 import base from './configs/base.js';
 import recommended from './configs/recommended.js';
 import enforceFooBar from './rules/dummy/enforce-foo-bar.js';
+import { rule as mutionNotSupported } from './rules/graphql/mutation-not-supported.js';
 import { name, version } from '../package.json';
 export = {
     configs: {
@@ -21,6 +20,7 @@ export = {
         version
     },
     rules: {
-        'enforce-foo-bar': enforceFooBar
+        'enforce-foo-bar': enforceFooBar,
+        'mutation-not-supported': mutionNotSupported
     }
-} satisfies Linter.Plugin;
+};
