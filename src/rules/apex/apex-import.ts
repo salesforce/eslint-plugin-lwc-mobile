@@ -6,15 +6,16 @@
  */
 
 import createRule from '../../util/createRule';
+export const APEX_IMPORT_RULE_ID = 'apex-import';
 
-export default createRule({
+export const rule = createRule({
     create(context) {
         return {
             ImportDeclaration(node) {
                 if (node.source.value.startsWith('@salesforce/apex')) {
                     context.report({
                         node,
-                        messageId: 'message'
+                        messageId: APEX_IMPORT_RULE_ID
                     });
                 }
             }
@@ -26,7 +27,8 @@ export default createRule({
             description: 'Importing apex modules can have issues on mobile for offline usage.'
         },
         messages: {
-            message: 'Importing apex modules can have issues on mobile for offline usage.'
+            [APEX_IMPORT_RULE_ID]:
+                'Importing apex modules can have issues on mobile for offline usage.'
         },
         type: 'suggestion',
         schema: []

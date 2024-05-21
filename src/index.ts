@@ -8,7 +8,7 @@
 import base from './configs/base.js';
 import recommended from './configs/recommended.js';
 import enforceFooBar from './rules/dummy/enforce-foo-bar.js';
-import apexImport from './rules/apex/apex-import.js';
+import { rule as apexImport, APEX_IMPORT_RULE_ID } from './rules/apex/apex-import.js';
 import {
     rule as mutionNotSupported,
     NO_MUTATION_SUPPORTED_RULE_ID
@@ -26,6 +26,6 @@ export = {
     rules: {
         'enforce-foo-bar': enforceFooBar,
         [NO_MUTATION_SUPPORTED_RULE_ID]: mutionNotSupported,
-        'apex-import': apexImport
+        [APEX_IMPORT_RULE_ID]: apexImport
     }
 };

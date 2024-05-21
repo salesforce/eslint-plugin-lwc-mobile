@@ -7,13 +7,13 @@
 
 import { RuleTester } from '@typescript-eslint/rule-tester';
 
-import apexImport from '../../../src/rules/apex/apex-import';
+import { rule, APEX_IMPORT_RULE_ID } from '../../../src/rules/apex/apex-import';
 
 const ruleTester = new RuleTester({
     parser: '@typescript-eslint/parser'
 });
 
-ruleTester.run('@salesforce/lwc-mobile/apex/apex-import', apexImport, {
+ruleTester.run('@salesforce/lwc-mobile/apex/apex-import', rule, {
     valid: [
         {
             code: `
@@ -60,7 +60,7 @@ ruleTester.run('@salesforce/lwc-mobile/apex/apex-import', apexImport, {
                 }
             }
             `,
-            errors: [{ messageId: 'message' }]
+            errors: [{ messageId: APEX_IMPORT_RULE_ID }]
         }
     ]
 });
