@@ -1,5 +1,5 @@
 import { describe } from 'node:test';
-import { getLocation } from '../../src/rules/utils';
+import { getLocation } from '../../src/utils';
 import { Position } from 'estree';
 
 import { expect } from '@jest/globals';

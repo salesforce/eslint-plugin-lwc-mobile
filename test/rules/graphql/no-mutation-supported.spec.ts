@@ -12,7 +12,28 @@ const ruleTester = new RuleTester({
 });
 
 ruleTester.run('@salesforce/lwc-mobile/no-mutation-supported', rule as any, {
-    valid: [],
+    valid: [
+        {
+            code: /* GraphQL */ `
+                query accountQuery {
+                    uiapi {
+                        query {
+                            Account {
+                                edges {
+                                    node {
+                                        Id
+                                        Name {
+                                            value
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            `
+        }
+    ],
     invalid: [
         {
             code: /* GraphQL */ `
