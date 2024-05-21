@@ -10,12 +10,12 @@ import recommended from './configs/recommended.js';
 import enforceFooBar from './rules/dummy/enforce-foo-bar.js';
 import {
     NO_AGGREGATE_QUERY_SUPPORTED_RULE_ID,
-    rule as noAggregateQuerySupported
+    rule as aggregateQueryNotSupported
 } from './rules/graphql/no-aggregate-query-supported.js';
 
 import {
     NO_MUTATION_SUPPORTED_RULE_ID,
-    rule as mutionNotSupported
+    rule as mutationNotSupported
 } from './rules/graphql/no-mutation-supported.js';
 
 import { name, version } from '../package.json';
@@ -31,7 +31,7 @@ export = {
     },
     rules: {
         'enforce-foo-bar': enforceFooBar,
-        [NO_MUTATION_SUPPORTED_RULE_ID]: mutionNotSupported,
-        [NO_AGGREGATE_QUERY_SUPPORTED_RULE_ID]: noAggregateQuerySupported
+        [NO_MUTATION_SUPPORTED_RULE_ID]: mutationNotSupported,
+        [NO_AGGREGATE_QUERY_SUPPORTED_RULE_ID]: aggregateQueryNotSupported
     }
 };

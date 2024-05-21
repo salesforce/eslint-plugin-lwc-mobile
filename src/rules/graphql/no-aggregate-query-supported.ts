@@ -1,15 +1,16 @@
 import { FieldNode } from 'graphql';
 import { GraphQLESLintRule, GraphQLESLintRuleContext } from '@graphql-eslint/eslint-plugin';
 
-export const NO_AGGREGATE_QUERY_SUPPORTED_RULE_ID = 'no-aggregate-query-supported';
+export const NO_AGGREGATE_QUERY_SUPPORTED_RULE_ID = 'offline-graphql-no-aggregate-query-supported';
 
 export const rule: GraphQLESLintRule = {
     meta: {
         type: 'suggestion',
+        hasSuggestions: false,
         docs: {
             category: 'Operations',
             description:
-                'Inform that aggregate operation in graphql query is not supported for mobile offline.',
+                'aggregate operation in graphql query is not supported for mobile offline.',
             // url:
             examples: [
                 {
