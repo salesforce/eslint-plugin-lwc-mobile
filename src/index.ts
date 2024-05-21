@@ -39,6 +39,7 @@ export = {
         [APEX_IMPORT_RULE_ID]: apexImport,
         [NO_AGGREGATE_QUERY_SUPPORTED_RULE_ID]: aggregateQueryNotSupported,
         [NO_MUTATION_SUPPORTED_RULE_ID]: mutionNotSupported,
-        [OFFLINE_GRAPHQL_UNSUPPORTED_SCOPE_RULE_ID]: offlineGraphqlUnsupportedScope
+        [OFFLINE_GRAPHQL_UNSUPPORTED_SCOPE_RULE_ID]: offlineGraphqlUnsupportedScope,
+        [APEX_IMPORT_RULE_ID]: apexImport
     }
 };

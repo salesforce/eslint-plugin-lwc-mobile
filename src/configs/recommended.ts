@@ -8,6 +8,9 @@ import type { ClassicConfig } from '@typescript-eslint/utils/ts-eslint';
 
 export = {
     extends: ['./configs/base'],
+    rules: {
+        '@salesforce/lwc-mobile/apex-import': 'warn'
+    },
     overrides: [
         {
             files: ['*.js'],
@@ -21,9 +24,9 @@ export = {
                 skipGraphQLConfig: true
             },
             rules: {
-                '@salesforce/lwc-mobile/apex-import': 'warn',
                 '@salesforce/lwc-mobile/offline-graphql-no-mutation-supported': 'warn',
-                '@salesforce/lwc-mobile/offline-graphql-no-aggregate-query-supported': 'warn'
+                '@salesforce/lwc-mobile/offline-graphql-no-aggregate-query-supported': 'warn',
+                '@salesforce/lwc-mobile/offline-graphql-unsupported-scope': 'warn'
             }
         }
     ]
