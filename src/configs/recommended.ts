@@ -8,7 +8,21 @@ import type { ClassicConfig } from '@typescript-eslint/utils/ts-eslint';
 
 export = {
     extends: ['./configs/base'],
-    rules: {
-        '@salesforce/lwc-mobile/enforce-foo-bar': 'warn'
-    }
+    overrides: [
+        {
+            files: ['*.js'],
+            processor: '@graphql-eslint/graphql'
+        },
+        {
+            files: ['*.graphql'],
+            parser: '@graphql-eslint/eslint-plugin',
+
+            parserOptions: {
+                skipGraphQLConfig: true
+            },
+            rules: {
+                '@salesforce/lwc-mobile/offline-graphql-no-mutation-supported': 'warn'
+            }
+        }
+    ]
 } satisfies ClassicConfig.Config;

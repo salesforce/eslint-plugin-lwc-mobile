@@ -7,5 +7,8 @@
 import type { ClassicConfig } from '@typescript-eslint/utils/ts-eslint';
 
 export = {
-    plugins: ['@salesforce/lwc-mobile']
+    plugins: ['@salesforce/lwc-mobile', '@graphql-eslint'],
+    rules: {
+        '@salesforce/lwc-mobile/enforce-foo-bar': 'warn'
+    }
 } satisfies ClassicConfig.Config;
