@@ -4,7 +4,9 @@
         "target": "es2016" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
         "module": "Node16" /* Specify what module code is generated. */,
         "moduleResolution": "Node16" /* Specify how TypeScript looks up a file from a given module specifier. */,
-        "types": [] /* Specify type package names to be included without being referenced in a source file. */,
+        "types": [
+            "jest"
+        ] /* Specify type package names to be included without being referenced in a source file. */,
         "rootDir": "./src",
         "outDir": "dist" /* Specify an output folder for all emitted files. */,
         "esModuleInterop": true /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */,

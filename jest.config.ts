@@ -11,17 +11,13 @@ const config: Config = {
     displayName: 'Unit Tests',
     setupFilesAfterEnv: ['jest-extended', 'jest-chain'],
     preset: 'ts-jest',
-    testMatch: [
-        '<rootDir>/test/plugin.ts',
-        '<rootDir>/test/rules/**/*.ts',
-        '!**/test/rules/shared.ts'
-    ],
+    testMatch: ['<rootDir>/test/rules/**/*.ts'],
     moduleFileExtensions: ['ts', 'js', 'json'],
     testResultsProcessor: 'jest-sonar-reporter',
     testPathIgnorePatterns: ['/node_modules/', '<rootDir>/lib/'],
     moduleDirectories: ['node_modules'],
     collectCoverage: true,
-    collectCoverageFrom: ['src/**/*.ts'],
+    collectCoverageFrom: ['src/**/*.ts', '!src/index.ts', '!src/configs/*.ts'],
     coverageDirectory: 'reports/coverage',
     reporters: [
         'default',

@@ -13,6 +13,11 @@ import {
     rule as noAggregateQuerySupported
 } from './rules/graphql/no-aggregate-query-supported.js';
 
+import {
+    NO_MUTATION_SUPPORTED_RULE_ID,
+    rule as mutionNotSupported
+} from './rules/graphql/no-mutation-supported.js';
+
 import { name, version } from '../package.json';
 
 export = {
@@ -26,6 +31,7 @@ export = {
     },
     rules: {
         'enforce-foo-bar': enforceFooBar,
+        [NO_MUTATION_SUPPORTED_RULE_ID]: mutionNotSupported,
         [NO_AGGREGATE_QUERY_SUPPORTED_RULE_ID]: noAggregateQuerySupported
     }
 };

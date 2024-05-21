@@ -8,14 +8,10 @@
 import eslint from '@eslint/js';
 import tsEslint from 'typescript-eslint';
 
-export default tsEslint.config(
-    eslint.configs.recommended,
-    ...tsEslint.configs.recommended,
-    {
-        rules: {
-            strict: ['error', 'global'],
-            '@typescript-eslint/no-extra-non-null-assertion': 'off',
-            '@typescript-eslint/no-explicit-any':'off'
-        }
-    },
-);
+export default tsEslint.config(eslint.configs.recommended, ...tsEslint.configs.recommended, {
+    rules: {
+        strict: ['error', 'global'],
+        '@typescript-eslint/no-extra-non-null-assertion': 'off',
+        '@typescript-eslint/no-explicit-any': 'off'
+    }
+});
