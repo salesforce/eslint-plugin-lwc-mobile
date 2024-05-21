@@ -6,9 +6,8 @@
  */
 import { GraphQLESLintRule, GraphQLESLintRuleContext } from '@graphql-eslint/eslint-plugin';
 
-import { getLocation } from '../../utils';
 export const NO_SEMI_ANTI_JOIN_SUPPORTED_RULE_ID = 'offline-graphql-no-semi-anti-join-supported';
-;export const NO_SEMI_JOIN_SUPPORTED_MESSAGE_ID = 'offline-graphql-no-semi-join-supported' ;
+export const NO_SEMI_JOIN_SUPPORTED_MESSAGE_ID = 'offline-graphql-no-semi-join-supported' ;
 export const NO_ANTI_JOIN_SUPPORTED_MESSAGE_ID = 'offline-graphql-no-anti-join-supported';
 
 export const rule: GraphQLESLintRule = {
@@ -16,14 +15,14 @@ export const rule: GraphQLESLintRule = {
         type: 'problem',
         hasSuggestions: false,
         docs: {
-            description: 'mutation is not supported offline',
+            description: 'Semi and Anti join are not supported offline',
             category: 'Operations',
             recommended: true,
             examples: [
                 {
                     title: 'Correct',
                     code: /* GraphQL */ `
-                        query accountQuery {
+                        query AccountExample {
                             uiapi {
                                 query {
                                     Account {
@@ -98,19 +97,24 @@ export const rule: GraphQLESLintRule = {
             ]
         },
         messages: {
-            []:
-                'Offline GraphQL: Mutation (data modification) is not supported offline.'
+            [NO_SEMI_JOIN_SUPPORTED_MESSAGE_ID]:'Offline GraphQL: Semi join is not supported offline.',
+            [NO_ANTI_JOIN_SUPPORTED_MESSAGE_ID]:'Offline GraphQL: Anti join is not supported offline.'
         },
         schema: []
     },
 
     create(context: GraphQLESLintRuleContext) {
         return {
-            OperationDefinition(node) {
-                if (node.operation === 'mutation') {
+            ObjectField(node) {
+                if (node.name.value === 'inq') {
                     context.report({
-                        messageId: NO_MUTATION_SUPPORTED_RULE_ID,
-                        loc: getLocation(node.loc.start, node.operation)
+                        node: node.name,
+                        messageId: NO_SEMI_JOIN_SUPPORTED_MESSAGE_ID
+                    });
+                } else if (node.name.value === 'ninq') {
+                    context.report({
+                        node: node.name,
+                        messageId: NO_ANTI_JOIN_SUPPORTED_MESSAGE_ID
                     });
                 }
             }
