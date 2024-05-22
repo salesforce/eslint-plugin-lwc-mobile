@@ -11,7 +11,7 @@ const config: Config = {
     displayName: 'Unit Tests',
     setupFilesAfterEnv: ['jest-extended', 'jest-chain'],
     preset: 'ts-jest',
-    testMatch: ['<rootDir>/test/rules/**/*.ts'],
+    testMatch: ['<rootDir>/test/**/*.ts'],
     moduleFileExtensions: ['ts', 'js', 'json'],
     testResultsProcessor: 'jest-sonar-reporter',
     testPathIgnorePatterns: ['/node_modules/', '<rootDir>/lib/'],

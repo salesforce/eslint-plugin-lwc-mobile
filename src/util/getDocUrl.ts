@@ -5,7 +5,8 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  */
 
-import { ESLintUtils } from '@typescript-eslint/utils';
-import getDocUrl from './getDocUrl';
+import { version, homepage } from '../../package.json';
 
-export default ESLintUtils.RuleCreator((name) => getDocUrl(name));
+export default function getDocUrl(ruleName: string): string {
+    return `${homepage}/blob/v${version}/lib/docs/${ruleName}.md`;
+}
