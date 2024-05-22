@@ -5,6 +5,7 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  */
 import { GraphQLESLintRule, GraphQLESLintRuleContext } from '@graphql-eslint/eslint-plugin';
+import getDocUrl from '../../util/getDocUrl';
 
 export const NO_SEMI_ANTI_JOIN_SUPPORTED_RULE_ID = 'offline-graphql-no-semi-anti-join-supported';
 export const NO_SEMI_JOIN_SUPPORTED_MESSAGE_ID = 'offline-graphql-no-semi-join-supported' ;
@@ -18,6 +19,7 @@ export const rule: GraphQLESLintRule = {
             description: 'Semi and Anti join are not supported offline',
             category: 'Operations',
             recommended: true,
+            url: getDocUrl(NO_SEMI_ANTI_JOIN_SUPPORTED_RULE_ID),
             examples: [
                 {
                     title: 'Correct',
