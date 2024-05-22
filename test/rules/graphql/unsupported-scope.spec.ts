@@ -1,7 +1,7 @@
 import { RuleTester } from '@typescript-eslint/rule-tester';
 import {
     rule,
-    ASSIGNED_TO_ME_SUPPORTED_FOR_SERVICEAPPOINTMENT_ONLY,
+    SCOPE_SUPPORTED_FOR_CERTAIN_ENTITIES_ONLY,
     OTHER_UNSUPPORTED_SCOPE
 } from '../../../src/rules/graphql/unsupported-scope';
 import { RULE_TESTER_CONFIG } from '../../shared';
@@ -76,7 +76,15 @@ ruleTester.run('@salesforce/lwc-mobile/offline-graphql-unsupported-scope', rule 
                     }
                 }
             `,
-            errors: [{ messageId: ASSIGNED_TO_ME_SUPPORTED_FOR_SERVICEAPPOINTMENT_ONLY }]
+            errors: [
+                {
+                    messageId: SCOPE_SUPPORTED_FOR_CERTAIN_ENTITIES_ONLY,
+                    data: {
+                        scopeName: 'ASSIGNEDTOME',
+                        supportedEntities: 'ServiceAppointment'
+                    }
+                }
+            ]
         }
     ]
 });

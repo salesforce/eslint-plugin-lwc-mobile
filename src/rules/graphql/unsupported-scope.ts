@@ -3,25 +3,19 @@ import { Kind } from 'graphql';
 
 export const UNSUPPORTED_SCOPE_RULE_ID = 'offline-graphql-unsupported-scope';
 
-export const ASSIGNED_TO_ME_SUPPORTED_FOR_SERVICEAPPOINTMENT_ONLY =
-    'ASSIGNED_TO_ME__SERVICEAPPOINTMENT_ONLY';
+export const SCOPE_SUPPORTED_FOR_CERTAIN_ENTITIES_ONLY = 'ASSIGNED_TO_ME__SERVICEAPPOINTMENT_ONLY';
 export const OTHER_UNSUPPORTED_SCOPE = 'OTHER_UNSUPPORTED_SCOPE';
 
-const unsupportedScopes = [
-    'TEAM',
-    'QUEUE_OWNED',
-    'USER_OWNED',
-    'EVERYTHING',
-    'TEAM_BY_ROLE',
-    'GENERICTEAM',
-    'FOLLOWING',
-    'FILES_SHARED_WITH_ME'
-];
+// key is scope name, value is the array of supported entities. Empty array means that all entities are supported.
+const supportedScopes: Record<string, string[]> = {
+    MINE: [],
+    ASSIGNEDTOME: ['ServiceAppointment']
+};
 export const rule: GraphQLESLintRule = {
     meta: {
         type: 'problem',
         docs: {
-            description: `For mobile offline use cases, scope "ASSIGNEDTOME" is only supported for ServiceAppointment . All other unsupported scopes are team, queue-owned, user-owned and everything. `,
+            description: `For mobile offline use cases, scope "MINE" is supported and scope "ASSIGNEDTOME" is only supported for ServiceAppointment . All other scopes like TEAM, QUEUE_OWNED and USER_OWNED are not supported `,
             category: 'Operations',
             recommended: true,
             examples: [
@@ -64,8 +58,8 @@ export const rule: GraphQLESLintRule = {
             ]
         },
         messages: {
-            [ASSIGNED_TO_ME_SUPPORTED_FOR_SERVICEAPPOINTMENT_ONLY]:
-                'Offline GraphQL: Scope ‘ASSIGNEDTOME’ is only supported for the ServiceAppointment entity, for mobile offline use cases',
+            [SCOPE_SUPPORTED_FOR_CERTAIN_ENTITIES_ONLY]:
+                'Offline GraphQL: Scope "{{scopeName}}" is only supported for the "{{supportedEntities}}" entity, for mobile offline use cases',
             [OTHER_UNSUPPORTED_SCOPE]:
                 'Offline GraphQL: Scope "{{scopeName}}" is unsupported for mobile offline use cases.'
         },
@@ -78,7 +72,7 @@ export const rule: GraphQLESLintRule = {
                 if (node.name.value === 'scope') {
                     if (node.value.kind === Kind.ENUM) {
                         const scopeName = node.value.value;
-                        if (unsupportedScopes.includes(scopeName)) {
+                        if (supportedScopes[scopeName] === undefined) {
                             context.report({
                                 messageId: OTHER_UNSUPPORTED_SCOPE,
                                 data: {
@@ -89,19 +83,26 @@ export const rule: GraphQLESLintRule = {
                                     end: node.value.loc.end
                                 }
                             });
-                        } else if (node.value.value === 'ASSIGNEDTOME') {
-                            const entityNode = node.parent as any;
-                            if (
-                                entityNode.name.kind === Kind.NAME &&
-                                entityNode.name.value !== 'ServiceAppointment'
-                            ) {
-                                context.report({
-                                    messageId: ASSIGNED_TO_ME_SUPPORTED_FOR_SERVICEAPPOINTMENT_ONLY,
-                                    loc: {
-                                        start: node.loc.start,
-                                        end: node.value.loc.end
+                        } else {
+                            const entities = supportedScopes[scopeName];
+                            if (entities.length > 0) {
+                                const entityNode = node.parent as any;
+                                if (entityNode.name.kind === Kind.NAME) {
+                                    const entityName = entityNode.name.value;
+                                    if (!entities.includes(entityName)) {
+                                        context.report({
+                                            messageId: SCOPE_SUPPORTED_FOR_CERTAIN_ENTITIES_ONLY,
+                                            loc: {
+                                                start: node.loc.start,
+                                                end: node.value.loc.end
+                                            },
+                                            data: {
+                                                scopeName,
+                                                supportedEntities: entities.join(', ')
+                                            }
+                                        });
                                     }
-                                });
+                                }
                             }
                         }
                     }
