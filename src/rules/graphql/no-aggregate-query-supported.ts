@@ -1,4 +1,4 @@
-import { FieldNode } from 'graphql';
+import { FieldNode, Kind } from 'graphql';
 import { GraphQLESLintRule, GraphQLESLintRuleContext } from '@graphql-eslint/eslint-plugin';
 import getDocUrl from '../../util/getDocUrl';
 
@@ -11,7 +11,7 @@ export const rule: GraphQLESLintRule = {
         docs: {
             category: 'Operations',
             description:
-                'aggregate operation in graphql query is not supported for mobile offline.',
+                'Aggregate operation in a query is not supported for mobile offline.',
             url: getDocUrl(NO_AGGREGATE_QUERY_SUPPORTED_RULE_ID),
             examples: [
                 {
@@ -43,7 +43,7 @@ export const rule: GraphQLESLintRule = {
         },
         messages: {
             [NO_AGGREGATE_QUERY_SUPPORTED_RULE_ID]:
-                'Aggregate operation in graphql query is not supported for mobile offline'
+                'Offline GraphQL: Aggregate operation in a query is not supported for mobile offline'
         },
         schema: []
     },
@@ -53,16 +53,10 @@ export const rule: GraphQLESLintRule = {
             Field(node) {
                 // report lint issue if the graphql is like '... uiapi { aggregate { ...'
                 if (
-                    node.name.value !== 'aggregate' ||
-                    node.parent?.parent === undefined ||
-                    node.parent.parent.type !== 'Field'
+                    node.name.value === 'aggregate' &&
+                    node.parent?.parent?.type === Kind.FIELD && 
+                    node.parent.parent.name.value === 'uiapi'
                 ) {
-                    return;
-                }
-
-                const upperField = node.parent.parent as unknown as FieldNode;
-
-                if (upperField.name.value === 'uiapi') {
                     context.report({
                         node: node.name,
                         messageId: NO_AGGREGATE_QUERY_SUPPORTED_RULE_ID

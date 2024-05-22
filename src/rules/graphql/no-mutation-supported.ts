@@ -17,7 +17,7 @@ export const rule: GraphQLESLintRule = {
         hasSuggestions: false,
         docs: {
             category: 'Operations',
-            description: 'mutation is not supported offline',
+            description: 'Mutation is not supported for mobile offline',
             url: getDocUrl(NO_MUTATION_SUPPORTED_RULE_ID),
             recommended: true,
             examples: [
