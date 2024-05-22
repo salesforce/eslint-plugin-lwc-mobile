@@ -6,6 +6,17 @@ export const UNSUPPORTED_SCOPE_RULE_ID = 'offline-graphql-unsupported-scope';
 export const ASSIGNED_TO_ME_SUPPORTED_FOR_SERVICEAPPOINTMENT_ONLY =
     'ASSIGNED_TO_ME__SERVICEAPPOINTMENT_ONLY';
 export const OTHER_UNSUPPORTED_SCOPE = 'OTHER_UNSUPPORTED_SCOPE';
+
+const unsupportedScopes = [
+    'TEAM',
+    'QUEUE_OWNED',
+    'USER_OWNED',
+    'EVERYTHING',
+    'TEAM_BY_ROLE',
+    'GENERICTEAM',
+    'FOLLOWING',
+    'FILES_SHARED_WITH_ME'
+];
 export const rule: GraphQLESLintRule = {
     meta: {
         type: 'problem',
@@ -67,12 +78,7 @@ export const rule: GraphQLESLintRule = {
                 if (node.name.value === 'scope') {
                     if (node.value.kind === Kind.ENUM) {
                         const scopeName = node.value.value;
-                        if (
-                            scopeName === 'TEAM' ||
-                            scopeName === 'QUEUE_OWNED' ||
-                            scopeName === 'USER_OWNED' ||
-                            scopeName === 'EVERYTHING'
-                        ) {
+                        if (unsupportedScopes.includes(scopeName)) {
                             context.report({
                                 messageId: OTHER_UNSUPPORTED_SCOPE,
                                 data: {
