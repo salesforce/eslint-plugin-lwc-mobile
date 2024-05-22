@@ -10,10 +10,17 @@ import recommended from './configs/recommended.js';
 import enforceFooBar from './rules/dummy/enforce-foo-bar.js';
 import { rule as apexImport, APEX_IMPORT_RULE_ID } from './rules/apex/apex-import.js';
 import {
-    rule as mutionNotSupported,
-    NO_MUTATION_SUPPORTED_RULE_ID
+    NO_AGGREGATE_QUERY_SUPPORTED_RULE_ID,
+    rule as aggregateQueryNotSupported
+} from './rules/graphql/no-aggregate-query-supported.js';
+
+import {
+    NO_MUTATION_SUPPORTED_RULE_ID,
+    rule as mutationNotSupported
 } from './rules/graphql/no-mutation-supported.js';
+
 import { name, version } from '../package.json';
+
 export = {
     configs: {
         base,
@@ -25,7 +32,8 @@ export = {
     },
     rules: {
         'enforce-foo-bar': enforceFooBar,
-        [NO_MUTATION_SUPPORTED_RULE_ID]: mutionNotSupported,
-        [APEX_IMPORT_RULE_ID]: apexImport
+        [APEX_IMPORT_RULE_ID]: apexImport,
+        [NO_MUTATION_SUPPORTED_RULE_ID]: mutationNotSupported,
+        [NO_AGGREGATE_QUERY_SUPPORTED_RULE_ID]: aggregateQueryNotSupported
     }
 };
