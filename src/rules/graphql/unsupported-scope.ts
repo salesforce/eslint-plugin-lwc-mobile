@@ -72,39 +72,37 @@ export const rule: GraphQLESLintRule = {
     create(context: GraphQLESLintRuleContext) {
         return {
             Argument(node) {
-                if (node.name.value === 'scope') {
-                    if (node.value.kind === Kind.ENUM) {
-                        const scopeName = node.value.value;
-                        if (supportedScopes[scopeName] === undefined) {
-                            context.report({
-                                messageId: OTHER_UNSUPPORTED_SCOPE,
-                                data: {
-                                    scopeName
-                                },
-                                loc: {
-                                    start: node.loc.start,
-                                    end: node.value.loc.end
-                                }
-                            });
-                        } else {
-                            const entities = supportedScopes[scopeName];
-                            if (entities.length > 0) {
-                                const entityNode = node.parent as any;
-                                if (entityNode.name.kind === Kind.NAME) {
-                                    const entityName = entityNode.name.value;
-                                    if (!entities.includes(entityName)) {
-                                        context.report({
-                                            messageId: SCOPE_SUPPORTED_FOR_CERTAIN_ENTITIES_ONLY,
-                                            loc: {
-                                                start: node.loc.start,
-                                                end: node.value.loc.end
-                                            },
-                                            data: {
-                                                scopeName,
-                                                supportedEntities: entities.join(', ')
-                                            }
-                                        });
-                                    }
+                if (node.name.value === 'scope' && node.value.kind === Kind.ENUM) {
+                    const scopeName = node.value.value;
+                    if (supportedScopes[scopeName] === undefined) {
+                        context.report({
+                            messageId: OTHER_UNSUPPORTED_SCOPE,
+                            data: {
+                                scopeName
+                            },
+                            loc: {
+                                start: node.loc.start,
+                                end: node.value.loc.end
+                            }
+                        });
+                    } else {
+                        const entities = supportedScopes[scopeName];
+                        if (entities.length > 0) {
+                            const entityNode = node.parent as any;
+                            if (entityNode.name.kind === Kind.NAME) {
+                                const entityName = entityNode.name.value;
+                                if (!entities.includes(entityName)) {
+                                    context.report({
+                                        messageId: SCOPE_SUPPORTED_FOR_CERTAIN_ENTITIES_ONLY,
+                                        loc: {
+                                            start: node.loc.start,
+                                            end: node.value.loc.end
+                                        },
+                                        data: {
+                                            scopeName,
+                                            supportedEntities: entities.join(', ')
+                                        }
+                                    });
                                 }
                             }
                         }
