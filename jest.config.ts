@@ -14,7 +14,7 @@ const config: Config = {
     testMatch: ['<rootDir>/test/**/*.ts'],
     moduleFileExtensions: ['ts', 'js', 'json'],
     testResultsProcessor: 'jest-sonar-reporter',
-    testPathIgnorePatterns: ['/node_modules/', '<rootDir>/lib/'],
+    testPathIgnorePatterns: ['/node_modules/', '<rootDir>/lib/', '<rootDir>/test/shared.ts'],
     moduleDirectories: ['node_modules'],
     collectCoverage: true,
     collectCoverageFrom: ['src/**/*.ts', '!src/index.ts', '!src/configs/*.ts'],

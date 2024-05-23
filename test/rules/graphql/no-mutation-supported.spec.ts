@@ -4,12 +4,9 @@ import {
     NO_MUTATION_SUPPORTED_RULE_ID
 } from '../../../src/rules/graphql/no-mutation-supported';
 
-const ruleTester = new RuleTester({
-    parser: '@graphql-eslint/eslint-plugin',
-    parserOptions: {
-        graphQLConfig: {}
-    }
-});
+import { RULE_TESTER_CONFIG } from '../../shared';
+
+const ruleTester = new RuleTester(RULE_TESTER_CONFIG);
 
 ruleTester.run('@salesforce/lwc-mobile/no-mutation-supported', rule as any, {
     valid: [
