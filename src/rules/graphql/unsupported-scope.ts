@@ -1,5 +1,5 @@
 import { GraphQLESLintRule, GraphQLESLintRuleContext } from '@graphql-eslint/eslint-plugin';
-import { Kind } from 'graphql';
+import { Kind, NameNode } from 'graphql';
 
 export const UNSUPPORTED_SCOPE_RULE_ID = 'offline-graphql-unsupported-scope';
 
@@ -7,6 +7,10 @@ export const SCOPE_SUPPORTED_FOR_CERTAIN_ENTITIES_ONLY = 'ASSIGNED_TO_ME__SERVIC
 export const OTHER_UNSUPPORTED_SCOPE = 'OTHER_UNSUPPORTED_SCOPE';
 
 import getDocUrl from '../../util/getDocUrl';
+
+type NodeWithName = {
+    name: NameNode;
+};
 
 // key is scope name, value is the array of supported entities. Empty array means that all entities are supported.
 const supportedScopes: Record<string, string[]> = {
@@ -88,7 +92,7 @@ export const rule: GraphQLESLintRule = {
                     } else {
                         const entities = supportedScopes[scopeName];
                         if (entities.length > 0) {
-                            const entityNode = node.parent as any;
+                            const entityNode = node.parent as NodeWithName;
                             if (entityNode.name.kind === Kind.NAME) {
                                 const entityName = entityNode.name.value;
                                 if (!entities.includes(entityName)) {
