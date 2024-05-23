@@ -24,8 +24,8 @@ export = {
                 skipGraphQLConfig: true
             },
             rules: {
-                '@salesforce/lwc-mobile/offline-graphql-no-mutation-supported': 'warn',
                 '@salesforce/lwc-mobile/offline-graphql-no-aggregate-query-supported': 'warn',
+                '@salesforce/lwc-mobile/offline-graphql-no-mutation-supported': 'warn',
                 '@salesforce/lwc-mobile/offline-graphql-unsupported-scope': 'warn'
             }
         }

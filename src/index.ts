@@ -18,12 +18,13 @@ import {
     NO_MUTATION_SUPPORTED_RULE_ID,
     rule as mutationNotSupported
 } from './rules/graphql/no-mutation-supported.js';
-import { name, version } from '../package.json';
 
 import {
-    rule as offlineGraphqlUnsupportedScope,
-    UNSUPPORTED_SCOPE_RULE_ID
+    UNSUPPORTED_SCOPE_RULE_ID,
+    rule as unsupportedScope
 } from './rules/graphql/unsupported-scope.js';
+
+import { name, version } from '../package.json';
 
 export = {
     configs: {
@@ -38,7 +39,7 @@ export = {
         'enforce-foo-bar': enforceFooBar,
         [APEX_IMPORT_RULE_ID]: apexImport,
         [NO_AGGREGATE_QUERY_SUPPORTED_RULE_ID]: aggregateQueryNotSupported,
-        [NO_MUTATION_SUPPORTED_RULE_ID]: mutionNotSupported,
-        [UNSUPPORTED_SCOPE_RULE_ID]: offlineGraphqlUnsupportedScope
+        [NO_MUTATION_SUPPORTED_RULE_ID]: mutationNotSupported,
+        [UNSUPPORTED_SCOPE_RULE_ID]: unsupportedScope
     }
 };

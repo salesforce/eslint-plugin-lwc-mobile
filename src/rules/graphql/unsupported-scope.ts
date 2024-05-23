@@ -6,6 +6,8 @@ export const UNSUPPORTED_SCOPE_RULE_ID = 'offline-graphql-unsupported-scope';
 export const SCOPE_SUPPORTED_FOR_CERTAIN_ENTITIES_ONLY = 'ASSIGNED_TO_ME__SERVICEAPPOINTMENT_ONLY';
 export const OTHER_UNSUPPORTED_SCOPE = 'OTHER_UNSUPPORTED_SCOPE';
 
+import getDocUrl from '../../util/getDocUrl';
+
 // key is scope name, value is the array of supported entities. Empty array means that all entities are supported.
 const supportedScopes: Record<string, string[]> = {
     MINE: [],
@@ -15,8 +17,9 @@ export const rule: GraphQLESLintRule = {
     meta: {
         type: 'problem',
         docs: {
-            description: `For mobile offline use cases, scope "MINE" is supported and scope "ASSIGNEDTOME" is only supported for ServiceAppointment . All other scopes like TEAM, QUEUE_OWNED and USER_OWNED are not supported `,
             category: 'Operations',
+            description: `For mobile offline use cases, scope "MINE" is supported and scope "ASSIGNEDTOME" is only supported for ServiceAppointment . All other scopes like TEAM, QUEUE_OWNED and USER_OWNED are not supported `,
+            url: getDocUrl(UNSUPPORTED_SCOPE_RULE_ID),
             recommended: true,
             examples: [
                 {

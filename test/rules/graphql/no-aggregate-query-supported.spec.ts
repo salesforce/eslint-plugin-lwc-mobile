@@ -4,12 +4,9 @@ import {
     NO_AGGREGATE_QUERY_SUPPORTED_RULE_ID
 } from '../../../src/rules/graphql/no-aggregate-query-supported';
 
-const ruleTester = new RuleTester({
-    parser: '@graphql-eslint/eslint-plugin',
-    parserOptions: {
-        graphQLConfig: {}
-    }
-});
+import { RULE_TESTER_CONFIG } from '../../shared';
+
+const ruleTester = new RuleTester(RULE_TESTER_CONFIG);
 
 ruleTester.run('@salesforce/lwc-mobile/no-aggregate-query-supported', rule as any, {
     valid: [
