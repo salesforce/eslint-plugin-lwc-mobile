@@ -1,16 +1,10 @@
-import { RuleTester } from '@typescript-eslint/rule-tester';
 import {
     rule,
     NO_SEMI_ANTI_JOIN_SUPPORTED_RULE_ID
 } from '../../../src/rules/graphql/no-semi-anti-join-supported';
 import { createScopedModuleRuleName } from '../../../src/util/createScopedModuleRuleName';
 
-const ruleTester = new RuleTester({
-    parser: '@graphql-eslint/eslint-plugin',
-    parserOptions: {
-        graphQLConfig: {}
-    }
-});
+import { ruleTester } from '../../shared';
 
 ruleTester.run(createScopedModuleRuleName(NO_SEMI_ANTI_JOIN_SUPPORTED_RULE_ID), rule as any, {
     valid: [
