@@ -1,6 +1,6 @@
 import { Kind } from 'graphql';
 import { GraphQLESLintRule, GraphQLESLintRuleContext } from '@graphql-eslint/eslint-plugin';
-
+import getDocUrl from '../../util/getDocUrl';
 export const NO_FISCAL_DATE_FILTER_SUPPORTED_RULE_ID =
     'offline-graphql-no-fiscal-date-filter-supported';
 
@@ -16,6 +16,7 @@ export const rule: GraphQLESLintRule = {
         docs: {
             description: 'fiscal date literals/ranges are not supported offline',
             category: 'Operations',
+            url: getDocUrl(NO_FISCAL_DATE_FILTER_SUPPORTED_RULE_ID),
             recommended: true,
             examples: [
                 {
@@ -100,7 +101,7 @@ export const rule: GraphQLESLintRule = {
         return {
             ObjectField(node) {
                 if (node.kind == Kind.OBJECT_FIELD && node.name.kind === Kind.NAME) {
-                    // Example: {literal : LAST_FISCAL_YEAR}.
+                    // Example: where : {LastAcitivtyDate: {eq: {literal : LAST_FISCAL_YEAR }}}.
                     if (
                         node.name.value === 'literal' &&
                         node.value.kind === Kind.ENUM &&
@@ -110,7 +111,7 @@ export const rule: GraphQLESLintRule = {
                         {
                             context.report({
                                 messageId: NO_FISCAL_DATE_FILTER_SUPPORTED_RULE_ID,
-                                node,
+                                node: node.value,
                                 data: {
                                     filterType: 'literal',
                                     filterName: node.value.value
@@ -122,7 +123,7 @@ export const rule: GraphQLESLintRule = {
                         node.value.kind === Kind.OBJECT &&
                         node.value.fields.length > 0
                     ) {
-                        // Example: {range: {LAST_N_FISCAL_YEARS: 1}}.
+                        // Example: where : {LastAcitivtyDate: {eq: {range: {LAST_N_FISCAL_YEARS: 1 }}}}.
                         const rangeObjectField = node.value.fields[0];
                         // Checks if it is a fiscal date filter, for example 'LAST_N_FISCAL_QUATERS', 'N_FISCAL_YEARS_AGO'.
                         if (rangeObjectField.name.value.toLowerCase().indexOf('fiscal')) {

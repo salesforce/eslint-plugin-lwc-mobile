@@ -62,9 +62,9 @@ export = {
     rules: {
         [APEX_IMPORT_RULE_ID]: apexImport,
         [NO_AGGREGATE_QUERY_SUPPORTED_RULE_ID]: aggregateQueryNotSupported,
+        [NO_FISCAL_DATE_FILTER_SUPPORTED_RULE_ID]: fiscalDataFilteringNotSupported,
         [NO_MUTATION_SUPPORTED_RULE_ID]: mutationNotSupported,
         [UNSUPPORTED_SCOPE_RULE_ID]: unsupportedScope,
-        [NO_FISCAL_DATE_FILTER_SUPPORTED_RULE_ID]: fiscalDataFilteringNotSupported,
         [NO_SEMI_ANTI_JOIN_SUPPORTED_RULE_ID]: noSemiAntiJoinSupported,
         [NO_MORE_THAN_1_PARENT_RECORD_RULE_ID]: noMoreThan1ParentRecord,
         [NO_MORE_THAN_3_CHILD_ENTITIES_RULE_ID]: noMoreThan3ChildEntities,
