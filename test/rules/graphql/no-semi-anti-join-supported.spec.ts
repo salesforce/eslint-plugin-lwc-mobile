@@ -1,18 +1,19 @@
 import {
     rule,
-    SCOPE_SUPPORTED_FOR_CERTAIN_ENTITIES_ONLY,
-    OTHER_UNSUPPORTED_SCOPE
-} from '../../../src/rules/graphql/unsupported-scope';
+    NO_SEMI_ANTI_JOIN_SUPPORTED_RULE_ID
+} from '../../../src/rules/graphql/no-semi-anti-join-supported';
+import { createScopedModuleRuleName } from '../../../src/util/createScopedModuleRuleName';
+
 import { ruleTester } from '../../shared';
 
-ruleTester.run('@salesforce/lwc-mobile/offline-graphql-unsupported-scope', rule as any, {
+ruleTester.run(createScopedModuleRuleName(NO_SEMI_ANTI_JOIN_SUPPORTED_RULE_ID), rule as any, {
     valid: [
         {
             code: /* GraphQL */ `
-                query scopeQuery {
+                query AccountExample {
                     uiapi {
                         query {
-                            ServiceAppointment(first: 20, scope: ASSIGNEDTOME) {
+                            Account {
                                 edges {
                                     node {
                                         Id
@@ -31,35 +32,19 @@ ruleTester.run('@salesforce/lwc-mobile/offline-graphql-unsupported-scope', rule 
     invalid: [
         {
             code: /* GraphQL */ `
-                query scopeQuery {
+                query AccountExample {
                     uiapi {
                         query {
-                            Case(scope: EVERYTHING) {
-                                edges {
-                                    node {
-                                        Id
+                            Account(
+                                where: {
+                                    Id: {
+                                        inq: {
+                                            Opportunity: { StageName: { eq: "Closed Won" } }
+                                            ApiName: "AccountId"
+                                        }
                                     }
                                 }
-                            }
-                        }
-                    }
-                }
-            `,
-            errors: [
-                {
-                    messageId: OTHER_UNSUPPORTED_SCOPE,
-                    data: {
-                        scopeName: 'EVERYTHING'
-                    }
-                }
-            ]
-        },
-        {
-            code: /* GraphQL */ `
-                query scopeQuery {
-                    uiapi {
-                        query {
-                            Case(first: 20, scope: ASSIGNEDTOME) {
+                            ) {
                                 edges {
                                     node {
                                         Id
@@ -75,10 +60,46 @@ ruleTester.run('@salesforce/lwc-mobile/offline-graphql-unsupported-scope', rule 
             `,
             errors: [
                 {
-                    messageId: SCOPE_SUPPORTED_FOR_CERTAIN_ENTITIES_ONLY,
+                    messageId: NO_SEMI_ANTI_JOIN_SUPPORTED_RULE_ID,
                     data: {
-                        scopeName: 'ASSIGNEDTOME',
-                        supportedEntities: 'ServiceAppointment'
+                        joinType: 'Semi'
+                    }
+                }
+            ]
+        },
+        {
+            code: /* GraphQL */ `
+                query AccountExample {
+                    uiapi {
+                        query {
+                            Account(
+                                where: {
+                                    Id: {
+                                        ninq: {
+                                            Opportunity: { StageName: { eq: "Closed Won" } }
+                                            ApiName: "AccountId"
+                                        }
+                                    }
+                                }
+                            ) {
+                                edges {
+                                    node {
+                                        Id
+                                        Name {
+                                            value
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            `,
+            errors: [
+                {
+                    messageId: NO_SEMI_ANTI_JOIN_SUPPORTED_RULE_ID,
+                    data: {
+                        joinType: 'Anti'
                     }
                 }
             ]

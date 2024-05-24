@@ -1,14 +1,12 @@
-import { RuleTester } from '@typescript-eslint/rule-tester';
 import {
     rule,
     NO_MUTATION_SUPPORTED_RULE_ID
 } from '../../../src/rules/graphql/no-mutation-supported';
+import { createScopedModuleRuleName } from '../../../src/util/createScopedModuleRuleName';
 
-import { RULE_TESTER_CONFIG } from '../../shared';
+import { ruleTester } from '../../shared';
 
-const ruleTester = new RuleTester(RULE_TESTER_CONFIG);
-
-ruleTester.run('@salesforce/lwc-mobile/no-mutation-supported', rule as any, {
+ruleTester.run(createScopedModuleRuleName(NO_MUTATION_SUPPORTED_RULE_ID), rule as any, {
     valid: [
         {
             code: /* GraphQL */ `
