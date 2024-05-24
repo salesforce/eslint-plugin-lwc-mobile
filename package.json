@@ -31,7 +31,8 @@
         "url": "https://github.com/salesforce/eslint-plugin-lwc-mobile"
     },
     "scripts": {
-        "build": "tsc --build --force",
+        "clean": "npx rimraf dist reports",
+        "build": "npm run clean && tsc",
         "format": "prettier --list-different \"**/*.{ts,js}\"",
         "format:fix": "prettier --write \"**/*.{ts,js,json}\"",
         "lint": "eslint src test",

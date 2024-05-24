@@ -8,15 +8,13 @@ import { GraphQLESLintRule, GraphQLESLintRuleContext } from '@graphql-eslint/esl
 import getDocUrl from '../../util/getDocUrl';
 
 export const NO_SEMI_ANTI_JOIN_SUPPORTED_RULE_ID = 'offline-graphql-no-semi-anti-join-supported';
-export const NO_SEMI_JOIN_SUPPORTED_MESSAGE_ID = 'offline-graphql-no-semi-join-supported' ;
-export const NO_ANTI_JOIN_SUPPORTED_MESSAGE_ID = 'offline-graphql-no-anti-join-supported';
 
 export const rule: GraphQLESLintRule = {
     meta: {
         type: 'problem',
         hasSuggestions: false,
         docs: {
-            description: 'Semi and Anti join are not supported offline',
+            description: 'Semi and anti join are not supported for mobile offline',
             category: 'Operations',
             recommended: true,
             url: getDocUrl(NO_SEMI_ANTI_JOIN_SUPPORTED_RULE_ID),
@@ -99,8 +97,8 @@ export const rule: GraphQLESLintRule = {
             ]
         },
         messages: {
-            [NO_SEMI_JOIN_SUPPORTED_MESSAGE_ID]:'Offline GraphQL: Semi join is not supported offline.',
-            [NO_ANTI_JOIN_SUPPORTED_MESSAGE_ID]:'Offline GraphQL: Anti join is not supported offline.'
+            [NO_SEMI_ANTI_JOIN_SUPPORTED_RULE_ID]:
+                'Offline GraphQL: "{{joinType}}" join is not supported for mobile offline.'
         },
         schema: []
     },
@@ -111,12 +109,18 @@ export const rule: GraphQLESLintRule = {
                 if (node.name.value === 'inq') {
                     context.report({
                         node: node.name,
-                        messageId: NO_SEMI_JOIN_SUPPORTED_MESSAGE_ID
+                        messageId: NO_SEMI_ANTI_JOIN_SUPPORTED_RULE_ID,
+                        data: {
+                            joinType: 'Semi'
+                        }
                     });
                 } else if (node.name.value === 'ninq') {
                     context.report({
                         node: node.name,
-                        messageId: NO_ANTI_JOIN_SUPPORTED_MESSAGE_ID
+                        messageId: NO_SEMI_ANTI_JOIN_SUPPORTED_RULE_ID,
+                        data: {
+                            joinType: 'Anti'
+                        }
                     });
                 }
             }

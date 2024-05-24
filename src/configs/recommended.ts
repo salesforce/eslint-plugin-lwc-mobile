@@ -10,12 +10,12 @@ import { NO_MUTATION_SUPPORTED_RULE_ID } from '../rules/graphql/no-mutation-supp
 import { NO_AGGREGATE_QUERY_SUPPORTED_RULE_ID } from '../rules/graphql/no-aggregate-query-supported';
 import { UNSUPPORTED_SCOPE_RULE_ID } from '../rules/graphql/unsupported-scope.js';
 import { NO_SEMI_ANTI_JOIN_SUPPORTED_RULE_ID } from '../rules/graphql/no-semi-anti-join-supported';
-import { createFullRuleName } from '../util/createFullRuleName';
+import { createScopedModuleRuleName } from '../util/createScopedModuleRuleName.js';
 
 export = {
     extends: ['./configs/base'],
     rules: {
-        [createFullRuleName(APEX_IMPORT_RULE_ID)]: 'warn',
+        [createScopedModuleRuleName(APEX_IMPORT_RULE_ID)]: 'warn',
     },
     overrides: [
         {
@@ -30,10 +30,10 @@ export = {
                 skipGraphQLConfig: true
             },
             rules: {
-                [createFullRuleName(NO_MUTATION_SUPPORTED_RULE_ID)]: 'warn',
-                [createFullRuleName(NO_AGGREGATE_QUERY_SUPPORTED_RULE_ID)]: 'warn',
-                [createFullRuleName(UNSUPPORTED_SCOPE_RULE_ID)]: 'warn',
-                [createFullRuleName(NO_SEMI_ANTI_JOIN_SUPPORTED_RULE_ID)]: 'warn'
+                [createScopedModuleRuleName(NO_MUTATION_SUPPORTED_RULE_ID)]: 'warn',
+                [createScopedModuleRuleName(NO_AGGREGATE_QUERY_SUPPORTED_RULE_ID)]: 'warn',
+                [createScopedModuleRuleName(UNSUPPORTED_SCOPE_RULE_ID)]: 'warn',
+                [createScopedModuleRuleName(NO_SEMI_ANTI_JOIN_SUPPORTED_RULE_ID)]: 'warn'
             }
         }
     ]
