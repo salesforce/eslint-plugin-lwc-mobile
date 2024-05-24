@@ -15,7 +15,7 @@ import { createScopedModuleRuleName } from '../util/createScopedModuleRuleName.j
 export = {
     extends: ['./configs/base'],
     rules: {
-        [createScopedModuleRuleName(APEX_IMPORT_RULE_ID)]: 'warn',
+        [createScopedModuleRuleName(APEX_IMPORT_RULE_ID)]: 'warn'
     },
     overrides: [
         {
