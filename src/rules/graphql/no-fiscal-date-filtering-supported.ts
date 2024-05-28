@@ -19,6 +19,30 @@ export const rule: GraphQLESLintRule = {
             recommended: true,
             examples: [
                 {
+                    title: 'Correct',
+                    code: /* GraphQL */ `
+                        {
+                            uiapi {
+                                query {
+                                    Account(
+                                        where: {
+                                            LastActivityDate: {
+                                                eq: { literal: { THIS_YEAR } }
+                                            }
+                                        }
+                                    ) {
+                                        edges {
+                                            node {
+                                                Id
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    `
+                },
+                {
                     title: 'InCorrect',
                     code: /* GraphQL */ `
                         {
@@ -49,31 +73,7 @@ export const rule: GraphQLESLintRule = {
                                     Account(
                                         where: {
                                             LastActivityDate: {
-                                                eq: { range: { LAST_N_FISCAL_YEARS: 1 } }
-                                            }
-                                        }
-                                    ) {
-                                        edges {
-                                            node {
-                                                Id
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    `
-                },
-                {
-                    title: 'Correct',
-                    code: /* GraphQL */ `
-                        {
-                            uiapi {
-                                query {
-                                    Account(
-                                        where: {
-                                            LastActivityDate: {
-                                                eq: { literal: { THIS_YEAR } }
+                                                eq: { range: { last_n_fiscal_years: 1 } }
                                             }
                                         }
                                     ) {
