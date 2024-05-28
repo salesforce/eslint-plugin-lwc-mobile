@@ -71,8 +71,7 @@ export class DocumentStat {
 
     /**
      * find the entity node for the specified edges, find possible parent entity node and build up the state
-     * @param edgesNode
-     * @param documentStat
+     * @param edgesNode the edges node to find entity and build stat.
      */
     findEntityAndBuildUpStat(edgesNode: GraphQLESFieldNode) {
         const entityNode = getEntityNodeForEdges(edgesNode);
@@ -85,6 +84,12 @@ export class DocumentStat {
         }
     }
 
+    /**
+     * Add an EntityStat under an operation for a parent entity.
+     * @param entityStat
+     * @param operationId the operation id of the entityStat is under
+     * @param parentEntityName optional parent entity name for the entityStat
+     */
     addEntityStat(
         entityStat: EntityStat,
         operationId: OperationId,
@@ -117,7 +122,7 @@ export class DocumentStat {
                 );
             }
 
-            // raise violation if parent entity pagesize is over the max allowed
+            // raise violation if parent entity pageSize is over the max allowed
             if (parentEntityStat.pageSize > MAX_PARENT_RECORD_COUNT_WITH_PREDICATED_CHILD) {
                 this.violationListener({
                     type: ViolationType.MAX_PARENT_RECORD_COUNT,
@@ -127,7 +132,7 @@ export class DocumentStat {
             }
 
             parentEntityStat.childrenEntities.push(entityStat);
-            // check children entity count, and call violation listener if over the max allowed.
+            // check child entities count, and call violation listener if over the max allowed.
             if (parentEntityStat.childrenEntities.length > MAX_CHILD_ENTITY_TYPE_COUNT) {
                 this.violationListener({
                     type: ViolationType.MAX_CHILD_ENTITY_COUNT,
