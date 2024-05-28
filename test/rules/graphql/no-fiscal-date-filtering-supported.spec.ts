@@ -6,7 +6,25 @@ import {
 import { ruleTester } from '../../shared';
 
 ruleTester.run('@salesforce/lwc-mobile/no-fiscal-date-filtering-supported', rule as any, {
-    valid: [],
+    valid: [
+        {
+            code: /* GraphQL */ `
+                {
+                    uiapi {
+                        query {
+                            Account(where: { LastActivityDate: { eq: { literal: THIS_YEAR } } }) {
+                                edges {
+                                    node {
+                                        Id
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            `
+        }
+    ],
     invalid: [
         {
             code: /* GraphQL */ `
@@ -15,7 +33,7 @@ ruleTester.run('@salesforce/lwc-mobile/no-fiscal-date-filtering-supported', rule
                         query {
                             Account(
                                 where: {
-                                    LastActivityDate: { eq: { range: { LAST_N_FISCAL_YEARS: 1 } } }
+                                    LastActivityDate: { eq: { range: { last_n_fiscal_years: 1 } } }
                                 }
                             ) {
                                 edges {
@@ -33,7 +51,7 @@ ruleTester.run('@salesforce/lwc-mobile/no-fiscal-date-filtering-supported', rule
                     messageId: NO_FISCAL_DATE_FILTER_SUPPORTED_RULE_ID,
                     data: {
                         filterType: 'range',
-                        filterName: 'LAST_N_FISCAL_YEARS'
+                        filterName: 'last_n_fiscal_years'
                     }
                 }
             ]

@@ -9,7 +9,6 @@ type NodeWithParent = {
     parent: NodeWithParent;
 };
 
-//visit, ASTNode, ASTVisitor
 export const rule: GraphQLESLintRule = {
     meta: {
         type: 'problem',
@@ -101,43 +100,43 @@ export const rule: GraphQLESLintRule = {
         return {
             ObjectField(node) {
                 if (node.kind == Kind.OBJECT_FIELD && node.name.kind === Kind.NAME) {
-                    // Example: where : {LastAcitivtyDate: {eq: {literal : LAST_FISCAL_YEAR }}}.
+                    // Handles literal. Example: where : {LastAcitivtyDate: {eq: {literal : LAST_FISCAL_YEAR }}}.
                     if (
                         node.name.value === 'literal' &&
                         node.value.kind === Kind.ENUM &&
-                        node.value.value.toLowerCase().indexOf('fiscal') > 0 &&
+                        node.value.value.indexOf('_FISCAL_') > 0 &&
                         isInFilter(node as NodeWithParent)
                     ) {
-                        {
-                            context.report({
-                                messageId: NO_FISCAL_DATE_FILTER_SUPPORTED_RULE_ID,
-                                node: node.value,
-                                data: {
-                                    filterType: 'literal',
-                                    filterName: node.value.value
-                                }
-                            });
-                        }
-                    } else if (
+                        context.report({
+                            messageId: NO_FISCAL_DATE_FILTER_SUPPORTED_RULE_ID,
+                            node: node.value,
+                            data: {
+                                filterType: 'literal',
+                                filterName: node.value.value
+                            }
+                        });
+                        return;
+                    }
+                    //Handles ranges. Example: where : {LastAcitivtyDate: {eq: {range: {last_n_fiscal_years: 1 }}}}.
+                    if (
                         node.name.value === 'range' &&
                         node.value.kind === Kind.OBJECT &&
                         node.value.fields.length > 0
                     ) {
-                        // Example: where : {LastAcitivtyDate: {eq: {range: {LAST_N_FISCAL_YEARS: 1 }}}}.
                         const rangeObjectField = node.value.fields[0];
-                        // Checks if it is a fiscal date filter, for example 'LAST_N_FISCAL_QUATERS', 'N_FISCAL_YEARS_AGO'.
-                        if (rangeObjectField.name.value.toLowerCase().indexOf('fiscal')) {
-                            // const {line, column } = rangeObjectField.loc?.source.locationOffset
-                            if (isInFilter(rangeObjectField as NodeWithParent)) {
-                                context.report({
-                                    messageId: NO_FISCAL_DATE_FILTER_SUPPORTED_RULE_ID,
-                                    node: rangeObjectField,
-                                    data: {
-                                        filterType: 'range',
-                                        filterName: rangeObjectField.name.value
-                                    }
-                                });
-                            }
+                        // Checks if it is a fiscal date filter, for example 'last_n_fiscal_quarters', 'n_fiscal_years_ago'.
+                        if (
+                            rangeObjectField.name.value.indexOf('_fiscal_') > 0 &&
+                            isInFilter(rangeObjectField as NodeWithParent)
+                        ) {
+                            context.report({
+                                messageId: NO_FISCAL_DATE_FILTER_SUPPORTED_RULE_ID,
+                                node: rangeObjectField,
+                                data: {
+                                    filterType: 'range',
+                                    filterName: rangeObjectField.name.value
+                                }
+                            });
                         }
                     }
                 }
