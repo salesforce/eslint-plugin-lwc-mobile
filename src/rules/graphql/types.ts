@@ -1,3 +1,10 @@
+/*
+ * File: types.ts
+ * Author: Dimitri POSTOLOV <dmytropostolov@gmail.com>
+ * Description: Copied types.ts from graphql-eslint to simplify custom graphql eslint rule development.
+ * License: MIT License
+ */
+
 import { AST } from 'eslint';
 import { Comment, SourceLocation } from 'estree';
 import {
