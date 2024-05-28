@@ -22,7 +22,7 @@ const MAX_ROOT_ENTITY_COUNT_COUNT = 3;
 const MAX_CHILD_ENTITY_TYPE_COUNT = 3;
 
 type EntityName = string;
-type Parent = EntityName | undefined;
+type ParentEntityName = EntityName | undefined;
 type OperationId = number;
 
 export enum ViolationType {
@@ -40,12 +40,12 @@ interface Violation {
 export type ViolationListener = (violation: Violation) => void;
 
 /*
- *
+ * A data structure to track query entity, page size and child entities.
  */
 export class EntityStat {
     name: EntityName; // entity/object name
     pageSize: number; // the value of 'first' argument from graph entity query
-    node: GraphQLESTreeNode<FieldNode>; //
+    node: GraphQLESTreeNode<FieldNode>; // the entity estree node
     childrenEntities: Array<EntityStat>; // children entity query
 
     constructor(name: string, pageSize: number, node: GraphQLESTreeNode<FieldNode>) {
@@ -85,13 +85,17 @@ export class DocumentStat {
         }
     }
 
-    addEntityStat(entityStat: EntityStat, operationId: OperationId, parent: Parent = undefined) {
+    addEntityStat(
+        entityStat: EntityStat,
+        operationId: OperationId,
+        parentEntityName: ParentEntityName = undefined
+    ) {
         if (this.entityStats[operationId] === undefined) {
             this.entityStats[operationId] = [];
         }
         const operationEntityStats = this.entityStats[operationId];
 
-        if (parent === undefined) {
+        if (parentEntityName === undefined) {
             // add new root entity and check if trigger violation
             operationEntityStats.push(entityStat);
             if (operationEntityStats.length > MAX_ROOT_ENTITY_COUNT_COUNT) {
@@ -104,11 +108,13 @@ export class DocumentStat {
         } else {
             const parentEntityStat = operationEntityStats
                 .filter((entityStat) => {
-                    return entityStat.name === parent;
+                    return entityStat.name === parentEntityName;
                 })
                 .pop();
             if (parentEntityStat === undefined) {
-                throw new Error(`the parent entity stat is not found for specified ${parent}`);
+                throw new Error(
+                    `the parent entity stat is not found for specified ${parentEntityName}`
+                );
             }
 
             // raise violation if parent entity pagesize is over the max allowed

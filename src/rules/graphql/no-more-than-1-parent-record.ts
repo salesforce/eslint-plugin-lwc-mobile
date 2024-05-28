@@ -101,7 +101,7 @@ export const rule: GraphQLESLintRule = {
                 if (!reportedViolations.includes(key)) {
                     reportedViolations.push(key);
                     context.report({
-                        node: violation.violator.node,
+                        node: violation.violator.node.name,
                         messageId: NO_MORE_THAN_1_PARENT_RECORD_RULE_ID,
                         data: {
                             pageSize: violation.violator.pageSize.toString()

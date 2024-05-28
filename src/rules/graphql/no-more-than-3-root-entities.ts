@@ -92,7 +92,7 @@ export const rule: GraphQLESLintRule = {
         const documentStat = new DocumentStat((violation) => {
             if (violation.type === ViolationType.MAX_ROOT_ENTITY_COUNT) {
                 context.report({
-                    node: violation.violator.node,
+                    node: violation.violator.node.name,
                     messageId: NO_MORE_THAN_3_ROOT_ENTITIES_RULE_ID
                 });
             }
