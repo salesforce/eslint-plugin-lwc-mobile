@@ -10,6 +10,9 @@ import { NO_MUTATION_SUPPORTED_RULE_ID } from '../rules/graphql/no-mutation-supp
 import { NO_AGGREGATE_QUERY_SUPPORTED_RULE_ID } from '../rules/graphql/no-aggregate-query-supported';
 import { UNSUPPORTED_SCOPE_RULE_ID } from '../rules/graphql/unsupported-scope.js';
 import { NO_SEMI_ANTI_JOIN_SUPPORTED_RULE_ID } from '../rules/graphql/no-semi-anti-join-supported';
+import { NO_MORE_THAN_1_PARENT_RECORD_RULE_ID } from '../rules/graphql/no-more-than-1-parent-record.js';
+import { NO_MORE_THAN_3_CHILD_ENTITIES_RULE_ID } from '../rules/graphql/no-more-than-3-child-entities.js';
+import { NO_MORE_THAN_3_ROOT_ENTITIES_RULE_ID } from '../rules/graphql/no-more-than-3-root-entities.js';
 import { createScopedModuleRuleName } from '../util/createScopedModuleRuleName.js';
 
 export = {
@@ -33,7 +36,10 @@ export = {
                 [createScopedModuleRuleName(NO_MUTATION_SUPPORTED_RULE_ID)]: 'warn',
                 [createScopedModuleRuleName(NO_AGGREGATE_QUERY_SUPPORTED_RULE_ID)]: 'warn',
                 [createScopedModuleRuleName(UNSUPPORTED_SCOPE_RULE_ID)]: 'warn',
-                [createScopedModuleRuleName(NO_SEMI_ANTI_JOIN_SUPPORTED_RULE_ID)]: 'warn'
+                [createScopedModuleRuleName(NO_SEMI_ANTI_JOIN_SUPPORTED_RULE_ID)]: 'warn',
+                [createScopedModuleRuleName(NO_MORE_THAN_1_PARENT_RECORD_RULE_ID)]: 'warn',
+                [createScopedModuleRuleName(NO_MORE_THAN_3_CHILD_ENTITIES_RULE_ID)]: 'warn',
+                [createScopedModuleRuleName(NO_MORE_THAN_3_ROOT_ENTITIES_RULE_ID)]: 'warn'
             }
         }
     ]
