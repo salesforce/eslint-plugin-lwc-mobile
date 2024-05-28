@@ -7,7 +7,6 @@
 
 import base from './configs/base.js';
 import recommended from './configs/recommended.js';
-import enforceFooBar from './rules/dummy/enforce-foo-bar.js';
 import { rule as apexImport, APEX_IMPORT_RULE_ID } from './rules/apex/apex-import.js';
 import {
     NO_AGGREGATE_QUERY_SUPPORTED_RULE_ID,
@@ -36,7 +35,6 @@ export = {
         version
     },
     rules: {
-        'enforce-foo-bar': enforceFooBar,
         [APEX_IMPORT_RULE_ID]: apexImport,
         [NO_AGGREGATE_QUERY_SUPPORTED_RULE_ID]: aggregateQueryNotSupported,
         [NO_MUTATION_SUPPORTED_RULE_ID]: mutationNotSupported,
