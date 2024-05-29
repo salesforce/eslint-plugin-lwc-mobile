@@ -48,8 +48,8 @@ export function getClosestAncestorByType(
       ServiceResource(first: 2 where: {Id: {eq:$id}}) {
         edges {
     ...
- * @param edgesNode 
- * @returns 
+ * @param edgesNode the specified edges node to find entity node for
+ * @returns entity node
  */
 export function getEntityNodeForEdges(
     edgesNode: GraphQLESFieldNode
