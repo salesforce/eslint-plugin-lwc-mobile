@@ -149,5 +149,5 @@ function isInFilter(node: NodeWithParent): boolean {
     if (node.kind === Kind.ARGUMENT) {
         return true;
     }
-    return node.parent == null ? false : isInFilter(node.parent);
+    return node.parent === null ? false : isInFilter(node.parent);
 }
