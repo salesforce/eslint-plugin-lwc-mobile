@@ -12,7 +12,7 @@ import {
     DEFAULT_PAGE_SIZE
 } from '../../../src/rules/graphql/EntityStats';
 
-describe('EntityStats', () => {
+describe('DocumentStat', () => {
     it('raise root entity count violation', () => {
         const violationListener = jest.fn();
         const documentStat = new DocumentStat(violationListener);
