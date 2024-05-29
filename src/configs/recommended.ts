@@ -38,10 +38,10 @@ export = {
                 [createScopedModuleRuleName(NO_FISCAL_DATE_FILTER_SUPPORTED_RULE_ID)]: 'warn',
                 [createScopedModuleRuleName(NO_MUTATION_SUPPORTED_RULE_ID)]: 'warn',
                 [createScopedModuleRuleName(NO_SEMI_ANTI_JOIN_SUPPORTED_RULE_ID)]: 'warn',
-                [createScopedModuleRuleName(UNSUPPORTED_SCOPE_RULE_ID)]: 'warn',
                 [createScopedModuleRuleName(NO_MORE_THAN_1_PARENT_RECORD_RULE_ID)]: 'warn',
                 [createScopedModuleRuleName(NO_MORE_THAN_3_CHILD_ENTITIES_RULE_ID)]: 'warn',
-                [createScopedModuleRuleName(NO_MORE_THAN_3_ROOT_ENTITIES_RULE_ID)]: 'warn'
+                [createScopedModuleRuleName(NO_MORE_THAN_3_ROOT_ENTITIES_RULE_ID)]: 'warn',
+                [createScopedModuleRuleName(UNSUPPORTED_SCOPE_RULE_ID)]: 'warn'
             }
         }
     ]
