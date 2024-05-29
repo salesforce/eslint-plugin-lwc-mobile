@@ -86,8 +86,8 @@ export class DocumentStat {
 
     /**
      * Add an EntityStat under an operation for a parent entity.
-     * @param entityStat
-     * @param operationId the operation id of the entityStat is under
+     * @param entityStat the entityStat to add
+     * @param operationId the operation id of the entityStat to add
      * @param parentEntityName optional parent entity name for the entityStat
      */
     addEntityStat(

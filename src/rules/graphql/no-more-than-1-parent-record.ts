@@ -10,7 +10,7 @@ export const rule: GraphQLESLintRule = {
         hasSuggestions: false,
         docs: {
             category: 'Operations',
-            description: `When query fetching children entity, suggest to set query 'first' argument value.`,
+            description: `When query fetching children entity, suggest to set query 'first' argument value to 1.`,
             url: getDocUrl(NO_MORE_THAN_1_PARENT_RECORD_RULE_ID),
             examples: [
                 {

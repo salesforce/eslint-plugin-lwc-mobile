@@ -69,7 +69,7 @@ export function getPageSizeFromEntityNode(node: GraphQLESFieldNode): number {
         })
         .pop();
 
-    if (firstArgument === undefined || firstArgument.value.kind != Kind.INT) {
+    if (firstArgument === undefined || firstArgument.value.kind !== Kind.INT) {
         return DEFAULT_PAGE_SIZE;
     }
 
@@ -92,7 +92,7 @@ export function getPageSizeFromEntityNode(node: GraphQLESFieldNode): number {
                 node { 
                   Id
     ...
- * @param entityNode the parent entity node
+ * @param entityNode the entity node to find parent entity node for. 
  */
 export function getParentEntityNode(
     entityNode: GraphQLESFieldNode
