@@ -23,6 +23,26 @@ import {
     rule as unsupportedScope
 } from './rules/graphql/unsupported-scope.js';
 
+import {
+    NO_SEMI_ANTI_JOIN_SUPPORTED_RULE_ID,
+    rule as noSemiAntiJoinSupported
+} from './rules/graphql/no-semi-anti-join-supported.js';
+
+import {
+    NO_MORE_THAN_1_PARENT_RECORD_RULE_ID,
+    rule as noMoreThan1ParentRecord
+} from './rules/graphql/no-more-than-1-parent-record.js';
+
+import {
+    NO_MORE_THAN_3_CHILD_ENTITIES_RULE_ID,
+    rule as noMoreThan3ChildEntities
+} from './rules/graphql/no-more-than-3-child-entities.js';
+
+import {
+    NO_MORE_THAN_3_ROOT_ENTITIES_RULE_ID,
+    rule as noMoreThan3RootEntities
+} from './rules/graphql/no-more-than-3-root-entities.js';
+
 import { name, version } from '../package.json';
 
 export = {
@@ -38,6 +58,10 @@ export = {
         [APEX_IMPORT_RULE_ID]: apexImport,
         [NO_AGGREGATE_QUERY_SUPPORTED_RULE_ID]: aggregateQueryNotSupported,
         [NO_MUTATION_SUPPORTED_RULE_ID]: mutationNotSupported,
-        [UNSUPPORTED_SCOPE_RULE_ID]: unsupportedScope
+        [UNSUPPORTED_SCOPE_RULE_ID]: unsupportedScope,
+        [NO_SEMI_ANTI_JOIN_SUPPORTED_RULE_ID]: noSemiAntiJoinSupported,
+        [NO_MORE_THAN_1_PARENT_RECORD_RULE_ID]: noMoreThan1ParentRecord,
+        [NO_MORE_THAN_3_CHILD_ENTITIES_RULE_ID]: noMoreThan3ChildEntities,
+        [NO_MORE_THAN_3_ROOT_ENTITIES_RULE_ID]: noMoreThan3RootEntities
     }
 };
