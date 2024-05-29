@@ -72,7 +72,7 @@ export const rule: GraphQLESLintRule = {
         },
         messages: {
             [SCOPE_SUPPORTED_FOR_CERTAIN_ENTITIES_ONLY]:
-                'Offline GraphQL: Scope "{{scopeName}}" is only supported for the "{{supportedEntities}}" entity, for mobile offline use cases',
+                'Offline GraphQL: Scope "{{scopeName}}" is only supported for the "{{supportedEntities}}" entity for mobile offline use cases',
             [OTHER_UNSUPPORTED_SCOPE]:
                 'Offline GraphQL: Scope "{{scopeName}}" is unsupported for mobile offline use cases.'
         },

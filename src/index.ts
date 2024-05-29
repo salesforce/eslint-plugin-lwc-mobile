@@ -24,6 +24,11 @@ import {
 } from './rules/graphql/unsupported-scope.js';
 
 import {
+    NO_FISCAL_DATE_FILTER_SUPPORTED_RULE_ID,
+    rule as fiscalDataFilteringNotSupported
+} from './rules/graphql/no-fiscal-date-filtering-supported.js';
+
+import {
     NO_SEMI_ANTI_JOIN_SUPPORTED_RULE_ID,
     rule as noSemiAntiJoinSupported
 } from './rules/graphql/no-semi-anti-join-supported.js';
@@ -57,11 +62,12 @@ export = {
     rules: {
         [APEX_IMPORT_RULE_ID]: apexImport,
         [NO_AGGREGATE_QUERY_SUPPORTED_RULE_ID]: aggregateQueryNotSupported,
+        [NO_FISCAL_DATE_FILTER_SUPPORTED_RULE_ID]: fiscalDataFilteringNotSupported,
         [NO_MUTATION_SUPPORTED_RULE_ID]: mutationNotSupported,
-        [UNSUPPORTED_SCOPE_RULE_ID]: unsupportedScope,
-        [NO_SEMI_ANTI_JOIN_SUPPORTED_RULE_ID]: noSemiAntiJoinSupported,
         [NO_MORE_THAN_1_PARENT_RECORD_RULE_ID]: noMoreThan1ParentRecord,
         [NO_MORE_THAN_3_CHILD_ENTITIES_RULE_ID]: noMoreThan3ChildEntities,
-        [NO_MORE_THAN_3_ROOT_ENTITIES_RULE_ID]: noMoreThan3RootEntities
+        [NO_MORE_THAN_3_ROOT_ENTITIES_RULE_ID]: noMoreThan3RootEntities,
+        [NO_SEMI_ANTI_JOIN_SUPPORTED_RULE_ID]: noSemiAntiJoinSupported,
+        [UNSUPPORTED_SCOPE_RULE_ID]: unsupportedScope
     }
 };
