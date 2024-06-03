@@ -1,6 +1,7 @@
-import { ASTNode, Kind, ObjectFieldNode } from 'graphql';
+import { ASTNode, Kind, ArgumentNode } from 'graphql';
 import { GraphQLESLintRule, GraphQLESLintRuleContext } from '@graphql-eslint/eslint-plugin';
 import getDocUrl from '../../util/getDocUrl';
+import { getClosestAncestorByType } from '../../util/graphqlAstUtils';
 import { GraphQLESTreeNode } from './types';
 export const NO_FISCAL_DATE_FILTER_SUPPORTED_RULE_ID =
     'offline-graphql-no-fiscal-date-filter-supported';
@@ -101,7 +102,7 @@ export const rule: GraphQLESLintRule = {
                         node.name.value === 'literal' &&
                         node.value.kind === Kind.ENUM &&
                         node.value.value.indexOf('_FISCAL_') > 0 &&
-                        isInFilter(node as GraphQLESTreeNode<ObjectFieldNode>)
+                        isInFilter(node)
                     ) {
                         context.report({
                             messageId: NO_FISCAL_DATE_FILTER_SUPPORTED_RULE_ID,
@@ -123,7 +124,7 @@ export const rule: GraphQLESLintRule = {
                         // Checks if it is a fiscal date filter, for example 'last_n_fiscal_quarters', 'n_fiscal_years_ago'.
                         if (
                             rangeObjectField.name.value.indexOf('_fiscal_') > 0 &&
-                            isInFilter(rangeObjectField as GraphQLESTreeNode<ObjectFieldNode>)
+                            isInFilter(rangeObjectField)
                         ) {
                             context.report({
                                 messageId: NO_FISCAL_DATE_FILTER_SUPPORTED_RULE_ID,
@@ -141,21 +142,11 @@ export const rule: GraphQLESLintRule = {
     }
 };
 
-function isInFilter<T extends ASTNode>(node: unknown): boolean {
-    if (typeof node === 'object' && node !== null && 'type' in node) {
-        const typedNode = node as GraphQLESTreeNode<T>;
-        if (typedNode.type === Kind.ARGUMENT) {
-            return true;
-        }
-        if (typedNode.parent === null || typedNode.parent === undefined) {
-            return false;
-        }
-
-        if (typeof typedNode.parent === 'object' && Object.keys(typedNode.parent).length === 0) {
-            return false;
-        }
-
-        return isInFilter<Exclude<typeof typedNode.parent, {}>>(typedNode.parent);
+function isInFilter<T extends ASTNode>(node: GraphQLESTreeNode<T>): boolean {
+    const argument = getClosestAncestorByType<T, ArgumentNode>(node, Kind.ARGUMENT);
+    if (argument === undefined) {
+        return false;
     }
-    return false;
+
+    return argument.name.value === 'where';
 }

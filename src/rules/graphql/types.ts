@@ -83,7 +83,7 @@ type NodeWithType =
     | OperationTypeDefinitionNode
     | VariableDefinitionNode;
 
-type ParentNode<T> = T extends DocumentNode
+export type ParentNode<T> = T extends DocumentNode
     ? AST.Program
     : T extends DefinitionNode
       ? DocumentNode
