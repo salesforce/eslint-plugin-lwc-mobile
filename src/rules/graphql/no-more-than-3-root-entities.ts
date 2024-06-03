@@ -53,7 +53,7 @@ export const rule: GraphQLESLintRule = {
                 {
                     title: 'Correct',
                     code: /* GraphQL */ `
-                        query FistQuery {
+                        query FirstQuery {
                             uiapi {
                                 query {
                                     Contact(first: 1) {
@@ -71,6 +71,19 @@ export const rule: GraphQLESLintRule = {
                                         }
                                     }
                                     Case(first: 1) {
+                                        edges {
+                                            node {
+                                                Id
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        query SecondQuery {
+                            uiapi {
+                                query {
+                                    Contact(first: 1) {
                                         edges {
                                             node {
                                                 Id
