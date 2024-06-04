@@ -5,7 +5,7 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  */
 import { GraphQLESLintRule, GraphQLESLintRuleContext } from '@graphql-eslint/eslint-plugin';
-import { Kind, NameNode } from 'graphql';
+import { Kind, FieldNode } from 'graphql';
 
 export const UNSUPPORTED_SCOPE_RULE_ID = 'offline-graphql-unsupported-scope';
 
@@ -14,10 +14,7 @@ export const OTHER_UNSUPPORTED_SCOPE = 'OTHER_UNSUPPORTED_SCOPE';
 
 import getDocUrl from '../../util/getDocUrl';
 
-type NodeWithName = {
-    name: NameNode;
-};
-
+import { GraphQLESTreeNode } from './types';
 // key is scope name, value is the array of supported entities. Empty array means that all entities are supported.
 const supportedScopes: Record<string, string[]> = {
     MINE: [],
@@ -98,7 +95,7 @@ export const rule: GraphQLESLintRule = {
                     } else {
                         const entities = supportedScopes[scopeName];
                         if (entities.length > 0) {
-                            const entityNode = node.parent as NodeWithName;
+                            const entityNode = node.parent as GraphQLESTreeNode<FieldNode>;
                             if (entityNode.name.kind === Kind.NAME) {
                                 const entityName = entityNode.name.value;
                                 if (!entities.includes(entityName)) {

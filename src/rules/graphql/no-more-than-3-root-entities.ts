@@ -23,8 +23,8 @@ export const rule: GraphQLESLintRule = {
                 {
                     title: 'Correct',
                     code: /* GraphQL */ `
-                        query {
-                            uiapi {
+                        uiapi {
+                            query {
                                 Contacts {
                                     edges {
                                         node {
@@ -51,10 +51,55 @@ export const rule: GraphQLESLintRule = {
                     `
                 },
                 {
+                    title: 'Correct',
+                    code: /* GraphQL */ `
+                        query FirstQuery {
+                            uiapi {
+                                query {
+                                    Contact(first: 1) {
+                                        edges {
+                                            node {
+                                                Id
+                                            }
+                                        }
+                                    }
+                                    ServiceAppointment(first: 1) {
+                                        edges {
+                                            node {
+                                                Id
+                                            }
+                                        }
+                                    }
+                                    Case(first: 1) {
+                                        edges {
+                                            node {
+                                                Id
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        query SecondQuery {
+                            uiapi {
+                                query {
+                                    Contact(first: 1) {
+                                        edges {
+                                            node {
+                                                Id
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    `
+                },
+                {
                     title: 'Incorrect',
                     code: /* GraphQL */ `
-                        query {
-                            uiapi {
+                        uiapi {
+                            query{
                                 Contacts {
                                     edges {
                                         node {

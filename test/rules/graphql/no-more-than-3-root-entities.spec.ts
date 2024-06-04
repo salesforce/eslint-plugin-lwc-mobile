@@ -10,26 +10,72 @@ ruleTester.run(createScopedModuleRuleName(NO_MORE_THAN_3_ROOT_ENTITIES_RULE_ID),
     valid: [
         {
             code: /* GraphQL */ `
-                query {
+                {
                     uiapi {
-                        Contacts {
-                            edges {
-                                node {
-                                    Id
+                        query {
+                            Contacts {
+                                edges {
+                                    node {
+                                        Id
+                                    }
+                                }
+                            }
+                            Opportunities {
+                                edges {
+                                    node {
+                                        Id
+                                    }
+                                }
+                            }
+                            Cases {
+                                edges {
+                                    node {
+                                        Id
+                                    }
                                 }
                             }
                         }
-                        Opportunities {
-                            edges {
-                                node {
-                                    Id
+                    }
+                }
+            `
+        },
+        {
+            code: /* GraphQL */ `
+                query FirstQuery {
+                    uiapi {
+                        query {
+                            Contacts {
+                                edges {
+                                    node {
+                                        Id
+                                    }
+                                }
+                            }
+                            Opportunities {
+                                edges {
+                                    node {
+                                        Id
+                                    }
+                                }
+                            }
+                            Cases {
+                                edges {
+                                    node {
+                                        Id
+                                    }
                                 }
                             }
                         }
-                        Cases {
-                            edges {
-                                node {
-                                    Id
+                    }
+                }
+                query SecondQuery {
+                    uiapi {
+                        query {
+                            Contact(first: 1) {
+                                edges {
+                                    node {
+                                        Id
+                                    }
                                 }
                             }
                         }
@@ -41,33 +87,35 @@ ruleTester.run(createScopedModuleRuleName(NO_MORE_THAN_3_ROOT_ENTITIES_RULE_ID),
     invalid: [
         {
             code: /* GraphQL */ `
-                query {
+                {
                     uiapi {
-                        Contacts {
-                            edges {
-                                node {
-                                    Id
+                        query {
+                            Contacts {
+                                edges {
+                                    node {
+                                        Id
+                                    }
                                 }
                             }
-                        }
-                        Opportunities {
-                            edges {
-                                node {
-                                    Id
+                            Opportunities {
+                                edges {
+                                    node {
+                                        Id
+                                    }
                                 }
                             }
-                        }
-                        Cases {
-                            edges {
-                                node {
-                                    Id
+                            Cases {
+                                edges {
+                                    node {
+                                        Id
+                                    }
                                 }
                             }
-                        }
-                        Documents {
-                            edges {
-                                node {
-                                    Id
+                            Documents {
+                                edges {
+                                    node {
+                                        Id
+                                    }
                                 }
                             }
                         }

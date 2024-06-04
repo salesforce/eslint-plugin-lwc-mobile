@@ -1,13 +1,10 @@
-import { Kind } from 'graphql';
+import { ASTNode, Kind, ArgumentNode } from 'graphql';
 import { GraphQLESLintRule, GraphQLESLintRuleContext } from '@graphql-eslint/eslint-plugin';
 import getDocUrl from '../../util/getDocUrl';
+import { getClosestAncestorByType } from '../../util/graphqlAstUtils';
+import { GraphQLESTreeNode } from './types';
 export const NO_FISCAL_DATE_FILTER_SUPPORTED_RULE_ID =
     'offline-graphql-no-fiscal-date-filter-supported';
-
-type NodeWithParent = {
-    kind: string;
-    parent: NodeWithParent;
-};
 
 export const rule: GraphQLESLintRule = {
     meta: {
@@ -105,7 +102,7 @@ export const rule: GraphQLESLintRule = {
                         node.name.value === 'literal' &&
                         node.value.kind === Kind.ENUM &&
                         node.value.value.indexOf('_FISCAL_') > 0 &&
-                        isInFilter(node as NodeWithParent)
+                        isInFilter(node)
                     ) {
                         context.report({
                             messageId: NO_FISCAL_DATE_FILTER_SUPPORTED_RULE_ID,
@@ -127,7 +124,7 @@ export const rule: GraphQLESLintRule = {
                         // Checks if it is a fiscal date filter, for example 'last_n_fiscal_quarters', 'n_fiscal_years_ago'.
                         if (
                             rangeObjectField.name.value.indexOf('_fiscal_') > 0 &&
-                            isInFilter(rangeObjectField as NodeWithParent)
+                            isInFilter(rangeObjectField)
                         ) {
                             context.report({
                                 messageId: NO_FISCAL_DATE_FILTER_SUPPORTED_RULE_ID,
@@ -145,9 +142,11 @@ export const rule: GraphQLESLintRule = {
     }
 };
 
-function isInFilter(node: NodeWithParent): boolean {
-    if (node.kind === Kind.ARGUMENT) {
-        return true;
+function isInFilter<T extends ASTNode>(node: GraphQLESTreeNode<T>): boolean {
+    const argument = getClosestAncestorByType<T, ArgumentNode>(node, Kind.ARGUMENT);
+    if (argument === undefined) {
+        return false;
     }
-    return node.parent === null ? false : isInFilter(node.parent);
+
+    return argument.name.value === 'where';
 }

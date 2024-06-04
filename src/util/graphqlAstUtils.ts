@@ -7,8 +7,8 @@
 
 import { Position } from 'estree';
 import { AST } from 'eslint';
-import { GraphQLESTreeNode } from '../rules/graphql/types';
-import { FieldNode, Kind, DocumentNode, OperationDefinitionNode } from 'graphql';
+import { GraphQLESTreeNode, ParentNode } from '../rules/graphql/types';
+import { ASTNode, FieldNode, Kind, DocumentNode, OperationDefinitionNode } from 'graphql';
 import { DEFAULT_PAGE_SIZE } from '../rules/graphql/EntityStats';
 
 export type GraphQLESFieldNode = GraphQLESTreeNode<FieldNode>;
@@ -28,17 +28,24 @@ export function getLocation(start: Position, fieldName = ''): AST.SourceLocation
 }
 
 /**
- * Find closest ancestor by type
+ * Find closest ancestor by type. T is source ASTNode type, W is the target ASTNode type.
+ * @param node source node
+ * @param type target node type. For example, Kind.Field or Kind.Argument
  */
-export function getClosestAncestorByType(
-    node: GraphQLESFieldNode,
+
+export function getClosestAncestorByType<T extends ASTNode, W extends ASTNode>(
+    node: GraphQLESTreeNode<T>,
     type: Kind
-): GraphQLESFieldNode | undefined {
-    let parentNode: any = node.parent;
-    while (parentNode !== undefined && parentNode.type !== type) {
-        parentNode = parentNode.parent;
+): GraphQLESTreeNode<W> | undefined {
+    const parentNode = node.parent;
+    if (parentNode === null || parentNode === undefined) {
+        return undefined;
     }
-    return parentNode;
+    const astParentNode = parentNode as GraphQLESTreeNode<Exclude<ParentNode<T>, unknown>>;
+    if (astParentNode.type === type) {
+        return astParentNode as GraphQLESTreeNode<W>;
+    }
+    return getClosestAncestorByType(astParentNode, type);
 }
 
 /**
@@ -104,11 +111,12 @@ export function getPageSizeFromEntityNode(node: GraphQLESFieldNode): number {
 export function getParentEntityNode(
     entityNode: GraphQLESFieldNode
 ): GraphQLESFieldNode | undefined {
-    const node = getClosestAncestorByType(entityNode, Kind.FIELD);
+    const node = getClosestAncestorByType<FieldNode, FieldNode>(entityNode, Kind.FIELD);
+
     if (node === undefined || node.name.value !== 'node') {
         return undefined;
     }
-    const edges = getClosestAncestorByType(node, Kind.FIELD);
+    const edges = getClosestAncestorByType<FieldNode, FieldNode>(node, Kind.FIELD);
     if (edges == undefined || edges.name.value !== 'edges') {
         return undefined;
     }
@@ -135,7 +143,10 @@ export function getParentEntityNode(
  }
  */
 export function getOperationIndex(entityNode: GraphQLESFieldNode): number {
-    const operation = getClosestAncestorByType(entityNode, Kind.OPERATION_DEFINITION)!;
+    const operation = getClosestAncestorByType<FieldNode, OperationDefinitionNode>(
+        entityNode,
+        Kind.OPERATION_DEFINITION
+    )!;
     const document = operation.parent.rawNode() as any as DocumentNode;
     return document.definitions.indexOf(operation.rawNode() as any as OperationDefinitionNode);
 }
