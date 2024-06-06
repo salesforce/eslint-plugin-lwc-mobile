@@ -6,8 +6,8 @@
  */
 
 import { GraphQLESLintRule, GraphQLESLintRuleContext } from '@graphql-eslint/eslint-plugin';
-import getDocUrl from '../../util/getDocUrl';
-import { DocumentStat, ViolationType } from './EntityStats';
+import { getDocUrl } from '../../util/rule-helpers';
+import { DocumentStat, ViolationType } from '../../util/entity-stats';
 
 export const NO_MORE_THAN_3_ROOT_ENTITIES_RULE_ID = 'offline-graphql-no-more-3-root-entities';
 

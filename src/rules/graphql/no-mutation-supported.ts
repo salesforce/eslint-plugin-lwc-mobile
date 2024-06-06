@@ -7,8 +7,8 @@
 
 import { GraphQLESLintRule, GraphQLESLintRuleContext } from '@graphql-eslint/eslint-plugin';
 
-import { getLocation } from '../../util/graphqlAstUtils';
-import getDocUrl from '../../util/getDocUrl';
+import { getLocation } from '../../util/graphql-ast-utils';
+import { getDocUrl } from '../../util/rule-helpers';
 
 export const NO_MUTATION_SUPPORTED_RULE_ID = 'offline-graphql-no-mutation-supported';
 
@@ -18,7 +18,7 @@ export const rule: GraphQLESLintRule = {
         hasSuggestions: false,
         docs: {
             category: 'Operations',
-            description: 'Mutation is not supported for mobile offline',
+            description: 'Mutation (data modification) is not supported for mobile offline',
             url: getDocUrl(NO_MUTATION_SUPPORTED_RULE_ID),
             recommended: true,
             examples: [

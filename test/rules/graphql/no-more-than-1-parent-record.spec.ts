@@ -2,7 +2,7 @@ import {
     rule,
     NO_MORE_THAN_1_PARENT_RECORD_RULE_ID
 } from '../../../src/rules/graphql/no-more-than-1-parent-record';
-import { createScopedModuleRuleName } from '../../../src/util/createScopedModuleRuleName';
+import { createScopedModuleRuleName } from '../../../src/util/rule-helpers';
 
 import { ruleTester } from '../../shared';
 

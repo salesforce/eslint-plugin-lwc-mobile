@@ -5,8 +5,8 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  */
 
-import createRule from '../../util/createRule';
-export const APEX_IMPORT_RULE_ID = 'apex-import';
+import { createRule } from '../../util/rule-helpers';
+export const APEX_IMPORT_RULE_ID = 'lwc-offline-apex-import';
 
 export const rule = createRule({
     create(context) {
@@ -24,11 +24,12 @@ export const rule = createRule({
     name: 'apex-import',
     meta: {
         docs: {
-            description: 'Importing apex modules can have issues on mobile for offline usage.'
+            description:
+                'Using Apex in LWC Offline-enabled mobile apps requires additional considerations to ensure proper functioning in offline scenarios. See https://developer.salesforce.com/docs/atlas.en-us.mobile_offline.meta/mobile_offline/apex.htm for more details.'
         },
         messages: {
             [APEX_IMPORT_RULE_ID]:
-                'Importing apex modules can have issues on mobile for offline usage.'
+                'Using Apex in LWC Offline-enabled mobile apps requires careful consideration.'
         },
         type: 'suggestion',
         schema: []

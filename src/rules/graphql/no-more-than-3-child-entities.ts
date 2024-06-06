@@ -6,8 +6,8 @@
  */
 
 import { GraphQLESLintRule, GraphQLESLintRuleContext } from '@graphql-eslint/eslint-plugin';
-import getDocUrl from '../../util/getDocUrl';
-import { DocumentStat, ViolationType } from './EntityStats';
+import { getDocUrl } from '../../util/rule-helpers';
+import { DocumentStat, ViolationType } from '../../util/entity-stats';
 
 export const NO_MORE_THAN_3_CHILD_ENTITIES_RULE_ID = 'offline-graphql-no-more-3-child-entities';
 
@@ -17,7 +17,7 @@ export const rule: GraphQLESLintRule = {
         hasSuggestions: false,
         docs: {
             category: 'Operations',
-            description: `Do not fetch more than 3 child entities.`,
+            description: `Offline GraphQL: Do not fetch more than 3 child entities.`,
             url: getDocUrl(NO_MORE_THAN_3_CHILD_ENTITIES_RULE_ID),
             examples: [
                 {

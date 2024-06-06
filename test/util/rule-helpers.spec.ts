@@ -1,7 +1,4 @@
-import { describe } from 'node:test';
-
-import { expect } from '@jest/globals';
-import getDocUrl from '../../src/util/getDocUrl';
+import { getDocUrl } from '../../src/util/rule-helpers';
 
 describe('getDocUrl', () => {
     it('doc url returned should be right value', () => {

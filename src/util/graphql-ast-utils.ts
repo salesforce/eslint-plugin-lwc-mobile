@@ -7,9 +7,9 @@
 
 import { Position } from 'estree';
 import { AST } from 'eslint';
-import { GraphQLESTreeNode, ParentNode } from '../rules/graphql/types';
+import { GraphQLESTreeNode, ParentNode } from './types';
 import { ASTNode, FieldNode, Kind, DocumentNode, OperationDefinitionNode } from 'graphql';
-import { DEFAULT_PAGE_SIZE } from '../rules/graphql/EntityStats';
+import { DEFAULT_PAGE_SIZE } from './entity-stats';
 
 export type GraphQLESFieldNode = GraphQLESTreeNode<FieldNode>;
 

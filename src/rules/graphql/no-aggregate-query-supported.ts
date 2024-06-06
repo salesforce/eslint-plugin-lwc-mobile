@@ -7,7 +7,7 @@
 
 import { Kind } from 'graphql';
 import { GraphQLESLintRule, GraphQLESLintRuleContext } from '@graphql-eslint/eslint-plugin';
-import getDocUrl from '../../util/getDocUrl';
+import { getDocUrl } from '../../util/rule-helpers';
 
 export const NO_AGGREGATE_QUERY_SUPPORTED_RULE_ID = 'offline-graphql-no-aggregate-query-supported';
 
@@ -17,7 +17,8 @@ export const rule: GraphQLESLintRule = {
         hasSuggestions: false,
         docs: {
             category: 'Operations',
-            description: 'Aggregate operation in a query is not supported for mobile offline.',
+            description:
+                'Aggregate operations in a GraphQL query are not supported for Offline GraphQL.',
             url: getDocUrl(NO_AGGREGATE_QUERY_SUPPORTED_RULE_ID),
             examples: [
                 {
@@ -49,7 +50,7 @@ export const rule: GraphQLESLintRule = {
         },
         messages: {
             [NO_AGGREGATE_QUERY_SUPPORTED_RULE_ID]:
-                'Offline GraphQL: Aggregate operation in a query is not supported for mobile offline'
+                'Offline GraphQL: Aggregate operations in a query are not supported for mobile offline'
         },
         schema: []
     },
