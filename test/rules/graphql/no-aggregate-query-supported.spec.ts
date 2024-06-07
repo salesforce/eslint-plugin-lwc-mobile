@@ -2,7 +2,7 @@ import {
     rule,
     NO_AGGREGATE_QUERY_SUPPORTED_RULE_ID
 } from '../../../src/rules/graphql/no-aggregate-query-supported';
-import { createScopedModuleRuleName } from '../../../src/util/createScopedModuleRuleName';
+import { createScopedModuleRuleName } from '../../../src/util/rule-helpers';
 
 import { ruleTester } from '../../shared';
 

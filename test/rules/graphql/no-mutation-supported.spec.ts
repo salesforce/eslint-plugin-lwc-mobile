@@ -2,7 +2,7 @@ import {
     rule,
     NO_MUTATION_SUPPORTED_RULE_ID
 } from '../../../src/rules/graphql/no-mutation-supported';
-import { createScopedModuleRuleName } from '../../../src/util/createScopedModuleRuleName';
+import { createScopedModuleRuleName } from '../../../src/util/rule-helpers';
 
 import { ruleTester } from '../../shared';
 

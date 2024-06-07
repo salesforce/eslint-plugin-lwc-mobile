@@ -1,5 +1,5 @@
 import { describe } from 'node:test';
-import { getLocation } from '../../src/util/graphqlAstUtils';
+import { getLocation } from '../../src/util/graphql-ast-utils';
 import { Position } from 'estree';
 
 import { expect } from '@jest/globals';

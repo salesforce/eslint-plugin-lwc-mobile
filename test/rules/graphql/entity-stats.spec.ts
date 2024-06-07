@@ -2,7 +2,7 @@ import { describe } from 'node:test';
 
 import { expect } from '@jest/globals';
 import { FieldNode } from 'graphql';
-import { GraphQLESTreeNode } from '../../../src/rules/graphql/types';
+import { GraphQLESTreeNode } from '../../../src/util/types';
 import { mock } from 'jest-mock-extended';
 
 import {
@@ -10,7 +10,7 @@ import {
     EntityStat,
     ViolationType,
     DEFAULT_PAGE_SIZE
-} from '../../../src/rules/graphql/EntityStats';
+} from '../../../src/util/entity-stats';
 
 describe('DocumentStat', () => {
     it('raise root entity count violation', () => {

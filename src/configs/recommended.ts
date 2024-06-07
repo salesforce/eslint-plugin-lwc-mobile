@@ -14,7 +14,7 @@ import { NO_SEMI_ANTI_JOIN_SUPPORTED_RULE_ID } from '../rules/graphql/no-semi-an
 import { NO_MORE_THAN_1_PARENT_RECORD_RULE_ID } from '../rules/graphql/no-more-than-1-parent-record.js';
 import { NO_MORE_THAN_3_CHILD_ENTITIES_RULE_ID } from '../rules/graphql/no-more-than-3-child-entities.js';
 import { NO_MORE_THAN_3_ROOT_ENTITIES_RULE_ID } from '../rules/graphql/no-more-than-3-root-entities.js';
-import { createScopedModuleRuleName } from '../util/createScopedModuleRuleName.js';
+import { createScopedModuleRuleName } from '../util/rule-helpers.js';
 
 export = {
     extends: ['./configs/base'],

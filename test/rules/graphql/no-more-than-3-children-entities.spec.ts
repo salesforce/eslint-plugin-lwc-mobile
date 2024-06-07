@@ -2,7 +2,7 @@ import {
     rule,
     NO_MORE_THAN_3_CHILD_ENTITIES_RULE_ID
 } from '../../../src/rules/graphql/no-more-than-3-child-entities';
-import { createScopedModuleRuleName } from '../../../src/util/createScopedModuleRuleName';
+import { createScopedModuleRuleName } from '../../../src/util/rule-helpers';
 
 import { ruleTester } from '../../shared';
 

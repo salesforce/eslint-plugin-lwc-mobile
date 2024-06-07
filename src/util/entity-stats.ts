@@ -14,7 +14,7 @@ import {
     getPageSizeFromEntityNode,
     getParentEntityNode,
     GraphQLESFieldNode
-} from '../../util/graphqlAstUtils';
+} from './graphql-ast-utils';
 
 export const DEFAULT_PAGE_SIZE = 10;
 const MAX_PARENT_RECORD_COUNT_WITH_PREDICATED_CHILD = 1;

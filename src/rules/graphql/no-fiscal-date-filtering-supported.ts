@@ -1,8 +1,8 @@
 import { ASTNode, Kind, ArgumentNode } from 'graphql';
 import { GraphQLESLintRule, GraphQLESLintRuleContext } from '@graphql-eslint/eslint-plugin';
-import getDocUrl from '../../util/getDocUrl';
-import { getClosestAncestorByType } from '../../util/graphqlAstUtils';
-import { GraphQLESTreeNode } from './types';
+import { getDocUrl } from '../../util/rule-helpers';
+import { getClosestAncestorByType } from '../../util/graphql-ast-utils';
+import { GraphQLESTreeNode } from '../../util/types';
 export const NO_FISCAL_DATE_FILTER_SUPPORTED_RULE_ID =
     'offline-graphql-no-fiscal-date-filter-supported';
 
@@ -10,7 +10,7 @@ export const rule: GraphQLESLintRule = {
     meta: {
         type: 'problem',
         docs: {
-            description: 'fiscal date literals/ranges are not supported offline',
+            description: 'Fiscal date literals and ranges are not supported in Offline GraphQL',
             category: 'Operations',
             url: getDocUrl(NO_FISCAL_DATE_FILTER_SUPPORTED_RULE_ID),
             recommended: true,
@@ -40,7 +40,7 @@ export const rule: GraphQLESLintRule = {
                     `
                 },
                 {
-                    title: 'InCorrect',
+                    title: 'Incorrect',
                     code: /* GraphQL */ `
                         {
                             uiapi {
@@ -62,7 +62,7 @@ export const rule: GraphQLESLintRule = {
                     `
                 },
                 {
-                    title: 'InCorrect',
+                    title: 'Incorrect',
                     code: /* GraphQL */ `
                         {
                             uiapi {
