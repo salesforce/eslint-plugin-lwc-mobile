@@ -13,8 +13,7 @@ export const SCOPE_SUPPORTED_FOR_CERTAIN_ENTITIES_ONLY = 'ASSIGNED_TO_ME__SERVIC
 export const OTHER_UNSUPPORTED_SCOPE = 'OTHER_UNSUPPORTED_SCOPE';
 
 import { getDocUrl } from '../../util/rule-helpers';
-
-import { GraphQLESTreeNode } from '../../util/types';
+import { GraphQLESTreeNode } from '@graphql-eslint/eslint-plugin/estree-converter/types';
 
 // Record key is scope name, value is the array of supported entities. Empty array
 // means that all entities are supported.

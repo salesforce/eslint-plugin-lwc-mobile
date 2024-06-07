@@ -2,7 +2,7 @@ import { ASTNode, Kind, ArgumentNode } from 'graphql';
 import { GraphQLESLintRule, GraphQLESLintRuleContext } from '@graphql-eslint/eslint-plugin';
 import { getDocUrl } from '../../util/rule-helpers';
 import { getClosestAncestorByType } from '../../util/graphql-ast-utils';
-import { GraphQLESTreeNode } from '../../util/types';
+import { GraphQLESTreeNode } from '@graphql-eslint/eslint-plugin/estree-converter/types';
 export const NO_FISCAL_DATE_FILTER_SUPPORTED_RULE_ID =
     'offline-graphql-no-fiscal-date-filter-supported';
 

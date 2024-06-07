@@ -6,7 +6,7 @@
  */
 
 import { FieldNode } from 'graphql';
-import { GraphQLESTreeNode } from './types';
+import { GraphQLESTreeNode } from '@graphql-eslint/eslint-plugin/estree-converter/types';
 
 import {
     getEntityNodeForEdges,

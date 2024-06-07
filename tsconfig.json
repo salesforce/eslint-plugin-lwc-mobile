@@ -16,7 +16,13 @@
         "noUnusedLocals": true /* Enable error reporting when local variables aren't read. */,
         "noUnusedParameters": true /* Raise an error when a function parameter isn't read. */,
         "noImplicitReturns": true /* Enable error reporting for codepaths that do not explicitly return in a function. */,
-        "skipLibCheck": true /* Skip type checking all .d.ts files. */
+        "skipLibCheck": true /* Skip type checking all .d.ts files. */,
+        "paths": {
+            /* TS complains not about to infer GraphQLESTreeNode  */
+            "@graphql-eslint/eslint-plugin/estree-converter/*": [
+                "./node_modules/@graphql-eslint/eslint-plugin/cjs/estree-converter/*"
+            ]
+        }
     },
     "include": ["src/**/*", "./package.json"]
 }
