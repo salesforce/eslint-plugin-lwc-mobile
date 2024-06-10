@@ -7,7 +7,7 @@
 
 import { Position } from 'estree';
 import { AST } from 'eslint';
-import { GraphQLESTreeNode, ParentNode } from './types';
+import { GraphQLESTreeNode } from '@graphql-eslint/eslint-plugin/estree-converter/types';
 import { ASTNode, FieldNode, Kind, DocumentNode, OperationDefinitionNode } from 'graphql';
 import { DEFAULT_PAGE_SIZE } from './entity-stats';
 
@@ -41,7 +41,7 @@ export function getClosestAncestorByType<T extends ASTNode, W extends ASTNode>(
     if (parentNode === null || parentNode === undefined) {
         return undefined;
     }
-    const astParentNode = parentNode as GraphQLESTreeNode<Exclude<ParentNode<T>, unknown>>;
+    const astParentNode = parentNode as any;
     if (astParentNode.type === type) {
         return astParentNode as GraphQLESTreeNode<W>;
     }
