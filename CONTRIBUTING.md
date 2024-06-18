@@ -43,7 +43,7 @@ Issues labelled `good first contribution`.
 # Contribution Checklist
 
 -   [x] Clean, simple, well styled code
--   [x] To ensure consistent commit messages, we enforce the [conventional commit](https://www.conventionalcommits.org/en/v1.0.0/#summary) style. After installing project dependencies with `npm install`, run `npx husky` install to set up automatic commit validation with `commitlint`.
+-   [x] To ensure consistent commit messages, we enforce the [conventional commit](https://www.conventionalcommits.org/en/v1.0.0/#summary) style. After installing project dependencies with `npm install`, run `npx husky install` to set up automatic commit validation with `commitlint`.
 -   [x] Commits should be atomic and messages must be descriptive. Related issues should be mentioned by Issue number.
 -   [x] Comments
     -   Module-level & function-level comments.
