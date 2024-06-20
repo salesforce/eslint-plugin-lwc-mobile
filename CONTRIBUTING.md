@@ -79,8 +79,8 @@ Issues labelled `good first contribution`.
 -   **Release Branch**: We'll utilize a dedicated branch for managing releases
 
     -   **Major Release:**
-        -   Update the `.releaserc.yml` file: Locate the branches property and specify the newly created release branch name (e.g., `release-2`).
         -   Create a new branch named `release-\*` (e.g., `release-2`) from `main` to manage the release process.
+        -   Update the `.releaserc.yml` file: Locate the `branches` property and specify the newly created release branch name (e.g., `release-2`).
     -   **Minor/Patch Release:**
         -   If a release branch for a major version already exists (e.g., `release-2`), we can use it for subsequent minor and patch releases.
         -   Hot fixes are merged in release branch, and will be merged back to `main` once it is verified.
