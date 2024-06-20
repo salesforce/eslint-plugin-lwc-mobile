@@ -100,5 +100,8 @@
     },
     "volta": {
         "node": "20.10.0"
+    },
+    "publishConfig": {
+        "registry": "https://registry.npmjs.org/"
     }
 }
