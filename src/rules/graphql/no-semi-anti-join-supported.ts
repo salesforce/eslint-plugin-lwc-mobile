@@ -6,7 +6,6 @@
  */
 
 import { GraphQLESLintRule, GraphQLESLintRuleContext } from '@graphql-eslint/eslint-plugin';
-import { getDocUrl } from '../../util/rule-helpers';
 
 export const NO_SEMI_ANTI_JOIN_SUPPORTED_RULE_ID = 'offline-graphql-no-semi-anti-join-supported';
 
@@ -18,7 +17,6 @@ export const rule: GraphQLESLintRule = {
             description: 'Semi-join and anti-join filters are not supported for mobile offline',
             category: 'Operations',
             recommended: true,
-            url: getDocUrl(NO_SEMI_ANTI_JOIN_SUPPORTED_RULE_ID),
             examples: [
                 {
                     title: 'Correct',

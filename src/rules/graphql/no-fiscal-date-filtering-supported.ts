@@ -7,7 +7,6 @@
 
 import { ASTNode, Kind, ArgumentNode } from 'graphql';
 import { GraphQLESLintRule, GraphQLESLintRuleContext } from '@graphql-eslint/eslint-plugin';
-import { getDocUrl } from '../../util/rule-helpers';
 import { getClosestAncestorByType } from '../../util/graphql-ast-utils';
 import { GraphQLESTreeNode } from '@graphql-eslint/eslint-plugin/estree-converter/types';
 export const NO_FISCAL_DATE_FILTER_SUPPORTED_RULE_ID =
@@ -19,7 +18,6 @@ export const rule: GraphQLESLintRule = {
         docs: {
             description: 'Fiscal date literals and ranges are not supported in Offline GraphQL',
             category: 'Operations',
-            url: getDocUrl(NO_FISCAL_DATE_FILTER_SUPPORTED_RULE_ID),
             recommended: true,
             examples: [
                 {

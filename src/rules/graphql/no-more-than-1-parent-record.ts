@@ -6,7 +6,6 @@
  */
 
 import { GraphQLESLintRule, GraphQLESLintRuleContext } from '@graphql-eslint/eslint-plugin';
-import { getDocUrl } from '../../util/rule-helpers';
 import { DocumentStat, ViolationType } from '../../util/entity-stats';
 
 export const NO_MORE_THAN_1_PARENT_RECORD_RULE_ID = 'offline-graphql-no-more-than-1-parent-record';
@@ -18,7 +17,6 @@ export const rule: GraphQLESLintRule = {
         docs: {
             category: 'Operations',
             description: `Offline GraphQL: You should only query one parent entity, for queries fetching child entities. Set the parent's 'first' argument value to 1.`,
-            url: getDocUrl(NO_MORE_THAN_1_PARENT_RECORD_RULE_ID),
             examples: [
                 {
                     title: 'Correct',

@@ -4,11 +4,11 @@
  * SPDX-License-Identifier: MIT
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  */
+import { ESLintUtils } from '@typescript-eslint/utils';
 
-import { createRule } from '../../util/rule-helpers';
 export const APEX_IMPORT_RULE_ID = 'lwc-offline-apex-import';
 
-export const rule = createRule({
+export const rule = ESLintUtils.RuleCreator.withoutDocs({
     create(context) {
         return {
             ImportDeclaration(node) {
@@ -21,7 +21,6 @@ export const rule = createRule({
             }
         };
     },
-    name: 'apex-import',
     meta: {
         docs: {
             description:
