@@ -1,0 +1,69 @@
+# main is dev integration branch, merge main into release branch to trigger ga release.
+name: Release
+
+on:
+    workflow_dispatch:
+
+jobs:
+    lint-build-test:
+        name: Lint, Build, Test - Node ${{ matrix.node-version }} on ${{ matrix.os }}
+
+        runs-on: ${{ matrix.os }}
+        strategy:
+            matrix:
+                node-version:
+                    - 18.x
+                    - 20.x
+                os:
+                    - ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v4
+              with:
+                  node-version: ${{ matrix.node-version }}
+
+            - name: Install dependencies
+              run: npm clean-install
+            - run: npm run lint
+            - run: npm run build
+            - run: npm run test
+
+    release:
+        name: Release
+        needs: lint-build-test # previous job MUST pass to make a release!
+        runs-on: ubuntu-latest
+
+        # Skip running release workflow on forks
+        if: github.repository_owner == 'salesforce' && github.event_name == 'push'
+
+        permissions:
+            contents: write # to be able to publish a GitHub release
+            issues: write # to be able to comment on released issues
+            pull-requests: write # to be able to comment on released pull requests
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0 # Need all git history & tags to determine next release version.
+                  persist-credentials: false
+
+            - name: Use Node.js
+              uses: actions/setup-node@v4
+              with:
+                  cache: npm
+                  node-version: 20.x
+
+            - name: Install dependencies
+              run: npm clean-install
+
+            - run: npm run build
+
+            - name: Release
+              run: npx semantic-release
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
