@@ -18,8 +18,14 @@ jobs:
                     - ubuntu-latest
 
         steps:
+            - name: Check branch name # make sure the release can only be run on branches like 'release-*'
+              run: |
+                  ref="${{ github.ref }}"
+                  if [[ ! "$ref" =~ ^refs/heads/release-* ]]; then
+                      echo "Error: Workflow can only run on branches starting with 'release-*'"
+                      exit 1
+                  fi
             - uses: actions/checkout@v4
-
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v4
               with:
@@ -36,8 +42,8 @@ jobs:
         needs: lint-build-test # previous job MUST pass to make a release!
         runs-on: ubuntu-latest
 
-        # Skip running release workflow on forks
-        if: github.repository_owner == 'salesforce' && github.event_name == 'push'
+        # This workflow can only be triggered manually in the source (non forked) repository. 
+        if: github.repository_owner == 'salesforce' && github.event_name == 'workflow_dispatch'
 
         permissions:
             contents: write # to be able to publish a GitHub release
@@ -66,4 +72,4 @@ jobs:
               run: npx semantic-release
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}   
