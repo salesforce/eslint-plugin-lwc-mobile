@@ -17,7 +17,7 @@ export const rule: GraphQLESLintRule = {
         hasSuggestions: false,
         docs: {
             category: 'Operations',
-            description: 'Mutation (data modification) is not supported for mobile offline',
+            description: 'Mutation (data modification) is not supported for mobile offline. See Feature Limitations of Offline GraphQL (https://developer.salesforce.com/docs/atlas.en-us.mobile_offline.meta/mobile_offline/use_graphql_limitations.htm) for more details.',
             recommended: true,
             examples: [
                 {
@@ -62,7 +62,7 @@ export const rule: GraphQLESLintRule = {
         },
         messages: {
             [NO_MUTATION_SUPPORTED_RULE_ID]:
-                'Offline GraphQL: Mutation (data modification) is not supported offline.'
+                'Offline GraphQL: Mutation (data modification) is not supported for mobile offline.'
         },
         schema: []
     },

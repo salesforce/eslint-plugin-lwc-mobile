@@ -24,11 +24,11 @@ export const rule = ESLintUtils.RuleCreator.withoutDocs({
     meta: {
         docs: {
             description:
-                'Using Apex in LWC Offline-enabled mobile apps requires additional considerations to ensure proper functioning in offline scenarios. See https://developer.salesforce.com/docs/atlas.en-us.mobile_offline.meta/mobile_offline/apex.htm for more details.'
+                'Using Apex in LWC Offline-enabled mobile apps requires additional considerations to ensure proper functioning in offline scenarios. See Use Apex While Mobile and Offline (https://developer.salesforce.com/docs/atlas.en-us.mobile_offline.meta/mobile_offline/apex.htm) for more details.'
         },
         messages: {
             [APEX_IMPORT_RULE_ID]:
-                'Using Apex in LWC Offline-enabled mobile apps requires careful consideration.'
+                'Using Apex in LWC Offline-enabled mobile apps requires careful consideration in offliine scenarios.'
         },
         type: 'suggestion',
         schema: []
