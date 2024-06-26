@@ -28,7 +28,7 @@ export const rule = ESLintUtils.RuleCreator.withoutDocs({
         },
         messages: {
             [APEX_IMPORT_RULE_ID]:
-                'Using Apex in LWC Offline-enabled mobile apps requires careful consideration in offliine scenarios.'
+                'Using Apex in LWC Offline-enabled mobile apps requires careful consideration in offline scenarios.'
         },
         type: 'suggestion',
         schema: []
