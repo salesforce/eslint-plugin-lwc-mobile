@@ -16,7 +16,8 @@ export const rule: GraphQLESLintRule = {
     meta: {
         type: 'problem',
         docs: {
-            description: 'Fiscal date literals and ranges are not supported in Offline GraphQL',
+            description:
+                'Fiscal date literals and ranges are not supported in filters for mobile offline. See Feature Limitations of Offline GraphQL (https://developer.salesforce.com/docs/atlas.en-us.mobile_offline.meta/mobile_offline/use_graphql_limitations.htm) for more details.',
             category: 'Operations',
             recommended: true,
             examples: [
@@ -94,7 +95,7 @@ export const rule: GraphQLESLintRule = {
         },
         messages: {
             [NO_FISCAL_DATE_FILTER_SUPPORTED_RULE_ID]:
-                'Offline GraphQL: Date {{filterType}} "{{filterName}}" is not supported offline.'
+                'Offline GraphQL: Date {{filterType}} "{{filterName}}" is not supported for mobile offline.'
         },
         schema: []
     },

@@ -16,7 +16,7 @@ export const rule: GraphQLESLintRule = {
         hasSuggestions: false,
         docs: {
             category: 'Operations',
-            description: `Offline GraphQL: You should only query one parent entity, for queries fetching child entities. Set the parent's 'first' argument value to 1.`,
+            description: `Queries fetching child entities can only fetch 1 parent record. Set the parent's 'first' argument value to 1.`,
             examples: [
                 {
                     title: 'Correct',
@@ -90,7 +90,7 @@ export const rule: GraphQLESLintRule = {
             ]
         },
         messages: {
-            [NO_MORE_THAN_1_PARENT_RECORD_RULE_ID]: `Offline GraphQL: Queries fetching child entities should only fetch 1 parent record. Currently it's "{{pageSize}}".`
+            [NO_MORE_THAN_1_PARENT_RECORD_RULE_ID]: `Offline GraphQL: Queries fetching child entities can only fetch 1 parent record. Currently it's "{{pageSize}}".`
         },
         schema: []
     },

@@ -133,7 +133,7 @@ export const rule: GraphQLESLintRule = {
             ]
         },
         messages: {
-            [NO_MORE_THAN_3_ROOT_ENTITIES_RULE_ID]: `Offline GraphQL: fetch no more than 3 root entities.`
+            [NO_MORE_THAN_3_ROOT_ENTITIES_RULE_ID]: `Offline GraphQL: Do not fetch more than 3 root entities.`
         },
         schema: []
     },

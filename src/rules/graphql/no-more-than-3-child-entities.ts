@@ -16,7 +16,7 @@ export const rule: GraphQLESLintRule = {
         hasSuggestions: false,
         docs: {
             category: 'Operations',
-            description: `Offline GraphQL: Do not fetch more than 3 child entities.`,
+            description: `Do not fetch more than 3 child entities.`,
             examples: [
                 {
                     title: 'Correct',
@@ -102,7 +102,7 @@ export const rule: GraphQLESLintRule = {
             ]
         },
         messages: {
-            [NO_MORE_THAN_3_CHILD_ENTITIES_RULE_ID]: `Offline GraphQL: fetch no more than 3 child entities.`
+            [NO_MORE_THAN_3_CHILD_ENTITIES_RULE_ID]: `Offline GraphQL: Do not fetch more than 3 child entities.`
         },
         schema: []
     },

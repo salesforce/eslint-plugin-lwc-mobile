@@ -17,7 +17,7 @@ export const rule: GraphQLESLintRule = {
         docs: {
             category: 'Operations',
             description:
-                'Aggregate operations in a GraphQL query are not supported for Offline GraphQL.',
+                'Aggregate operations in a GraphQL query are not supported for mobile offline. See Feature Limitations of Offline GraphQL (https://developer.salesforce.com/docs/atlas.en-us.mobile_offline.meta/mobile_offline/use_graphql_limitations.htm) for more details.',
             examples: [
                 {
                     title: 'Incorrect',
@@ -48,7 +48,7 @@ export const rule: GraphQLESLintRule = {
         },
         messages: {
             [NO_AGGREGATE_QUERY_SUPPORTED_RULE_ID]:
-                'Offline GraphQL: Aggregate operations in a query are not supported for mobile offline'
+                'Offline GraphQL: Aggregate operations in a query are not supported for mobile offline.'
         },
         schema: []
     },

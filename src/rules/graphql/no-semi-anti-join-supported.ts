@@ -14,7 +14,8 @@ export const rule: GraphQLESLintRule = {
         type: 'problem',
         hasSuggestions: false,
         docs: {
-            description: 'Semi-join and anti-join filters are not supported for mobile offline',
+            description:
+                'Semi-join and anti-join filters are not supported for mobile offline. See Feature Limitations of Offline GraphQL (https://developer.salesforce.com/docs/atlas.en-us.mobile_offline.meta/mobile_offline/use_graphql_limitations.htm) for more details.',
             category: 'Operations',
             recommended: true,
             examples: [
