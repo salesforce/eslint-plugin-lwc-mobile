@@ -4,3 +4,4 @@
 test-report.xml
 junit.xml
 tsconfig.tsbuildinfo
+.DS_Store
