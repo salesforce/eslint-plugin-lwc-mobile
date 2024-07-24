@@ -69,7 +69,8 @@ export const rule: GraphQLESLintRule = {
             ]
         },
         messages: {
-            [NO_INVALID_FIELD_RULE_ID]: 'Offline GraphQL: Field "{{invalidField}}" is invalid for "{{objectApiName}}" object.'
+            [NO_INVALID_FIELD_RULE_ID]:
+                'Offline GraphQL: Field "{{invalidField}}" is invalid for "{{objectApiName}}" object.'
         },
         schema: []
     },
@@ -90,7 +91,15 @@ export const rule: GraphQLESLintRule = {
                                     for (const fieldNameNode of nodeField.selectionSet.selections) {
                                         if (fieldNameNode.kind === Kind.FIELD) {
                                             const fieldName = fieldNameNode.name.value;
-                                            if (!ObjectUtils.isValidField(objectApiName, fieldName)) {
+                                            if (
+                                                !ObjectUtils.isValidField(objectApiName, fieldName)
+                                            ) {
+                                                console.log(
+                                                    ObjectUtils.findCloseFieldName(
+                                                        objectApiName,
+                                                        fieldName
+                                                    )
+                                                );
                                                 context.report({
                                                     messageId: NO_INVALID_FIELD_RULE_ID,
                                                     loc: getLocation(
