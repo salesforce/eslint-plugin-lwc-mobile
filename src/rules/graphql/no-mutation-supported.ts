@@ -6,8 +6,9 @@
  */
 
 import { GraphQLESLintRule, GraphQLESLintRuleContext } from '@graphql-eslint/eslint-plugin';
-
+import {OrgUtils } from '../../util/orgUtils'
 import { getLocation } from '../../util/graphql-ast-utils';
+import { Connection } from '@salesforce/core';
 
 export const NO_MUTATION_SUPPORTED_RULE_ID = 'offline-graphql-no-mutation-supported';
 
@@ -71,6 +72,15 @@ export const rule: GraphQLESLintRule = {
     create(context: GraphQLESLintRuleContext) {
         return {
             OperationDefinition(node) {
+                 OrgUtils.getConnection().then(
+                    (connection: Connection)=>{ 
+                        console.log(connection._baseUrl);
+                    },
+                    (reason)=>{
+                        console.log(reason);
+                    }
+                );
+                
                 if (node.operation === 'mutation') {
                     context.report({
                         messageId: NO_MUTATION_SUPPORTED_RULE_ID,

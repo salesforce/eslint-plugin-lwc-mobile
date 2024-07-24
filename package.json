@@ -59,9 +59,12 @@
         "/dist"
     ],
     "dependencies": {
+        "@types/vscode": "1.77.0",
+        "@salesforce/core": "^5.3.12",
         "@graphql-eslint/eslint-plugin": "^3.20.1"
     },
     "devDependencies": {
+        "@types/vscode": "1.77.0",
         "@commitlint/cli": "^19.3.0",
         "@commitlint/config-conventional": "^19.2.2",
         "@eslint/js": "^9.2.0",
