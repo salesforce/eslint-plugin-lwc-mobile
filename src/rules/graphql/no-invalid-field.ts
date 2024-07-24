@@ -18,7 +18,8 @@ export const NO_INVALID_FIELD_RULE_ID = 'offline-graphql-no-invalid-field';
 export const rule: GraphQLESLintRule = {
     meta: {
         type: 'problem',
-        hasSuggestions: false,
+        hasSuggestions: true,
+        fixable: 'code',
         docs: {
             category: 'Operations',
             description: 'Offline GraphQL: Invalid field of an Object is not accepted',
@@ -94,23 +95,38 @@ export const rule: GraphQLESLintRule = {
                                             if (
                                                 !ObjectUtils.isValidField(objectApiName, fieldName)
                                             ) {
-                                                console.log(
-                                                    ObjectUtils.findCloseFieldName(
-                                                        objectApiName,
-                                                        fieldName
-                                                    )
+                                                const closeFieldName = ObjectUtils.findCloseFieldName(
+                                                    objectApiName,
+                                                    fieldName
                                                 );
-                                                context.report({
-                                                    messageId: NO_INVALID_FIELD_RULE_ID,
-                                                    loc: getLocation(
-                                                        fieldNameNode.loc.start,
-                                                        fieldName
-                                                    ),
-                                                    data: {
-                                                        invalidField: fieldName,
-                                                        objectApiName
-                                                    }
-                                                });
+                                                console.log(`benzhang: ${fieldName} -> ${closeFieldName}`);
+                                                if (closeFieldName !== undefined) {
+                                                    context.report({
+                                                        messageId: NO_INVALID_FIELD_RULE_ID,
+                                                        loc: getLocation(
+                                                            fieldNameNode.loc.start,
+                                                            fieldName
+                                                        ),
+                                                        data: {
+                                                            invalidField: fieldName,
+                                                            objectApiName
+                                                        },
+                                                        fix: (fixer) =>  fixer.replaceText(fieldNameNode.name as any, closeFieldName)
+
+                                                    });
+                                                } else {
+                                                    context.report({
+                                                        messageId: NO_INVALID_FIELD_RULE_ID,
+                                                        loc: getLocation(
+                                                            fieldNameNode.loc.start,
+                                                            fieldName
+                                                        ),
+                                                        data: {
+                                                            invalidField: fieldName,
+                                                            objectApiName
+                                                        }
+                                                    });
+                                                }
                                             }
                                         }
                                     }
