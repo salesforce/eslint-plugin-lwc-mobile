@@ -96,11 +96,11 @@ export class ObjectUtils {
         if (fields === undefined) {
             return undefined;
         }
-        let fieldScore = 0;
+        let fieldScore = Number.MAX_SAFE_INTEGER;
         let targetField = undefined;
         for (const field of fields) {
             const score = this.levenshteinDistance(field, randomName);
-            if (score > fieldScore) {
+            if (score < fieldScore) {
                 fieldScore = score;
                 targetField = field;
             }
