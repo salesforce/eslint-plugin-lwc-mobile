@@ -1,4 +1,3 @@
-import { Org } from "@salesforce/core";
 import { OrgUtils } from "./orgUtils";
 
 export class ObjectUtils {
@@ -6,42 +5,42 @@ export class ObjectUtils {
     static objectInfoCache = new Map<string, string>();
 
     private static async getObjectInfo(objectApiName: string): Promise<string> {
-        var objectInfo = this.objectInfoCache.get(objectApiName);
-        if (objectInfo === undefined) {
-            const connection = await OrgUtils.getConnection();
-            
-        } 
+        const objectInfo = this.objectInfoCache.get(objectApiName);
+
+        if (objectInfo !== undefined) {
+            return Promise.resolve(objectInfo);
+        }
+        return OrgUtils.getConnection()
+            .then((connection) => {
+                return connection.request(connection.baseUrl() + `/ui-api/object-info/${objectApiName}`);
+            })
+            .then(
+                (result) => {
+                    const strResult = JSON.stringify(result);
+                    console.log(`account info: ${objectApiName}: ` + strResult);
+                    this.objectInfoCache.set(objectApiName, strResult); 
+                    return strResult; 
+                }
+            );
     }
 
     public static async isValidField(objectApiName: string, fieldName: string): Promise<boolean> {
         
+        const objectInfoStr = await this.getObjectInfo(objectApiName);
+        const objectInfo = JSON.parse(objectInfoStr);
 
-
-        const currentUserConfig = aggregator.getInfo(
-            OrgConfigProperties.TARGET_ORG
-        );
-
-        if (currentUserConfig && currentUserConfig.value) {
-            return Promise.resolve(currentUserConfig.value.toString());
-        }
-        return Promise.reject('no user');
+        return Promise.resolve(objectInfo["fields"][fieldName]!==undefined);
     }
 
-    public static async getFieldType(objectApiName: string, fieldName: string): Promise<string> {
-        const aggregator = await ConfigAggregator.create();
+    public static async getFieldType(objectApiName: string, fieldName: string): Promise<string | undefined> {
+        const objectInfoStr = await this.getObjectInfo(objectApiName);
+        const objectInfo = JSON.parse(objectInfoStr);
 
-        // When VSCode re-opens itself for a new project aggregator needs a
-        // forced reload in order to get the currently authorized user.
-        await aggregator.reload();
-
-        const currentUserConfig = aggregator.getInfo(
-            OrgConfigProperties.TARGET_ORG
-        );
-
-        if (currentUserConfig && currentUserConfig.value) {
-            return Promise.resolve(currentUserConfig.value.toString());
+        if (objectInfo["fields"][fieldName]!==undefined) {
+            return Promise.resolve(objectInfo["fields"][fieldName]['dataType']);
+        } else {
+            return Promise.resolve(undefined);
         }
-        return Promise.reject('no user');
     }
  
 }
