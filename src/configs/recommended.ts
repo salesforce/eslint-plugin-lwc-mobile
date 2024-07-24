@@ -47,7 +47,7 @@ export = {
                 [createScopedModuleRuleName(NO_MORE_THAN_3_ROOT_ENTITIES_RULE_ID)]: 'warn',
                 [createScopedModuleRuleName(UNSUPPORTED_SCOPE_RULE_ID)]: 'warn',
                 [createScopedModuleRuleName(NO_BASE64_FIELD_WITH_100_RECORDS_RULE_ID)]: 'warn',
-                [createScopedModuleRuleName(NO_INVALID_FIELD_RULE_ID)]: 'warn'
+                [createScopedModuleRuleName(NO_INVALID_FIELD_RULE_ID)]: 'error'
             }
         }
     ]

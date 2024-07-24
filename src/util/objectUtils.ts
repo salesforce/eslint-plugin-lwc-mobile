@@ -2,14 +2,24 @@ import { OrgUtils } from './orgUtils';
 
 export class ObjectUtils {
     static objectInfoCache = new Map<string, string>();
+    static objectInfoLoading = new Set<string>();
 
-    private static async getObjectInfo(objectApiName: string): Promise<string> {
+    private static getObjectInfo(objectApiName: string): string | undefined {
         const objectInfo = this.objectInfoCache.get(objectApiName);
 
         if (objectInfo !== undefined) {
-            return Promise.resolve(objectInfo);
+            return objectInfo;
         }
-        return OrgUtils.getConnection()
+
+        // already loading ?
+        if (this.objectInfoLoading.has(objectApiName)) {
+            return undefined
+        }
+
+        this.objectInfoLoading.add(objectApiName);
+
+        // trigger object info fetching
+        OrgUtils.getConnection()
             .then((connection) => {
                 return connection.request(
                     connection.baseUrl() + `/ui-api/object-info/${objectApiName}`
@@ -17,17 +27,20 @@ export class ObjectUtils {
             })
             .then((result) => {
                 const strResult = JSON.stringify(result);
-                console.log(`account info: ${objectApiName}: ` + strResult);
                 this.objectInfoCache.set(objectApiName, strResult);
-                return strResult;
+                this.objectInfoLoading.delete(objectApiName);
             });
+
+        return undefined;
     }
 
-    public static async isValidField(objectApiName: string, fieldName: string): Promise<boolean> {
-        const objectInfoStr = await this.getObjectInfo(objectApiName);
+    public static isValidField(objectApiName: string, fieldName: string): boolean {
+        const objectInfoStr = this.getObjectInfo(objectApiName);
+        if (objectInfoStr === undefined) { 
+            return true;
+        }
         const objectInfo = JSON.parse(objectInfoStr);
-
-        return Promise.resolve(objectInfo['fields'][fieldName] !== undefined);
+        return objectInfo['fields'][fieldName] !== undefined;
     }
 
     public static isValidFieldMock(objectApiName: string, fieldName: string): boolean {
@@ -38,17 +51,20 @@ export class ObjectUtils {
         return true;
     }
 
-    public static async getFieldType(
+    public static getFieldType(
         objectApiName: string,
         fieldName: string
-    ): Promise<string | undefined> {
-        const objectInfoStr = await this.getObjectInfo(objectApiName);
+    ): string | undefined {
+        const objectInfoStr = this.getObjectInfo(objectApiName);
+        if (objectInfoStr === undefined) {
+            return undefined;
+        }
         const objectInfo = JSON.parse(objectInfoStr);
 
         if (objectInfo['fields'][fieldName] !== undefined) {
-            return Promise.resolve(objectInfo['fields'][fieldName]['dataType']);
+            return objectInfo['fields'][fieldName]['dataType']
         } else {
-            return Promise.resolve(undefined);
+            return undefined;
         }
     }
 }

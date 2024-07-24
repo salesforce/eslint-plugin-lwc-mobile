@@ -69,7 +69,7 @@ export const rule: GraphQLESLintRule = {
             ]
         },
         messages: {
-            [NO_INVALID_FIELD_RULE_ID]: 'Offline GraphQL: Field "{{invalidField}}" is invalid.'
+            [NO_INVALID_FIELD_RULE_ID]: 'Offline GraphQL: Field "{{invalidField}}" is invalid for "{{objectApiName}}" object.'
         },
         schema: []
     },
@@ -90,23 +90,19 @@ export const rule: GraphQLESLintRule = {
                                     for (const fieldNameNode of nodeField.selectionSet.selections) {
                                         if (fieldNameNode.kind === Kind.FIELD) {
                                             const fieldName = fieldNameNode.name.value;
-
-                                            ObjectUtils.isValidField(objectApiName, fieldName).then(
-                                                (isValid) => {
-                                                    if (!isValid) {
-                                                        context.report({
-                                                            messageId: NO_INVALID_FIELD_RULE_ID,
-                                                            loc: getLocation(
-                                                                fieldNameNode.loc.start,
-                                                                fieldName
-                                                            ),
-                                                            data: {
-                                                                invalidField: fieldName
-                                                            }
-                                                        });
+                                            if (!ObjectUtils.isValidField(objectApiName, fieldName)) {
+                                                context.report({
+                                                    messageId: NO_INVALID_FIELD_RULE_ID,
+                                                    loc: getLocation(
+                                                        fieldNameNode.loc.start,
+                                                        fieldName
+                                                    ),
+                                                    data: {
+                                                        invalidField: fieldName,
+                                                        objectApiName
                                                     }
-                                                }
-                                            );
+                                                });
+                                            }
                                         }
                                     }
                                 }
