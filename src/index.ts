@@ -48,6 +48,18 @@ import {
     rule as noMoreThan3RootEntities
 } from './rules/graphql/no-more-than-3-root-entities.js';
 
+
+import {
+    NO_BASE64_FIELD_WITH_100_RECORDS_RULE_ID,
+    rule as noBase64FieldWith100Records
+} from './rules/graphql/no-base64-field-with-over-100-records.js';
+
+
+import {
+    NO_INVALID_FIELD_RULE_ID,
+    rule as noInvalidField
+} from './rules/graphql/no-invalid-field.js';
+
 import { name, version } from '../package.json';
 
 export = {
@@ -68,6 +80,8 @@ export = {
         [NO_MORE_THAN_3_CHILD_ENTITIES_RULE_ID]: noMoreThan3ChildEntities,
         [NO_MORE_THAN_3_ROOT_ENTITIES_RULE_ID]: noMoreThan3RootEntities,
         [NO_SEMI_ANTI_JOIN_SUPPORTED_RULE_ID]: noSemiAntiJoinSupported,
-        [UNSUPPORTED_SCOPE_RULE_ID]: unsupportedScope
+        [UNSUPPORTED_SCOPE_RULE_ID]: unsupportedScope,
+        [NO_BASE64_FIELD_WITH_100_RECORDS_RULE_ID]: noBase64FieldWith100Records,
+        [NO_INVALID_FIELD_RULE_ID]: noInvalidField
     }
 };

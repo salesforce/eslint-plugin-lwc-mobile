@@ -14,6 +14,10 @@ import { NO_SEMI_ANTI_JOIN_SUPPORTED_RULE_ID } from '../rules/graphql/no-semi-an
 import { NO_MORE_THAN_1_PARENT_RECORD_RULE_ID } from '../rules/graphql/no-more-than-1-parent-record.js';
 import { NO_MORE_THAN_3_CHILD_ENTITIES_RULE_ID } from '../rules/graphql/no-more-than-3-child-entities.js';
 import { NO_MORE_THAN_3_ROOT_ENTITIES_RULE_ID } from '../rules/graphql/no-more-than-3-root-entities.js';
+import { NO_BASE64_FIELD_WITH_100_RECORDS_RULE_ID } from '../rules/graphql/no-base64-field-with-over-100-records.js';
+import { NO_INVALID_FIELD_RULE_ID } from '../rules/graphql/no-invalid-field.js';
+
+
 import { createScopedModuleRuleName } from '../util/rule-helpers.js';
 
 export = {
@@ -41,7 +45,9 @@ export = {
                 [createScopedModuleRuleName(NO_MORE_THAN_1_PARENT_RECORD_RULE_ID)]: 'warn',
                 [createScopedModuleRuleName(NO_MORE_THAN_3_CHILD_ENTITIES_RULE_ID)]: 'warn',
                 [createScopedModuleRuleName(NO_MORE_THAN_3_ROOT_ENTITIES_RULE_ID)]: 'warn',
-                [createScopedModuleRuleName(UNSUPPORTED_SCOPE_RULE_ID)]: 'warn'
+                [createScopedModuleRuleName(UNSUPPORTED_SCOPE_RULE_ID)]: 'warn',
+                [createScopedModuleRuleName(NO_BASE64_FIELD_WITH_100_RECORDS_RULE_ID)]: 'warn',
+                [createScopedModuleRuleName(NO_INVALID_FIELD_RULE_ID)]: 'warn'
             }
         }
     ]
