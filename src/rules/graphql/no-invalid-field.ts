@@ -55,7 +55,7 @@ export const rule: GraphQLESLintRule = {
                                         edges {
                                             node {
                                                 Id
-                                                Nane {
+                                                Names {
                                                     value
                                                 }
                                             }
@@ -109,8 +109,6 @@ export const rule: GraphQLESLintRule = {
                             }
                         }
                     }
-
-                    node.selectionSet;
                 }
             }
         };

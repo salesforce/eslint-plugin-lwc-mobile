@@ -6,9 +6,9 @@
  */
 
 import { GraphQLESLintRule, GraphQLESLintRuleContext } from '@graphql-eslint/eslint-plugin';
-import {OrgUtils } from '../../util/orgUtils'
-import { getLocation } from '../../util/graphql-ast-utils';
-import { Connection } from '@salesforce/core';
+import { getEntityNodeForEdges, getLocation, getPageSizeFromEntityNode } from '../../util/graphql-ast-utils';
+import { Kind } from 'graphql';
+import { ObjectUtils } from '../../util/objectUtils';
 
 export const NO_BASE64_FIELD_WITH_100_RECORDS_RULE_ID = 'offline-graphql-no-base64_field_with_100_records';
 
@@ -19,20 +19,23 @@ export const rule: GraphQLESLintRule = {
         docs: {
             category: 'Operations',
             description:
-                'Mutation (data modification) is not supported for mobile offline. See Feature Limitations of Offline GraphQL (https://developer.salesforce.com/docs/atlas.en-us.mobile_offline.meta/mobile_offline/use_graphql_limitations.htm) for more details.',
+                'Fetch text area field could result in big response, so limit to record count to 100',
             recommended: true,
             examples: [
                 {
                     title: 'Correct',
                     code: /* GraphQL */ `
-                        query accountQuery {
+                        query workStepQuery {
                             uiapi {
                                 query {
-                                    Account {
+                                    WorkStep {
                                         edges {
                                             node {
                                                 Id
                                                 Name {
+                                                    value
+                                                }
+                                                Instructions {
                                                     value
                                                 }
                                             }
@@ -46,13 +49,20 @@ export const rule: GraphQLESLintRule = {
                 {
                     title: 'Incorrect',
                     code: /* GraphQL */ `
-                        mutation AccountExample {
+                        query workStepQuery {
                             uiapi {
-                                AccountCreate(input: { Account: { Name: "Trailblazer Express" } }) {
-                                    Record {
-                                        Id
-                                        Name {
-                                            value
+                                query {
+                                    WorkStep(first: 101) {
+                                        edges {
+                                            node {
+                                                Id
+                                                Name {
+                                                    value
+                                                }
+                                                Instructions {
+                                                    value
+                                                }
+                                            }
                                         }
                                     }
                                 }
@@ -64,28 +74,53 @@ export const rule: GraphQLESLintRule = {
         },
         messages: {
             [NO_BASE64_FIELD_WITH_100_RECORDS_RULE_ID]:
-                'Offline GraphQL: Mutation (data modification) is not supported for mobile offline.'
+                'Offline GraphQL: should not fetch more than 100 records when including TextArea field {{objectApiName}}.{{fieldName}}'
         },
         schema: []
     },
 
     create(context: GraphQLESLintRuleContext) {
         return {
-            OperationDefinition(node) {
-                 OrgUtils.getConnection().then(
-                    (connection: Connection)=>{ 
-                        console.log(connection._baseUrl);
-                    },
-                    (reason)=>{
-                        console.log(reason);
+            Field(node) {
+                if (node.name.value === 'edges') {
+                    const objectNode = getEntityNodeForEdges(node);
+                    if (objectNode == null) {
+                        return
                     }
-                );
-                
-                if (node.operation === 'mutation') {
-                    context.report({
-                        messageId: NO_BASE64_FIELD_WITH_100_RECORDS_RULE_ID,
-                        loc: getLocation(node.loc.start, node.operation)
-                    });
+
+                    const pageSize = getPageSizeFromEntityNode(objectNode);
+                    if (pageSize <= 100) {
+                        return
+                    }
+
+                    const objectApiName = objectNode.name.value;
+
+                    if (node.selectionSet && node.selectionSet.selections) {
+                        // This is `node` FieldNode
+                        const nodeField = node.selectionSet.selections[0];
+                        if (nodeField.type === Kind.FIELD) {
+                            if (nodeField.selectionSet && nodeField.selectionSet.selections) {
+                                for (const fieldNameNode of nodeField.selectionSet.selections) {
+                                    if (fieldNameNode.kind === Kind.FIELD) {
+                                        const fieldName = fieldNameNode.name.value;
+                                        if (ObjectUtils.getFieldType(objectApiName, fieldName) === 'TextArea') {
+                                            context.report({
+                                                messageId: NO_BASE64_FIELD_WITH_100_RECORDS_RULE_ID,
+                                                loc: getLocation(
+                                                    fieldNameNode.loc.start,
+                                                    fieldName
+                                                ),
+                                                data: {
+                                                    objectApiName,
+                                                    fieldName
+                                                }
+                                            });
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         };
