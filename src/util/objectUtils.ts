@@ -88,23 +88,30 @@ export class ObjectUtils {
         }
     }
 
-    public static findCloseFieldNames(
-        objectApiName: string,
-        randomName: string
-    ): Array<string> {
-        const fieldDistanceThreshod = 4;
-    
-        const targetFields:Array<string> = [];
+    public static findCloseFieldNames(objectApiName: string, randomName: string): Array<string> {
         const fields = this.getFields(objectApiName);
-        if (fields !== undefined) {
-            for (const field of fields) {
-                const score = this.levenshteinDistance(field, randomName);
-                if (score <= fieldDistanceThreshod) {
-                    targetFields.push(field);
-                }
+        if (fields === undefined) {
+            return [];
+        }
+
+        const queue: { field: undefined | string; score: number }[] = [
+            { field: undefined, score: Number.MAX_SAFE_INTEGER },
+            { field: undefined, score: Number.MAX_SAFE_INTEGER },
+            { field: undefined, score: Number.MAX_SAFE_INTEGER }
+        ];
+
+        for (const field of fields) {
+            const score = this.levenshteinDistance(field, randomName);
+            if (score < queue[2].score) {
+                queue.push({ field, score });
+                queue.sort((a, b) => a.score - b.score);
+                queue.pop();
             }
         }
-        return targetFields;
+
+        return queue
+            .filter((elem) => elem.field !== undefined)
+            .map((elem) => elem.field) as Array<string>;
     }
 
     public static levenshteinDistance(str1: string, str2: string): number {

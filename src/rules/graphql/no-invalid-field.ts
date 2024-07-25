@@ -95,11 +95,14 @@ export const rule: GraphQLESLintRule = {
                                             if (
                                                 !ObjectUtils.isValidField(objectApiName, fieldName)
                                             ) {
-                                                const closeFieldNames = ObjectUtils.findCloseFieldNames(
-                                                    objectApiName,
-                                                    fieldName
+                                                const closeFieldNames =
+                                                    ObjectUtils.findCloseFieldNames(
+                                                        objectApiName,
+                                                        fieldName
+                                                    );
+                                                console.log(
+                                                    `benzhang: ${fieldName} -> ${JSON.stringify(closeFieldNames)}`
                                                 );
-                                                console.log(`benzhang: ${fieldName} -> ${JSON.stringify(closeFieldNames)}`);
                                                 if (closeFieldNames.length > 0) {
                                                     context.report({
                                                         messageId: NO_INVALID_FIELD_RULE_ID,
@@ -111,12 +114,18 @@ export const rule: GraphQLESLintRule = {
                                                             invalidField: fieldName,
                                                             objectApiName
                                                         },
-                                                        suggest: closeFieldNames.map((closeFieldName)=> {
-                                                            return {
-                                                                desc: `${objectApiName}.${closeFieldName}`,
-                                                                fix: (fixer) => fixer.replaceText(fieldNameNode.name as any, closeFieldName)
-                                                            };
-                                                        })
+                                                        suggest: closeFieldNames.map(
+                                                            (closeFieldName) => {
+                                                                return {
+                                                                    desc: `${objectApiName}.${closeFieldName}`,
+                                                                    fix: (fixer) =>
+                                                                        fixer.replaceText(
+                                                                            fieldNameNode.name as any,
+                                                                            closeFieldName
+                                                                        )
+                                                                };
+                                                            }
+                                                        )
                                                     });
                                                 } else {
                                                     context.report({

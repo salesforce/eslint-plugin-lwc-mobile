@@ -59,7 +59,21 @@ ruleTester.run(createScopedModuleRuleName(NO_INVALID_FIELD_RULE_ID), rule as any
                     data: {
                         invalidField: 'Nane',
                         objectApiName: 'Account'
-                    }
+                    },
+                    suggestions: [
+                        {
+                            messageId: NO_INVALID_FIELD_RULE_ID,
+                            output: 'hello'
+                        },
+                        {
+                            messageId: NO_INVALID_FIELD_RULE_ID,
+                            output: 'hello'
+                        },
+                        {
+                            messageId: NO_INVALID_FIELD_RULE_ID,
+                            output: 'hello'
+                        }
+                    ]
                 }
             ]
         }
