@@ -88,24 +88,23 @@ export class ObjectUtils {
         }
     }
 
-    public static findCloseFieldName(
+    public static findCloseFieldNames(
         objectApiName: string,
         randomName: string
-    ): string | undefined {
+    ): Array<string> {
+        const fieldDistanceThreshod = 4;
+    
+        const targetFields:Array<string> = [];
         const fields = this.getFields(objectApiName);
-        if (fields === undefined) {
-            return undefined;
-        }
-        let fieldScore = Number.MAX_SAFE_INTEGER;
-        let targetField = undefined;
-        for (const field of fields) {
-            const score = this.levenshteinDistance(field, randomName);
-            if (score < fieldScore) {
-                fieldScore = score;
-                targetField = field;
+        if (fields !== undefined) {
+            for (const field of fields) {
+                const score = this.levenshteinDistance(field, randomName);
+                if (score <= fieldDistanceThreshod) {
+                    targetFields.push(field);
+                }
             }
         }
-        return targetField;
+        return targetFields;
     }
 
     public static levenshteinDistance(str1: string, str2: string): number {
