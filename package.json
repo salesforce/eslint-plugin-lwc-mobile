@@ -89,7 +89,7 @@
         "jest-mock-extended": "^3.0.7",
         "jest-sonar-reporter": "^2.0.0",
         "prettier": "^3.3.3",
-        "semantic-release": "^24.0.0",
+        "semantic-release": "^24.1.0",
         "ts-jest": "^29.2.4",
         "ts-node": "^10.9.2",
         "typescript": "^5.5.4",
