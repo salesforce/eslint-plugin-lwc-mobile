@@ -59,7 +59,8 @@
         "/dist"
     ],
     "dependencies": {
-        "@graphql-eslint/eslint-plugin": "^3.20.1"
+        "@graphql-eslint/eslint-plugin": "^3.20.1",
+        "@salesforce/core": "^5.3.12"
     },
     "devDependencies": {
         "@commitlint/cli": "^19.4.0",
