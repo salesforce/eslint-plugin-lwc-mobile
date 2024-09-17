@@ -17,6 +17,7 @@ import * as path from 'path';
 
 export class OrgUtils {
     public static SF_FOLDER = '.sf';
+    public static ORG_NAME: string | undefined = undefined;
     public static OBJECT_INFO_FOLDER = 'objectInfos';
     public static EntityListFileName = 'entity_list.json';
     public static isUserLoggedIn = false;
@@ -24,6 +25,7 @@ export class OrgUtils {
 
     static objectInfoCache = new Map<string, string>();
     static objectInfoLoading = new Set<string>();
+    public static entities: string[] = [];
 
     // Retrieves default organiztion's name.
     public static async getDefaultOrg(): Promise<string> {
@@ -72,15 +74,16 @@ export class OrgUtils {
             });
             this.connection = connect;
             // Fetches entity list once.
-            if (!this.isUserLoggedIn) {
+            const entityListFile = path.join(this.objectInfoFolderPath(), this.EntityListFileName);
+            if (!fs.existsSync(entityListFile)) {
                 const objectList = await this.getEntityList(this.connection);
-                const entityListFile = path.join(
-                    this.objectInfoFolderPath(),
-                    this.EntityListFileName
-                );
+                this.entities = objectList;
                 fs.writeFileSync(entityListFile, JSON.stringify(objectList), {
                     mode: 0o666
                 });
+            } else {
+                const entityContent = fs.readFileSync(entityListFile, 'utf8');
+                this.entities = JSON.parse(entityContent);
             }
             this.isUserLoggedIn = true;
 
@@ -92,17 +95,19 @@ export class OrgUtils {
         }
     }
 
-    private static async getEntityList(connection: Connection): Promise<string[]> {
+    public static async getEntityList(connection: Connection): Promise<string[]> {
         const globalResult = await connection.describeGlobal();
         return globalResult.sobjects.map((sobjettResult) => sobjettResult.name);
     }
 
-    // Retrieves objectInfo folder path, which is '<projectRoot>/.sf/objectInfos/'
-    private static objectInfoFolderPath(): string {
+    // Retrieves objectInfo folder path, which is '<projectRoot>/.sf/orgName/objectInfos/'
+    public static objectInfoFolderPath(): string {
+        const orgPath = this.ORG_NAME === undefined ? './' : this.ORG_NAME;
         const projectPath = path.resolve(__dirname, '../../../../../');
         const objectInfoFolder = path.join(
             projectPath,
             OrgUtils.SF_FOLDER,
+            orgPath,
             OrgUtils.OBJECT_INFO_FOLDER
         );
         if (!fs.existsSync(objectInfoFolder)) {
@@ -111,7 +116,7 @@ export class OrgUtils {
         return objectInfoFolder;
     }
 
-    private static fetchObjectInfoFromDisk(objectApiName: string): string | undefined {
+    public static fetchObjectInfoFromDisk(objectApiName: string): string | undefined {
         const objectInfoJsonFile = path.join(this.objectInfoFolderPath(), `${objectApiName}.json`);
         if (!fs.existsSync(objectInfoJsonFile)) {
             return undefined;
@@ -151,7 +156,7 @@ export class OrgUtils {
         // Triggers object info fetching
         OrgUtils.getConnection()
             .then((connection) => {
-                if (connection !== undefined) {
+                if (connection !== undefined && OrgUtils.entities.indexOf(objectApiName) >= 0) {
                     return connection.request(
                         connection.baseUrl() + `/ui-api/object-info/${objectApiName}`
                     );
