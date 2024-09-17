@@ -9,9 +9,10 @@ import { RuleTester } from '@typescript-eslint/rule-tester';
 
 import { rule, APEX_IMPORT_RULE_ID } from '../../../src/rules/apex/apex-import';
 import { createScopedModuleRuleName } from '../../../src/util/rule-helpers';
+import path from 'path';
 
 const ruleTester = new RuleTester({
-    parser: '@typescript-eslint/parser'
+    parser: path.resolve(__dirname + '../../../../node_modules/@typescript-eslint/parser/dist')
 });
 
 ruleTester.run(createScopedModuleRuleName(APEX_IMPORT_RULE_ID), rule, {
