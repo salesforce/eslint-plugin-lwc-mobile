@@ -2,8 +2,8 @@
     "compilerOptions": {
         "composite": true /* Enable constraints that allow a TypeScript project to be used with project references. */,
         "target": "es2016" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
-        "module": "NodeNext" /* Specify what module code is generated. */,
-        "moduleResolution": "NodeNext" /* Specify how TypeScript looks up a file from a given module specifier. */,
+        "module": "Node16" /* Specify what module code is generated. */,
+        "moduleResolution": "Node16" /* Specify how TypeScript looks up a file from a given module specifier. */,
         "types": [
             "jest"
         ] /* Specify type package names to be included without being referenced in a source file. */,
