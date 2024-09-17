@@ -74,7 +74,10 @@ export class OrgUtils {
             });
             this.connection = connect;
             // Fetches entity list once.
-            const entityListFile = path.join(this.objectInfoFolderPath(), this.EntityListFileName);
+            const entityListFile = path.posix.join(
+                this.objectInfoFolderPath(),
+                this.EntityListFileName
+            );
             if (!fs.existsSync(entityListFile)) {
                 const objectList = await this.getEntityList(this.connection);
                 this.entities = objectList;
@@ -104,7 +107,7 @@ export class OrgUtils {
     public static objectInfoFolderPath(): string {
         const orgPath = this.ORG_NAME === undefined ? './' : this.ORG_NAME;
         const projectPath = path.resolve(__dirname, '../../../../../');
-        const objectInfoFolder = path.join(
+        const objectInfoFolder = path.posix.join(
             projectPath,
             OrgUtils.SF_FOLDER,
             orgPath,
@@ -117,7 +120,10 @@ export class OrgUtils {
     }
 
     public static fetchObjectInfoFromDisk(objectApiName: string): string | undefined {
-        const objectInfoJsonFile = path.join(this.objectInfoFolderPath(), `${objectApiName}.json`);
+        const objectInfoJsonFile = path.posix.join(
+            this.objectInfoFolderPath(),
+            `${objectApiName}.json`
+        );
         if (!fs.existsSync(objectInfoJsonFile)) {
             return undefined;
         }
@@ -175,7 +181,10 @@ export class OrgUtils {
     private static objectInfoResponseCallback(objectApiName: string, response: unknown) {
         const objectInfoStr = JSON.stringify(response);
         this.objectInfoCache.set(objectApiName, objectInfoStr);
-        const objectInfoFile = path.join(this.objectInfoFolderPath(), `${objectApiName}.json`);
+        const objectInfoFile = path.posix.join(
+            this.objectInfoFolderPath(),
+            `${objectApiName}.json`
+        );
         if (fs.existsSync(objectInfoFile)) {
             fs.unlinkSync(objectInfoFile);
         }
