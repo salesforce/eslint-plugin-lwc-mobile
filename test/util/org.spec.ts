@@ -105,3 +105,10 @@ describe('testImport', () => {
 //         fsWriteSpy.mockRestore();
 //         fsExistSpy.mockRestore();
 //     });
+//     xit('should return connection', async () => {
+//         const connection = await OrgUtils.getConnection();
+//         expect(fs.writeFileSync).toHaveBeenCalledWith(
+//             '/webdev/lwc_mobile/.sf/mockOrg/objectInfos/entity_list.json',
+//             '["Account","User"]',
+//             { mode: 0o666 }
+//         );
