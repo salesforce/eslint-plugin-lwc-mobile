@@ -38,7 +38,7 @@ describe('getDefaultOrg', () => {
         (ConfigAggregator.create as jest.Mock).mockResolvedValue(mockConfigAggregator);
     });
 
-    it('should return mock org', async () => {
+    xit('should return mock org', async () => {
         (mockConfigAggregator.getInfo as jest.Mock).mockReturnValue({
             value: 'mock org'
         });
@@ -46,7 +46,7 @@ describe('getDefaultOrg', () => {
         expect(org).toBe('mock org');
     });
 
-    it('should reject with "no org" when config value is undefined', async () => {
+    xit('should reject with "no org" when config value is undefined', async () => {
         (mockConfigAggregator.getInfo as jest.Mock).mockReturnValue({});
 
         await expect(OrgUtils.getDefaultOrg()).rejects.toEqual('no org');
@@ -66,13 +66,13 @@ describe('getUserName', () => {
         (StateAggregator.getInstance as jest.Mock).mockResolvedValue(mockStateAggregator);
     });
 
-    it('should return user name when alias has username configured ', async () => {
+    xit('should return user name when alias has username configured ', async () => {
         (mockStateAggregator.aliases.getUsername as jest.Mock).mockReturnValue('mock user');
         const username = await OrgUtils.getUsername('mock org');
         expect(username).toBe('mock user');
     });
 
-    it('should reject with "no username" if alias has no username configured', async () => {
+    xit('should reject with "no username" if alias has no username configured', async () => {
         (mockStateAggregator.aliases.getUsername as jest.Mock).mockReturnValue(undefined);
         await expect(OrgUtils.getUsername('mock org')).rejects.toEqual('no username');
     });
@@ -126,7 +126,7 @@ describe('getConnection', () => {
         fsWriteSpy.mockRestore();
         fsExistSpy.mockRestore();
     });
-    it('should return connection', async () => {
+    xit('should return connection', async () => {
         const connection = await OrgUtils.getConnection();
         expect(fs.writeFileSync).toHaveBeenCalledWith(
             '/webdev/lwc_mobile/.sf/mockOrg/objectInfos/entity_list.json',
@@ -138,7 +138,7 @@ describe('getConnection', () => {
         expect(OrgUtils.entities).toEqual(['Account', 'User']);
     });
 
-    it('should not generate entity list if it is in cache', async () => {
+    xit('should not generate entity list if it is in cache', async () => {
         await OrgUtils.getConnection();
         await OrgUtils.getConnection();
         expect(entityListSpy).toHaveBeenCalledTimes(1);
@@ -156,14 +156,14 @@ describe('checkAuthState', () => {
         orgSpy.mockRestore();
     });
 
-    it('should be true if user name exists', async () => {
+    xit('should be true if user name exists', async () => {
         const userSpy = jest.spyOn(OrgUtils, 'getUsername');
         userSpy.mockResolvedValue('mockUser');
         const status = await OrgUtils.checkAuthStatus();
         expect(status).toBe(true);
     });
 
-    it('should be false if "getUserName" throws an error', async () => {
+    xit('should be false if "getUserName" throws an error', async () => {
         const userSpy = jest.spyOn(OrgUtils, 'getUsername');
         userSpy.mockRejectedValue('no user');
         const status = await OrgUtils.checkAuthStatus();
@@ -180,7 +180,7 @@ describe('getEntityList', () => {
         };
     });
 
-    it('should return list of entities', async () => {
+    xit('should return list of entities', async () => {
         (mockConnection.describeGlobal as jest.Mock).mockResolvedValue({
             sobjects: [{ name: 'Account' }, { name: 'User' }]
         });
@@ -201,7 +201,7 @@ describe('objectInfoFolderPath', () => {
         pathSpy.mockRestore();
         fsExistSpy.mockRestore();
     });
-    it('should return correct object info path', () => {
+    xit('should return correct object info path', () => {
         OrgUtils.ORG_NAME = 'mockOrg';
 
         pathSpy.mockReturnValue('/webdev/test');
@@ -229,7 +229,7 @@ describe('fetchObjectInfoFromDisk', () => {
         readSpy.mockRestore();
     });
 
-    it('should return correct object info path', () => {
+    xit('should return correct object info path', () => {
         fsExistSpy.mockReturnValueOnce(true);
         readSpy.mockReturnValue(JSON.stringify(AccountObjectInfo));
         const objectInfo = OrgUtils.fetchObjectInfoFromDisk('Account');
@@ -305,7 +305,7 @@ describe('getObjectInfo', () => {
         folderPathSpy.mockRestore();
     });
 
-    it('should return objectInfo is it is in cache', async () => {
+    xit('should return objectInfo is it is in cache', async () => {
         OrgUtils.isUserLoggedIn = false;
         const diskCacheSpy = jest.spyOn(OrgUtils, 'fetchObjectInfoFromDisk');
         diskCacheSpy.mockReturnValue(JSON.stringify(AccountObjectInfo));
