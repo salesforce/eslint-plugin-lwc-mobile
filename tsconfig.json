@@ -5,7 +5,8 @@
         "module": "Node16" /* Specify what module code is generated. */,
         "moduleResolution": "Node16" /* Specify how TypeScript looks up a file from a given module specifier. */,
         "types": [
-            "jest"
+            "jest",
+            "@typescript-eslint/rule-tester"
         ] /* Specify type package names to be included without being referenced in a source file. */,
         "rootDir": "./src",
         "outDir": "dist" /* Specify an output folder for all emitted files. */,
