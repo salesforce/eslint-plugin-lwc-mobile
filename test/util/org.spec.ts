@@ -96,3 +96,7 @@ describe('testImport', () => {
 //         (Connection.create as jest.Mock).mockResolvedValue(mockConnection);
 //         OrgUtils.entities = [];
 //     });
+
+//         expect(connection).toBe(mockConnection);
+//         expect(OrgUtils.entities).toEqual(['Account', 'User']);
+//     });
