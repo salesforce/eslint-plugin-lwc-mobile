@@ -96,12 +96,3 @@ describe('testImport', () => {
 //         (Connection.create as jest.Mock).mockResolvedValue(mockConnection);
 //         OrgUtils.entities = [];
 //     });
-
-//     afterEach(() => {
-//         orgSpy.mockRestore();
-//         userSpy.mockRestore();
-//         entityListSpy.mockRestore();
-//         folderPathSpy.mockRestore();
-//         fsWriteSpy.mockRestore();
-//         fsExistSpy.mockRestore();
-//     });
