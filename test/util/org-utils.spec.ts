@@ -1,5 +1,5 @@
 //import { ConfigAggregator, AuthInfo, Connection, StateAggregator } from '@salesforce/core';
-import { OrgUtils } from '../../src/util/org-utils';
+//import { OrgUtils } from '../../src/util/org-utils';
 // import fs from 'fs';
 // import path from 'path';
 //import AccountObjectInfo from '../mockData/object-Account.json';
@@ -27,7 +27,7 @@ import { OrgUtils } from '../../src/util/org-utils';
 
 describe('testImport', () => {
     xit('sample code', async () => {
-        OrgUtils.getConnection();
+        //OrgUtils.getConnection();
         //ConfigAggregator.create();
         // fs.existsSync('/webdev/test/');
         // path.resolve('/webdev/test', '../../');
