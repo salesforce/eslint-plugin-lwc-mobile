@@ -100,3 +100,9 @@ describe('testImport', () => {
 //         expect(connection).toBe(mockConnection);
 //         expect(OrgUtils.entities).toEqual(['Account', 'User']);
 //     });
+//const connection = await OrgUtils.getConnection();
+//         expect(fs.writeFileSync).toHaveBeenCalledWith(
+//             '/webdev/lwc_mobile/.sf/mockOrg/objectInfos/entity_list.json',
+//             '["Account","User"]',
+//             { mode: 0o666 }
+//         );
