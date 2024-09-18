@@ -1,7 +1,7 @@
 import { ConfigAggregator, AuthInfo, Connection, StateAggregator } from '@salesforce/core';
 import { OrgUtils } from '../../src/util/org-utils';
-import fs from 'fs';
-import path from 'path';
+// import fs from 'fs';
+// import path from 'path';
 //import AccountObjectInfo from '../mockData/object-Account.json';
 // jest.mock('@salesforce/core', () => {
 //     return {
@@ -29,8 +29,8 @@ describe('testImport', () => {
     xit('sample code', async () => {
         OrgUtils.getConnection();
         ConfigAggregator.create();
-        fs.existsSync('/webdev/test/');
-        path.resolve('/webdev/test', '../../');
+        // fs.existsSync('/webdev/test/');
+        // path.resolve('/webdev/test', '../../');
         StateAggregator.clearInstance();
         await Connection.create({
             authInfo: await AuthInfo.create({ username: 'mockuSER' })
