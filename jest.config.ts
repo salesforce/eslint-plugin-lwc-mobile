@@ -28,6 +28,7 @@ const config: Config = {
         '^@graphql-eslint/eslint-plugin/(.*)$':
             '<rootDir>/node_modules/@graphql-eslint/eslint-plugin/$1'
     },
+    verbose: true,
     reporters: [
         'default',
         [

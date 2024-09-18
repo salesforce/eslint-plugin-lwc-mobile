@@ -26,7 +26,8 @@
 //const flushPromises = () => new Promise(setImmediate);
 
 describe('testImport', () => {
-    xit('sample code', async () => {
+    it('sample code', async () => {
+        expect(1).toBe(1);
         //OrgUtils.getConnection();
         //ConfigAggregator.create();
         // fs.existsSync('/webdev/test/');

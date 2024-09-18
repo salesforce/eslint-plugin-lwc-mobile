@@ -36,7 +36,7 @@
         "format": "prettier --list-different \"**/*.{ts,js}\"",
         "format:fix": "prettier --write \"**/*.{ts,js,json}\"",
         "lint": "eslint src test",
-        "test": "jest --coverage"
+        "test": "jest --coverage --verbose"
     },
     "jestSonar": {
         "sonar56x": true,
