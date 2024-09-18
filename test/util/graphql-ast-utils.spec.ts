@@ -82,27 +82,4 @@ describe('utils', () => {
     it('sample code', async () => {
         expect(1).toBe(1);
     });
-
-    it('sample code', async () => {
-        expect(1).toBe(1);
-    });
-
-    it('sample code', async () => {
-        expect(1).toBe(1);
-    });
-
-    it('sample code', async () => {
-        expect(1).toBe(1);
-    });
-    it('sample code', async () => {
-        expect(1).toBe(1);
-    });
-
-    it('sample code', async () => {
-        expect(1).toBe(1);
-    });
-
-    it('sample code', async () => {
-        expect(1).toBe(1);
-    });
 });
