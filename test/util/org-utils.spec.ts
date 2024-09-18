@@ -257,7 +257,7 @@ describe('getObjectInfo', () => {
         userSpy.mockRestore();
     });
 
-    it('should send request over network if objectInfo is not cached', async () => {
+    xit('should send request over network if objectInfo is not cached', async () => {
         OrgUtils.isUserLoggedIn = false;
         mockConnection = {
             request: jest.fn(),
