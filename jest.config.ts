@@ -30,7 +30,6 @@ const config: Config = {
         '^@typescript-eslint/rule-tester$':
             '<rootDir>/node_modules/@typescript-eslint/rule-tester/dist/index.js'
     },
-    maxWorkers: 1,
     reporters: [
         'default',
         [
