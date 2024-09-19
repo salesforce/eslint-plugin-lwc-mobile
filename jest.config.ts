@@ -26,9 +26,7 @@ const config: Config = {
     coverageDirectory: 'reports/coverage',
     moduleNameMapper: {
         '^@graphql-eslint/eslint-plugin/(.*)$':
-            '<rootDir>/node_modules/@graphql-eslint/eslint-plugin/$1',
-        '^@typescript-eslint/rule-tester$':
-            '<rootDir>/node_modules/@typescript-eslint/rule-tester/dist/index.js'
+            '<rootDir>/node_modules/@graphql-eslint/eslint-plugin/$1'
     },
     reporters: [
         'default',
