@@ -15,3 +15,6 @@ const RULE_TESTER_CONFIG = {
 };
 
 export const ruleTester = new RuleTester(RULE_TESTER_CONFIG);
+export const tsRuleTester = new RuleTester({
+    parser: '@typescript-eslint/parser'
+});

@@ -5,14 +5,9 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  */
 
-import { RuleTester } from '@typescript-eslint/rule-tester';
-
 import { rule, APEX_IMPORT_RULE_ID } from '../../../src/rules/apex/apex-import';
 import { createScopedModuleRuleName } from '../../../src/util/rule-helpers';
-
-const ruleTester = new RuleTester({
-    parser: '@typescript-eslint/parser'
-});
+import { tsRuleTester as ruleTester } from '../../shared';
 
 ruleTester.run(createScopedModuleRuleName(APEX_IMPORT_RULE_ID), rule, {
     valid: [
