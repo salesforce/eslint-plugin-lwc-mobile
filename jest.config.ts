@@ -24,10 +24,6 @@ const config: Config = {
     collectCoverage: true,
     collectCoverageFrom: ['src/**/*.ts', '!src/index.ts', '!src/configs/*.ts'],
     coverageDirectory: 'reports/coverage',
-    moduleNameMapper: {
-        '^@graphql-eslint/eslint-plugin/(.*)$':
-            '<rootDir>/node_modules/@graphql-eslint/eslint-plugin/$1'
-    },
     reporters: [
         'default',
         [
