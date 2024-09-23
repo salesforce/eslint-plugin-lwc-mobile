@@ -15,13 +15,14 @@ jobs:
                   node-version: ${{ matrix.node }}
             - run: npm install
             - run: |
-                  if [[ -d node_module/@typescript-eslint ]]; then
+                  pwd
+                  if [[ -d node_modules/@typescript-eslint ]]; then
                       echo "@typescript-eslint package exists in root directory."
                   else 
                       echo "@typescript-eslint package does not exist in root directory."
                   fi
 
-                  if [[ -d node_module/@graphql-eslint ]]; then
+                  if [[ -d node_modules/@graphql-eslint ]]; then
                       echo "@graphql-eslint package exists in root directory."
                   else 
                       echo "@graphql-eslint package does not exist in root directory."
