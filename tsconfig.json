@@ -21,7 +21,8 @@
             /* TS complains not about to infer GraphQLESTreeNode  */
             "@graphql-eslint/eslint-plugin/estree-converter/*": [
                 "./node_modules/@graphql-eslint/eslint-plugin/cjs/estree-converter/*"
-            ]
+            ],
+            "@typescript-eslint/rule-tester": ["./node_modules/@typescript-eslint/rule-tester/dist"]
         }
     },
     "include": ["src/**/*", "./package.json"]
