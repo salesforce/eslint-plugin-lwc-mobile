@@ -10,7 +10,8 @@ import {
     NO_FISCAL_DATE_FILTER_SUPPORTED_RULE_ID
 } from '../../../src/rules/graphql/no-fiscal-date-filtering-supported';
 
-import { ruleTester } from '../../shared';
+import { GraphQLRuleTester } from '@graphql-eslint/eslint-plugin';
+const ruleTester = new GraphQLRuleTester();
 
 ruleTester.run('@salesforce/lwc-mobile/no-fiscal-date-filtering-supported', rule as any, {
     valid: [

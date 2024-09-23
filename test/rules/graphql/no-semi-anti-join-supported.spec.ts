@@ -10,8 +10,8 @@ import {
     NO_SEMI_ANTI_JOIN_SUPPORTED_RULE_ID
 } from '../../../src/rules/graphql/no-semi-anti-join-supported';
 import { createScopedModuleRuleName } from '../../../src/util/rule-helpers';
-
-import { ruleTester } from '../../shared';
+import { GraphQLRuleTester } from '@graphql-eslint/eslint-plugin';
+const ruleTester = new GraphQLRuleTester();
 
 ruleTester.run(createScopedModuleRuleName(NO_SEMI_ANTI_JOIN_SUPPORTED_RULE_ID), rule as any, {
     valid: [

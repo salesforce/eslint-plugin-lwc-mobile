@@ -11,7 +11,8 @@ import {
 } from '../../../src/rules/graphql/no-mutation-supported';
 import { createScopedModuleRuleName } from '../../../src/util/rule-helpers';
 
-import { ruleTester } from '../../shared';
+import { GraphQLRuleTester } from '@graphql-eslint/eslint-plugin';
+const ruleTester = new GraphQLRuleTester();
 
 ruleTester.run(createScopedModuleRuleName(NO_MUTATION_SUPPORTED_RULE_ID), rule as any, {
     valid: [
