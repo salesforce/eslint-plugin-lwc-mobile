@@ -21,6 +21,12 @@ jobs:
                       echo "@typescript-eslint package does not exist in root directory."
                   fi
 
+                  if [[ -d node_module/@graphql-eslint ]]; then
+                      echo "@graphql-eslint package exists in root directory."
+                  else 
+                      echo "@graphql-eslint package does not exist in root directory."
+                  fi
+
             - run: npm run test
     run-tests-win:
         runs-on: windows-latest
