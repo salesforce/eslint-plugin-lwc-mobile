@@ -24,6 +24,7 @@ const config: Config = {
     collectCoverage: true,
     collectCoverageFrom: ['src/**/*.ts', '!src/index.ts', '!src/configs/*.ts'],
     coverageDirectory: 'reports/coverage',
+    maxWorkers: 1,
     reporters: [
         'default',
         [
