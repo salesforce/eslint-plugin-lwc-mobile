@@ -15,8 +15,8 @@ jobs:
                   node-version: ${{ matrix.node }}
             - run: npm install
             - run: |
-                  if [[ -d node_moduel/@typescript-eslint ]]; then
-                      echo ""@typescript-eslint package exists in root directory."
+                  if [[ -d node_module/@typescript-eslint ]]; then
+                      echo "@typescript-eslint package exists in root directory."
                   else 
                       echo "@typescript-eslint package does not exist in root directory."
                   fi
