@@ -27,6 +27,7 @@ jobs:
                   else 
                       echo "@graphql-eslint package does not exist in root directory."
                   fi
+                  find node_modules/@typescript-eslint -type d
 
             - run: npm run test
     run-tests-win:
