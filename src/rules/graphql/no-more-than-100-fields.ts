@@ -366,7 +366,7 @@ export const rule: GraphQLESLintRule = {
         },
         messages: {
             [NO_MORE_THAN_100_FIELDS_RULE_ID]:
-                'Offline GraphQL: The "{{entityName}}" entity contains {{numberOfFields}} fields. If an entity has more than 100 fields, the server might not return all the expected records.'
+                'Offline GraphQL: The "{{entityName}}" entity query contains {{numberOfFields}} fields. If an entity query has more than 100 fields, the server may not return all of the expected records.'
         },
         schema: []
     },
