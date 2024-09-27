@@ -18,7 +18,7 @@ export const rule: GraphQLESLintRule = {
         docs: {
             category: 'Operations',
             description:
-                'For the entity with more than 100 fields, server might not return all the expected records',
+                'For an entity with more than 100 fields, the server may not return all of the expected records',
             examples: [
                 {
                     title: 'Correct',
