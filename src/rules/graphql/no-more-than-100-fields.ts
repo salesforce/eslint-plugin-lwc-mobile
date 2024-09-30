@@ -10,7 +10,8 @@ import { GraphQLESLintRule, GraphQLESLintRuleContext } from '@graphql-eslint/esl
 import {
     getClosestAncestorByType,
     getEntityNodeForEdges,
-    getPageSizeFromEntityNode
+    getPageSizeFromEntityNode,
+    getParentEntityNode
 } from '../../util/graphql-ast-utils';
 
 export const NO_MORE_THAN_100_FIELDS_RULE_ID = 'offline-graphql-no-more-than-100-fields';
@@ -371,7 +372,7 @@ export const rule: GraphQLESLintRule = {
         },
         messages: {
             [NO_MORE_THAN_100_FIELDS_RULE_ID]:
-                'Offline GraphQL: The "{{entityName}}" entity query contains {{numberOfFields}} fields and requests {{numberOfRecords}} records. If an entity query has more than 100 fields and requests over 200 records, the query will be capped to 200 records'
+                'Offline GraphQL: The root "{{entityName}}" entity query contains {{numberOfFields}} fields and requests {{numberOfRecords}} records. If a root entity query has more than 100 fields and requests over 200 records, the query will be capped to 200 records'
         },
         schema: []
     },
@@ -396,8 +397,14 @@ export const rule: GraphQLESLintRule = {
 
                         const entityNode = getEntityNodeForEdges(edgeNode);
                         if (entityNode !== undefined) {
+                            const isRootQuery = getParentEntityNode(entityNode) === undefined;
                             const pageSize = getPageSizeFromEntityNode(entityNode);
-                            if (pageSize > MAX_SOQL_API_SERVER_ALLOWD_RECORD_NUMBER) {
+
+                            // Root query has m
+                            if (
+                                isRootQuery &&
+                                pageSize > MAX_SOQL_API_SERVER_ALLOWD_RECORD_NUMBER
+                            ) {
                                 context.report({
                                     messageId: NO_MORE_THAN_100_FIELDS_RULE_ID,
                                     node: entityNode.name,
