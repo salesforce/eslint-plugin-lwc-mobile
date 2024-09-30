@@ -7,9 +7,14 @@
 
 import { Kind, FieldNode } from 'graphql';
 import { GraphQLESLintRule, GraphQLESLintRuleContext } from '@graphql-eslint/eslint-plugin';
-import { getClosestAncestorByType, getEntityNodeForEdges } from '../../util/graphql-ast-utils';
+import {
+    getClosestAncestorByType,
+    getEntityNodeForEdges,
+    getPageSizeFromEntityNode
+} from '../../util/graphql-ast-utils';
 
 export const NO_MORE_THAN_100_FIELDS_RULE_ID = 'offline-graphql-no-more-than-100-fields';
+const MAX_SOQL_API_SERVER_ALLOWD_RECORD_NUMBER = 200;
 
 export const rule: GraphQLESLintRule = {
     meta: {
@@ -366,7 +371,7 @@ export const rule: GraphQLESLintRule = {
         },
         messages: {
             [NO_MORE_THAN_100_FIELDS_RULE_ID]:
-                'Offline GraphQL: The "{{entityName}}" entity query contains {{numberOfFields}} fields. If an entity query has more than 100 fields, the server may not return all of the expected records.'
+                'Offline GraphQL: The "{{entityName}}" entity query contains {{numberOfFields}} fields and requests {{numberOfRecords}} records. If an entity query has more than 100 fields and requests over 200 records, the query will be capped to 200 records'
         },
         schema: []
     },
@@ -391,14 +396,19 @@ export const rule: GraphQLESLintRule = {
 
                         const entityNode = getEntityNodeForEdges(edgeNode);
                         if (entityNode !== undefined) {
-                            context.report({
-                                messageId: NO_MORE_THAN_100_FIELDS_RULE_ID,
-                                node: entityNode.name,
-                                data: {
-                                    entityName: entityNode.name.value,
-                                    numberOfFields: childSelectionSet.selections.length.toString()
-                                }
-                            });
+                            const pageSize = getPageSizeFromEntityNode(entityNode);
+                            if (pageSize > MAX_SOQL_API_SERVER_ALLOWD_RECORD_NUMBER) {
+                                context.report({
+                                    messageId: NO_MORE_THAN_100_FIELDS_RULE_ID,
+                                    node: entityNode.name,
+                                    data: {
+                                        entityName: entityNode.name.value,
+                                        numberOfFields:
+                                            childSelectionSet.selections.length.toString(),
+                                        numberOfRecords: pageSize.toString()
+                                    }
+                                });
+                            }
                         }
                     }
                 }
