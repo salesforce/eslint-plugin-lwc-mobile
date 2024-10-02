@@ -380,7 +380,6 @@ export const rule: GraphQLESLintRule = {
     create(context: GraphQLESLintRuleContext) {
         return {
             Field(node) {
-                // report lint issue if the graphql is like '... uiapi { aggregate { ...'
                 if (node.name.value === 'node') {
                     const childSelectionSet = node.selectionSet;
                     if (
