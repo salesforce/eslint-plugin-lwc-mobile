@@ -29,6 +29,10 @@ import {
 } from './rules/graphql/no-fiscal-date-filtering-supported.js';
 
 import {
+    NO_MORE_THAN_100_FIELDS_RULE_ID,
+    rule as noMoreThan100Fields
+} from './rules/graphql/no-more-than-100-fields.js';
+import {
     NO_SEMI_ANTI_JOIN_SUPPORTED_RULE_ID,
     rule as noSemiAntiJoinSupported
 } from './rules/graphql/no-semi-anti-join-supported.js';
@@ -67,6 +71,7 @@ export = {
         [NO_MORE_THAN_1_PARENT_RECORD_RULE_ID]: noMoreThan1ParentRecord,
         [NO_MORE_THAN_3_CHILD_ENTITIES_RULE_ID]: noMoreThan3ChildEntities,
         [NO_MORE_THAN_3_ROOT_ENTITIES_RULE_ID]: noMoreThan3RootEntities,
+        [NO_MORE_THAN_100_FIELDS_RULE_ID]: noMoreThan100Fields,
         [NO_SEMI_ANTI_JOIN_SUPPORTED_RULE_ID]: noSemiAntiJoinSupported,
         [UNSUPPORTED_SCOPE_RULE_ID]: unsupportedScope
     }
