@@ -1,4 +1,4 @@
-# unsupoorted-scope
+# unsupported-scope
 
 This rule flags the use scopes other than "MINE" and "ASSIGNEDTOME" with GraphQL. Currently, "MINE" is supported for all entities and "ASSIGNEDTOME" is supported for ServiceAppoinment. No other scopes are supported for GraphQL offline use cases.
 
