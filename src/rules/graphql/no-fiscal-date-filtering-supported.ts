@@ -9,6 +9,7 @@ import { ASTNode, Kind, ArgumentNode } from 'graphql';
 import { GraphQLESLintRule, GraphQLESLintRuleContext } from '@graphql-eslint/eslint-plugin';
 import { getClosestAncestorByType } from '../../util/graphql-ast-utils';
 import { GraphQLESTreeNode } from '@graphql-eslint/eslint-plugin/estree-converter/types';
+import { getDocUrl } from '../../util/rule-helpers';
 export const NO_FISCAL_DATE_FILTER_SUPPORTED_RULE_ID =
     'offline-graphql-no-fiscal-date-filter-supported';
 
@@ -16,6 +17,7 @@ export const rule: GraphQLESLintRule = {
     meta: {
         type: 'problem',
         docs: {
+            url: getDocUrl(NO_FISCAL_DATE_FILTER_SUPPORTED_RULE_ID),
             description:
                 'Fiscal date literals and ranges are not supported in filters for mobile offline. See Feature Limitations of Offline GraphQL (https://developer.salesforce.com/docs/atlas.en-us.mobile_offline.meta/mobile_offline/use_graphql_limitations.htm) for more details.',
             category: 'Operations',
