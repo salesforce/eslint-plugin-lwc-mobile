@@ -30,7 +30,7 @@ export const rule = ESLintUtils.RuleCreator.withoutDocs({
         },
         messages: {
             [APEX_IMPORT_RULE_ID]:
-                'Using Apex in LWC Offline-enabled mobile apps requires careful consideration in offline scenarios. GraphQL API is a new paradigm of sending and receiving data. This API allows developers to interact with the Salesforce Platform through GraphQL, a standard query language for APIs and a runtime for fulfilling those queries with your data. Learn more about creating SOQL queries with GraphQL that may work better for mobile offline use cases. https://developer.salesforce.com/docs/platform/graphql/guide/graphql-wire-lwc.html'
+                'Using Apex in LWC Offline-enabled mobile apps requires additional considerations. Consider using GraphQL for mobile offline use cases.'
         },
         type: 'suggestion',
         schema: []
