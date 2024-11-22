@@ -72,23 +72,33 @@ Issues labelled `good first contribution`.
 
 # Release Process
 
-### Branching Strategy:
+## Branching Strategy
 
 -   **Main Branch**: Ongoing development and new features are submitted to the `main` branch.
 
--   **Release Branches**: We'll utilize dedicated branches for managing releases.
+-   **Release Branch**: The `release` branch will represent the latest released/releasable code.
 
-    -   **Major Release:**
-        -   Create a new branch named `release-<major version>` (e.g., `release-2` for a `2.0` release) from `main` to manage the release process.
-        -   Update the `.releaserc.json` file: Locate the `branches` property and specify the newly created release branch name (e.g., `release-2`).
-    -   **Minor/Patch Release:**
-        -   We will use existing major release branches (e.g. `release-2`) for subsequent minor and patch releases (e.g. `2.0.1`, `2.1.2`, etc.).
-        -   Once changes are verified and merged into the release branch, they will be merged back to `main`.
+## Preparing for a New Release
 
--   **Trigger Release Manually:**
-    -   Navigate to the `Actions` tab in GitHub repository.
-    -   Select the `release` workflow from the left sidebar.
-    -   Click the `Run workflow` button to initiate the release process.
+-   Code from `main` will be contributed to the `release` branch through a PR. Once reviewed,
+    it will be merged and ready to cut a new release.
+-   This process should be followed for major (`x+1.0.0`) and minor (`x.y+1.0`)
+    releases with new feature sets.
+
+## Preparing a Patch to an Existing Release
+
+-   For patches to an existing release (`x.y.z+1`), PRs will be submitted directly against
+    the `release` branch. Once reviewed, PRs will be merged and ready to cut a new release.
+-   This process will only apply to bug fixes on the `release` branch.
+
+## Cutting a Release
+
+-   This project leverages [`semantic-release`](https://github.com/semantic-release/semantic-release#readme)
+    to automatically determine SemVer versioning and publish the package to npmjs.com.
+-   To trigger a release:
+    -   Navigate to the `Actions` tab in the GitHub repository
+    -   Select the `release` workflow from the left sidebar
+    -   Click the `Run workflow` button to initiate the release process
 
 # Code of Conduct
 
