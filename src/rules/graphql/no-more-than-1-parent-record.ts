@@ -9,6 +9,7 @@ import { GraphQLESLintRule, GraphQLESLintRuleContext } from '@graphql-eslint/esl
 import { DocumentStat, ViolationType } from '../../util/entity-stats';
 import { getDocUrl } from '../../util/rule-helpers';
 
+const RULE_NAME = 'no-more-than-1-parent-record';
 export const NO_MORE_THAN_1_PARENT_RECORD_RULE_ID = 'offline-graphql-no-more-than-1-parent-record';
 
 export const rule: GraphQLESLintRule = {
@@ -17,7 +18,7 @@ export const rule: GraphQLESLintRule = {
         hasSuggestions: false,
         docs: {
             category: 'Operations',
-            url: getDocUrl(NO_MORE_THAN_1_PARENT_RECORD_RULE_ID),
+            url: getDocUrl(RULE_NAME),
             description: `Queries fetching child entities can only fetch 1 parent record. Set the parent's 'first' argument value to 1.`,
             examples: [
                 {

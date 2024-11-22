@@ -10,6 +10,7 @@ import { GraphQLESLintRule, GraphQLESLintRuleContext } from '@graphql-eslint/esl
 import { getLocation } from '../../util/graphql-ast-utils';
 import { getDocUrl } from '../../util/rule-helpers';
 
+const RULE_NAME = 'no-mutation-supported';
 export const NO_MUTATION_SUPPORTED_RULE_ID = 'offline-graphql-no-mutation-supported';
 
 export const rule: GraphQLESLintRule = {
@@ -18,7 +19,7 @@ export const rule: GraphQLESLintRule = {
         hasSuggestions: false,
         docs: {
             category: 'Operations',
-            url: getDocUrl(NO_MUTATION_SUPPORTED_RULE_ID),
+            url: getDocUrl(RULE_NAME),
             description:
                 'Mutation (data modification) is not supported for mobile offline. See Feature Limitations of Offline GraphQL (https://developer.salesforce.com/docs/atlas.en-us.mobile_offline.meta/mobile_offline/use_graphql_limitations.htm) for more details.',
             recommended: true,

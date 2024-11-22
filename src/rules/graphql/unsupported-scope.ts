@@ -7,6 +7,7 @@
 import { GraphQLESLintRule, GraphQLESLintRuleContext } from '@graphql-eslint/eslint-plugin';
 import { Kind, FieldNode } from 'graphql';
 
+const RULE_NAME = 'unsupported-scope';
 export const UNSUPPORTED_SCOPE_RULE_ID = 'offline-graphql-unsupported-scope';
 
 export const SCOPE_SUPPORTED_FOR_CERTAIN_ENTITIES_ONLY = 'ASSIGNED_TO_ME__SERVICEAPPOINTMENT_ONLY';
@@ -26,7 +27,7 @@ export const rule: GraphQLESLintRule = {
         type: 'problem',
         docs: {
             category: 'Operations',
-            url: getDocUrl(UNSUPPORTED_SCOPE_RULE_ID),
+            url: getDocUrl(RULE_NAME),
             description: `Offline GraphQL supports the scope "MINE" for all entities, and "ASSIGNEDTOME" for ServiceAppointment. All other scopes (for example TEAM, QUEUE_OWNED and USER_OWNED) are not supported for mobile offline. See Feature Limitations of Offline GraphQL (https://developer.salesforce.com/docs/atlas.en-us.mobile_offline.meta/mobile_offline/use_graphql_limitations.htm) for more details.`,
             recommended: true,
             examples: [
