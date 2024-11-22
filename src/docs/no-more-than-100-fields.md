@@ -2,9 +2,6 @@
 
 This rule flags entities with more than 100 fields. If a root entity query has more than 100 fields and requests over 200 records, the query is capped to 200 records.
 
-See [Feature Limitations of Offline GraphQL
-](https://developer.salesforce.com/docs/atlas.en-us.mobile_offline.meta/mobile_offline/use_graphql_limitations.htm) for more details.
-
 ## ❌ Incorrect
 
 ```GraphQL
