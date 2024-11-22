@@ -18,11 +18,11 @@ jobs:
                     - ubuntu-latest
 
         steps:
-            - name: Check branch name # make sure the release can only be run on branches like 'release-*'
+            - name: Check branch name # make sure the release can only be run on branch named 'release'
               run: |
                   ref="${{ github.ref }}"
-                  if [[ ! "$ref" =~ ^refs/heads/release-* ]]; then
-                      echo "Error: Workflow can only run on branches starting with 'release-*'"
+                  if [[ ! "$ref" =~ ^refs/heads/release ]]; then
+                      echo "Error: Workflow can only run on branches starting with 'release'"
                       exit 1
                   fi
             - uses: actions/checkout@v4
