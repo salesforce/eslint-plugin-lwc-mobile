@@ -6,7 +6,9 @@
  */
 
 import { GraphQLESLintRule, GraphQLESLintRuleContext } from '@graphql-eslint/eslint-plugin';
+import { getDocUrl } from '../../util/rule-helpers';
 
+const RULE_NAME = 'no-semi-anti-join-supported';
 export const NO_SEMI_ANTI_JOIN_SUPPORTED_RULE_ID = 'offline-graphql-no-semi-anti-join-supported';
 
 export const rule: GraphQLESLintRule = {
@@ -14,9 +16,10 @@ export const rule: GraphQLESLintRule = {
         type: 'problem',
         hasSuggestions: false,
         docs: {
+            category: 'Operations',
+            url: getDocUrl(RULE_NAME),
             description:
                 'Semi-join and anti-join filters are not supported for mobile offline. See Feature Limitations of Offline GraphQL (https://developer.salesforce.com/docs/atlas.en-us.mobile_offline.meta/mobile_offline/use_graphql_limitations.htm) for more details.',
-            category: 'Operations',
             recommended: true,
             examples: [
                 {
