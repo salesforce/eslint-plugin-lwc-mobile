@@ -60,7 +60,7 @@
     ],
     "dependencies": {
         "@graphql-eslint/eslint-plugin": "^3.20.1",
-        "@typescript-eslint/utils": "^7.8.0"
+        "@typescript-eslint/utils": "^8.17.0"
     },
     "devDependencies": {
         "@commitlint/cli": "^19.5.0",
