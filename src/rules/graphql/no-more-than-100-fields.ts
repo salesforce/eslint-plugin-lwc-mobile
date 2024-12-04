@@ -57,7 +57,7 @@ export const rule: GraphQLESLintRule = {
                         query OpportunityExample {
                             uiapi {
                                 query {
-                                    Opportunity {
+                                    Opportunity(first: 201) {
                                         edges {
                                             node {
                                                 Id
