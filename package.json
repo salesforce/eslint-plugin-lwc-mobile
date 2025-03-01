@@ -63,9 +63,9 @@
         "@typescript-eslint/utils": "^7.8.0"
     },
     "devDependencies": {
-        "@commitlint/cli": "^19.6.1",
-        "@commitlint/config-conventional": "^19.6.0",
-        "@eslint/js": "^9.17.0",
+        "@commitlint/cli": "^19.7.1",
+        "@commitlint/config-conventional": "^19.7.1",
+        "@eslint/js": "^9.21.0",
         "@jest/globals": "^29.7.0",
         "@semantic-release/changelog": "^6.0.3",
         "@semantic-release/exec": "^6.0.3",
@@ -88,11 +88,11 @@
         "jest-junit": "^16.0.0",
         "jest-mock-extended": "^3.0.7",
         "jest-sonar-reporter": "^2.0.0",
-        "prettier": "^3.4.2",
-        "semantic-release": "^24.2.0",
-        "ts-jest": "^29.2.5",
+        "prettier": "^3.5.2",
+        "semantic-release": "^24.2.3",
+        "ts-jest": "^29.2.6",
         "ts-node": "^10.9.2",
-        "typescript": "^5.7.2",
+        "typescript": "^5.8.2",
         "typescript-eslint": "^7.8.0"
     },
     "peerDependencies": {
