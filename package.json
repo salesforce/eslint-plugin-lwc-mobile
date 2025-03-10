@@ -93,8 +93,8 @@
         "ts-jest": "^29.2.6",
         "ts-node": "^10.9.2",
         "typescript": "^5.8.2",
-        "typescript-eslint": "^7.8.0"
-    },
+        "typescript-eslint": "^8.17.0"
+   },
     "peerDependencies": {
         "eslint": ">=7"
     },
