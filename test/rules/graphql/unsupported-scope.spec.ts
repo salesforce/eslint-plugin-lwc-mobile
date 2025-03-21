@@ -12,7 +12,7 @@ import {
 } from '../../../src/rules/graphql/unsupported-scope';
 import { ruleTester } from '../../shared';
 
-ruleTester.run('@salesforce/lwc-mobile/offline-graphql-unsupported-scope', rule as any, {
+ruleTester.run('offline-graphql-unsupported-scope', rule as any, {
     valid: [
         {
             code: /* GraphQL */ `

@@ -6,12 +6,13 @@
  */
 
 import { RuleTester } from '@typescript-eslint/rule-tester';
+import { parseForESLint } from '@graphql-eslint/eslint-plugin';
 
-const RULE_TESTER_CONFIG = {
-    parser: '@graphql-eslint/eslint-plugin',
-    parserOptions: {
-        graphQLConfig: {}
+export const ruleTester = new RuleTester({
+    languageOptions: {
+        parser: { parseForESLint },
+        parserOptions: {
+            graphQLConfig: {}
+        }
     }
-};
-
-export const ruleTester = new RuleTester(RULE_TESTER_CONFIG);
+});
