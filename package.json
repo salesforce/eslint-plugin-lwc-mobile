@@ -1,6 +1,6 @@
 {
     "name": "@salesforce/eslint-plugin-lwc-mobile",
-    "version": "0.0.7",
+    "version": "0.0.1",
     "description": "ESLint plugin for LWC mobility",
     "contributors": [
         {
