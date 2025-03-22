@@ -6,15 +6,10 @@
  */
 
 import { RuleTester } from '@typescript-eslint/rule-tester';
-import { parseForESLint } from '@typescript-eslint/parser';
 
 import { rule, APEX_IMPORT_RULE_ID } from '../../../src/rules/apex/apex-import';
 
-const ruleTester = new RuleTester({
-    languageOptions: {
-        parser: { parseForESLint }
-    }
-});
+const ruleTester = new RuleTester();
 
 ruleTester.run(APEX_IMPORT_RULE_ID, rule as any, {
     valid: [
