@@ -9,11 +9,10 @@ import {
     rule,
     NO_MORE_THAN_100_FIELDS_RULE_ID
 } from '../../../src/rules/graphql/no-more-than-100-fields';
-import { createScopedModuleRuleName } from '../../../src/util/rule-helpers';
 
 import { ruleTester } from '../../shared';
 
-ruleTester.run(createScopedModuleRuleName(NO_MORE_THAN_100_FIELDS_RULE_ID), rule as any, {
+ruleTester.run(NO_MORE_THAN_100_FIELDS_RULE_ID, rule as any, {
     valid: [
         {
             code: /* GraphQL */ `

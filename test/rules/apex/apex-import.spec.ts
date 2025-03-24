@@ -8,13 +8,10 @@
 import { RuleTester } from '@typescript-eslint/rule-tester';
 
 import { rule, APEX_IMPORT_RULE_ID } from '../../../src/rules/apex/apex-import';
-import { createScopedModuleRuleName } from '../../../src/util/rule-helpers';
 
-const ruleTester = new RuleTester({
-    parser: '@typescript-eslint/parser'
-});
+const ruleTester = new RuleTester();
 
-ruleTester.run(createScopedModuleRuleName(APEX_IMPORT_RULE_ID), rule, {
+ruleTester.run(APEX_IMPORT_RULE_ID, rule as any, {
     valid: [
         {
             code: `
