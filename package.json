@@ -59,7 +59,7 @@
         "/dist"
     ],
     "dependencies": {
-        "@graphql-eslint/eslint-plugin": "^3.20.1",
+        "@graphql-eslint/eslint-plugin": "^4.4.0",
         "@typescript-eslint/utils": "^8.22.0"
     },
     "devDependencies": {
