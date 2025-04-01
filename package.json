@@ -60,22 +60,22 @@
     ],
     "dependencies": {
         "@graphql-eslint/eslint-plugin": "^3.20.1",
-        "@typescript-eslint/utils": "^8.22.0"
+        "@typescript-eslint/utils": "^8.29.0"
     },
     "devDependencies": {
         "@commitlint/cli": "^19.7.1",
         "@commitlint/config-conventional": "^19.7.1",
-        "@eslint/js": "^9.21.0",
+        "@eslint/js": "^9.23.0",
         "@jest/globals": "^29.7.0",
         "@semantic-release/changelog": "^6.0.3",
         "@semantic-release/exec": "^6.0.3",
         "@semantic-release/git": "^10.0.1",
         "@semantic-release/npm": "^12.0.1",
         "@types/eslint": "^8.56.10",
-        "@types/estree": "^1.0.6",
+        "@types/estree": "^1.0.7",
         "@types/jest": "^29.5.14",
-        "@typescript-eslint/parser": "^8.27.0",
-        "@typescript-eslint/rule-tester": "^8.27.0",
+        "@typescript-eslint/parser": "^8.29.0",
+        "@typescript-eslint/rule-tester": "^8.29.0",
         "conventional-changelog-conventionalcommits": "^8.0.0",
         "eslint": "^8.57.0",
         "eslint-plugin-eslint-plugin": "^6.4.0",
@@ -89,10 +89,10 @@
         "jest-sonar-reporter": "^2.0.0",
         "prettier": "^3.5.2",
         "semantic-release": "^24.2.3",
-        "ts-jest": "^29.2.6",
+        "ts-jest": "^29.3.1",
         "ts-node": "^10.9.2",
         "typescript": "^5.8.2",
-        "typescript-eslint": "^8.17.0"
+        "typescript-eslint": "^8.29.0"
     },
     "peerDependencies": {
         "eslint": ">=7"
