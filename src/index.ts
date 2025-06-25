@@ -5,8 +5,8 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  */
 
-import base from './configs/base.js';
-import recommended from './configs/recommended.js';
+import base from './configs/base-legacy';
+import recommended from './configs/recommended-legacy';
 import { rule as apexImport, APEX_IMPORT_RULE_ID } from './rules/apex/apex-import.js';
 import {
     NO_AGGREGATE_QUERY_SUPPORTED_RULE_ID,
