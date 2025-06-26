@@ -30,29 +30,27 @@ const configs: Linter.Config[] = [
             parserOptions: {
                 requireConfigFile: false,
                 babelOptions: {
-                    plugins: [['@babel/plugin-proposal-decorators', { legacy: true }]]
+                    parserOpts: {
+                        plugins: [['decorators', { decoratorsBeforeExport: false }]]
+                    }
                 },
                 ecmaVersion: 'latest',
                 sourceType: 'module'
             }
         },
+        processor: processors.graphql,
         rules: {
             [createScopedModuleRuleName(APEX_IMPORT_RULE_ID)]: 'warn'
         }
     },
     {
-        files: ['*.js'],
-        processor: processors.graphql
-    },
-    {
-        files: ['*.graphql'],
+        files: ['*.graphql', '**/*.graphql'],
         languageOptions: {
             parser: { parseForESLint: parseForESLintGraphQL },
             parserOptions: {
                 skipGraphQLConfig: true
             }
         },
-
         rules: {
             [createScopedModuleRuleName(NO_AGGREGATE_QUERY_SUPPORTED_RULE_ID)]: 'warn',
             [createScopedModuleRuleName(NO_FISCAL_DATE_FILTER_SUPPORTED_RULE_ID)]: 'warn',
