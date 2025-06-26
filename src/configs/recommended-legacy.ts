@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: MIT
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  */
-import type { ClassicConfig } from '@typescript-eslint/utils/ts-eslint';
+import { Linter } from 'eslint';
 import { APEX_IMPORT_RULE_ID } from '../rules/apex/apex-import.js';
 import { NO_MUTATION_SUPPORTED_RULE_ID } from '../rules/graphql/no-mutation-supported';
 import { NO_AGGREGATE_QUERY_SUPPORTED_RULE_ID } from '../rules/graphql/no-aggregate-query-supported';
@@ -18,7 +18,7 @@ import { NO_MORE_THAN_100_FIELDS_RULE_ID } from '../rules/graphql/no-more-than-1
 import { createScopedModuleRuleName } from '../util/rule-helpers.js';
 
 export = {
-    extends: ['./configs/base'],
+    extends: ['./configs/base-legacy'],
     rules: {
         [createScopedModuleRuleName(APEX_IMPORT_RULE_ID)]: 'warn'
     },
@@ -47,4 +47,4 @@ export = {
             }
         }
     ]
-} satisfies ClassicConfig.Config;
+} satisfies Linter.BaseConfig;
