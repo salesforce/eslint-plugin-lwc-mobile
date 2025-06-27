@@ -19,6 +19,17 @@ import { createScopedModuleRuleName } from '../util/rule-helpers.js';
 
 export = {
     extends: ['./configs/base-legacy'],
+    parser: '@babel/eslint-parser',
+    parserOptions: {
+        requireConfigFile: false,
+        babelOptions: {
+            parserOpts: {
+                plugins: [['decorators', { decoratorsBeforeExport: false }]]
+            }
+        },
+        ecmaVersion: 'latest',
+        sourceType: 'module'
+    },
     rules: {
         [createScopedModuleRuleName(APEX_IMPORT_RULE_ID)]: 'warn'
     },
