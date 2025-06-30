@@ -1,6 +1,6 @@
 {
     "name": "@salesforce/eslint-plugin-lwc-mobile",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "description": "ESLint plugin for LWC mobility",
     "contributors": [
         {
@@ -31,7 +31,7 @@
         "url": "https://github.com/salesforce/eslint-plugin-lwc-mobile"
     },
     "scripts": {
-        "clean": "npx rimraf dist reports",
+        "clean": "npx rimraf dist reports tsconfig.tsbuildinfo",
         "build": "npm run clean && tsc",
         "format": "prettier --list-different \"**/*.{ts,js}\"",
         "format:fix": "prettier --write \"**/*.{ts,js,json}\"",
@@ -59,8 +59,11 @@
         "/dist"
     ],
     "dependencies": {
+        "@babel/core": "^7.27.4",
+        "@babel/eslint-parser": "^7.27.5",
         "@graphql-eslint/eslint-plugin": "^3.20.1",
-        "@typescript-eslint/utils": "^8.22.0"
+        "@types/eslint": "^9.6.1",
+        "typescript-eslint": "^8.17.0"
     },
     "devDependencies": {
         "@commitlint/cli": "^19.7.1",
@@ -71,13 +74,10 @@
         "@semantic-release/exec": "^6.0.3",
         "@semantic-release/git": "^10.0.1",
         "@semantic-release/npm": "^12.0.1",
-        "@types/eslint": "^8.56.10",
         "@types/estree": "^1.0.6",
         "@types/jest": "^29.5.14",
-        "@typescript-eslint/parser": "^8.27.0",
-        "@typescript-eslint/rule-tester": "^8.27.0",
         "conventional-changelog-conventionalcommits": "^8.0.0",
-        "eslint": "^8.57.0",
+        "eslint": "^9.28.0",
         "eslint-plugin-eslint-plugin": "^6.4.0",
         "eslint-plugin-node": "^11.1.0",
         "husky": "^9.1.7",
@@ -91,8 +91,7 @@
         "semantic-release": "^24.2.3",
         "ts-jest": "^29.2.6",
         "ts-node": "^10.9.2",
-        "typescript": "^5.8.2",
-        "typescript-eslint": "^8.17.0"
+        "typescript": "^5.8.2"
     },
     "peerDependencies": {
         "eslint": ">=7"

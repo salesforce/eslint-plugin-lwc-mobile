@@ -5,7 +5,7 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  */
 
-import { RuleTester } from '@typescript-eslint/rule-tester';
+import { RuleTester } from 'eslint';
 import { parseForESLint } from '@graphql-eslint/eslint-plugin';
 
 export const ruleTester = new RuleTester({
