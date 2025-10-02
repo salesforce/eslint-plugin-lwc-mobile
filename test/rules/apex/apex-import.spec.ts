@@ -5,27 +5,16 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  */
 
-import { RuleTester } from 'eslint';
-import { parseForESLint } from '@babel/eslint-parser';
+import { RuleTester } from '@typescript-eslint/rule-tester';
+
 import { rule, APEX_IMPORT_RULE_ID } from '../../../src/rules/apex/apex-import';
+import { createScopedModuleRuleName } from '../../../src/util/rule-helpers';
 
 const ruleTester = new RuleTester({
-    languageOptions: {
-        parser: { parseForESLint },
-        parserOptions: {
-            requireConfigFile: false,
-            babelOptions: {
-                parserOpts: {
-                    plugins: [['decorators', { decoratorsBeforeExport: false }]]
-                }
-            },
-            ecmaVersion: 'latest',
-            sourceType: 'module'
-        }
-    }
+    parser: '@typescript-eslint/parser'
 });
 
-ruleTester.run(APEX_IMPORT_RULE_ID, rule as any, {
+ruleTester.run(createScopedModuleRuleName(APEX_IMPORT_RULE_ID), rule, {
     valid: [
         {
             code: `

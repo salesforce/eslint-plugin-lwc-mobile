@@ -5,9 +5,8 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  */
 
-import baseLegacy from './configs/base-legacy';
-import recommendedLegacy from './configs/recommended-legacy';
-import recommended from './configs/recommended';
+import base from './configs/base.js';
+import recommended from './configs/recommended.js';
 import { rule as apexImport, APEX_IMPORT_RULE_ID } from './rules/apex/apex-import.js';
 import {
     NO_AGGREGATE_QUERY_SUPPORTED_RULE_ID,
@@ -57,8 +56,8 @@ import { name, version } from '../package.json';
 
 export = {
     configs: {
-        'base-legacy': baseLegacy,
-        'recommended-legacy': recommendedLegacy
+        base,
+        recommended
     },
     meta: {
         name,
@@ -75,6 +74,5 @@ export = {
         [NO_MORE_THAN_100_FIELDS_RULE_ID]: noMoreThan100Fields,
         [NO_SEMI_ANTI_JOIN_SUPPORTED_RULE_ID]: noSemiAntiJoinSupported,
         [UNSUPPORTED_SCOPE_RULE_ID]: unsupportedScope
-    },
-    recommendedConfigs: recommended
+    }
 };

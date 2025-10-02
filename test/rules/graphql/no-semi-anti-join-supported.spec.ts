@@ -9,10 +9,11 @@ import {
     rule,
     NO_SEMI_ANTI_JOIN_SUPPORTED_RULE_ID
 } from '../../../src/rules/graphql/no-semi-anti-join-supported';
+import { createScopedModuleRuleName } from '../../../src/util/rule-helpers';
 
 import { ruleTester } from '../../shared';
 
-ruleTester.run(NO_SEMI_ANTI_JOIN_SUPPORTED_RULE_ID, rule as any, {
+ruleTester.run(createScopedModuleRuleName(NO_SEMI_ANTI_JOIN_SUPPORTED_RULE_ID), rule as any, {
     valid: [
         {
             code: /* GraphQL */ `

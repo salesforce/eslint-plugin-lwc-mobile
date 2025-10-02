@@ -13,11 +13,8 @@ import {
     getPageSizeFromEntityNode,
     getParentEntityNode
 } from '../../util/graphql-ast-utils';
-import { getDocUrl } from '../../util/rule-helpers';
 
 export const NO_MORE_THAN_100_FIELDS_RULE_ID = 'offline-graphql-no-more-than-100-fields';
-
-const RULE_NAME = 'no-more-than-100-fields';
 const MAX_SOQL_API_SERVER_ALLOWD_RECORD_NUMBER = 200;
 
 export const rule: GraphQLESLintRule = {
@@ -26,7 +23,6 @@ export const rule: GraphQLESLintRule = {
         hasSuggestions: false,
         docs: {
             category: 'Operations',
-            url: getDocUrl(RULE_NAME),
             description:
                 'For an entity with more than 100 fields, the server may not return all of the expected records',
             examples: [
@@ -57,7 +53,7 @@ export const rule: GraphQLESLintRule = {
                         query OpportunityExample {
                             uiapi {
                                 query {
-                                    Opportunity(first: 201) {
+                                    Opportunity {
                                         edges {
                                             node {
                                                 Id

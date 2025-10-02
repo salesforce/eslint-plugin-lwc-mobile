@@ -4,9 +4,7 @@
  * SPDX-License-Identifier: MIT
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  */
-
-import { Linter } from 'eslint';
-
+import type { ClassicConfig } from '@typescript-eslint/utils/ts-eslint';
 import { APEX_IMPORT_RULE_ID } from '../rules/apex/apex-import.js';
 import { NO_MUTATION_SUPPORTED_RULE_ID } from '../rules/graphql/no-mutation-supported';
 import { NO_AGGREGATE_QUERY_SUPPORTED_RULE_ID } from '../rules/graphql/no-aggregate-query-supported';
@@ -18,51 +16,35 @@ import { NO_MORE_THAN_3_CHILD_ENTITIES_RULE_ID } from '../rules/graphql/no-more-
 import { NO_MORE_THAN_3_ROOT_ENTITIES_RULE_ID } from '../rules/graphql/no-more-than-3-root-entities.js';
 import { NO_MORE_THAN_100_FIELDS_RULE_ID } from '../rules/graphql/no-more-than-100-fields.js';
 import { createScopedModuleRuleName } from '../util/rule-helpers.js';
-import { parseForESLint as parseForESLintGraphQL } from '@graphql-eslint/eslint-plugin';
-import { parseForESLint as parseForESLintBabel, parse } from '@babel/eslint-parser';
-import { processors } from '@graphql-eslint/eslint-plugin';
 
-const configs: Linter.Config[] = [
-    {
-        files: ['*.js', '**/*.js'],
-        languageOptions: {
-            parser: { parseForESLint: parseForESLintBabel, parse },
-            parserOptions: {
-                requireConfigFile: false,
-                babelOptions: {
-                    parserOpts: {
-                        plugins: [['decorators', { decoratorsBeforeExport: false }]]
-                    }
-                },
-                ecmaVersion: 'latest',
-                sourceType: 'module'
-            }
-        },
-        processor: processors.graphql,
-        rules: {
-            [createScopedModuleRuleName(APEX_IMPORT_RULE_ID)]: 'warn'
-        }
+export = {
+    extends: ['./configs/base'],
+    rules: {
+        [createScopedModuleRuleName(APEX_IMPORT_RULE_ID)]: 'warn'
     },
-    {
-        files: ['*.graphql', '**/*.graphql'],
-        languageOptions: {
-            parser: { parseForESLint: parseForESLintGraphQL },
+    overrides: [
+        {
+            files: ['*.js'],
+            processor: '@graphql-eslint/graphql'
+        },
+        {
+            files: ['*.graphql'],
+            parser: '@graphql-eslint/eslint-plugin',
+
             parserOptions: {
                 skipGraphQLConfig: true
+            },
+            rules: {
+                [createScopedModuleRuleName(NO_AGGREGATE_QUERY_SUPPORTED_RULE_ID)]: 'warn',
+                [createScopedModuleRuleName(NO_FISCAL_DATE_FILTER_SUPPORTED_RULE_ID)]: 'warn',
+                [createScopedModuleRuleName(NO_MUTATION_SUPPORTED_RULE_ID)]: 'warn',
+                [createScopedModuleRuleName(NO_SEMI_ANTI_JOIN_SUPPORTED_RULE_ID)]: 'warn',
+                [createScopedModuleRuleName(NO_MORE_THAN_1_PARENT_RECORD_RULE_ID)]: 'warn',
+                [createScopedModuleRuleName(NO_MORE_THAN_3_CHILD_ENTITIES_RULE_ID)]: 'warn',
+                [createScopedModuleRuleName(NO_MORE_THAN_3_ROOT_ENTITIES_RULE_ID)]: 'warn',
+                [createScopedModuleRuleName(NO_MORE_THAN_100_FIELDS_RULE_ID)]: 'warn',
+                [createScopedModuleRuleName(UNSUPPORTED_SCOPE_RULE_ID)]: 'warn'
             }
-        },
-        rules: {
-            [createScopedModuleRuleName(NO_AGGREGATE_QUERY_SUPPORTED_RULE_ID)]: 'warn',
-            [createScopedModuleRuleName(NO_FISCAL_DATE_FILTER_SUPPORTED_RULE_ID)]: 'warn',
-            [createScopedModuleRuleName(NO_MUTATION_SUPPORTED_RULE_ID)]: 'warn',
-            [createScopedModuleRuleName(NO_SEMI_ANTI_JOIN_SUPPORTED_RULE_ID)]: 'warn',
-            [createScopedModuleRuleName(NO_MORE_THAN_1_PARENT_RECORD_RULE_ID)]: 'warn',
-            [createScopedModuleRuleName(NO_MORE_THAN_3_CHILD_ENTITIES_RULE_ID)]: 'warn',
-            [createScopedModuleRuleName(NO_MORE_THAN_3_ROOT_ENTITIES_RULE_ID)]: 'warn',
-            [createScopedModuleRuleName(NO_MORE_THAN_100_FIELDS_RULE_ID)]: 'warn',
-            [createScopedModuleRuleName(UNSUPPORTED_SCOPE_RULE_ID)]: 'warn'
         }
-    }
-];
-
-export = configs;
+    ]
+} satisfies ClassicConfig.Config;

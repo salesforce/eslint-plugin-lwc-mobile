@@ -5,14 +5,13 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  */
 
-import { RuleTester } from 'eslint';
-import { parseForESLint } from '@graphql-eslint/eslint-plugin';
+import { RuleTester } from '@typescript-eslint/rule-tester';
 
-export const ruleTester = new RuleTester({
-    languageOptions: {
-        parser: { parseForESLint },
-        parserOptions: {
-            graphQLConfig: {}
-        }
+const RULE_TESTER_CONFIG = {
+    parser: '@graphql-eslint/eslint-plugin',
+    parserOptions: {
+        graphQLConfig: {}
     }
-});
+};
+
+export const ruleTester = new RuleTester(RULE_TESTER_CONFIG);
