@@ -7,8 +7,10 @@
 
 import { GraphQLESLintRule, GraphQLESLintRuleContext } from '@graphql-eslint/eslint-plugin';
 import { DocumentStat, ViolationType } from '../../util/entity-stats';
+import { getDocUrl } from '../../util/rule-helpers';
 
-export const NO_MORE_THAN_3_ROOT_ENTITIES_RULE_ID = 'offline-graphql-no-more-3-root-entities';
+const RULE_NAME = 'no-more-than-3-root-entities';
+export const NO_MORE_THAN_3_ROOT_ENTITIES_RULE_ID = 'offline-graphql-no-more-than-3-root-entities';
 
 export const rule: GraphQLESLintRule = {
     meta: {
@@ -16,6 +18,7 @@ export const rule: GraphQLESLintRule = {
         hasSuggestions: false,
         docs: {
             category: 'Operations',
+            url: getDocUrl(RULE_NAME),
             description: `Do not fetch more than 3 root entities.`,
             examples: [
                 {

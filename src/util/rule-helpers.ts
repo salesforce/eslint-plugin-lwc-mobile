@@ -9,7 +9,7 @@ import { ESLintUtils } from '@typescript-eslint/utils';
 import { version, homepage } from '../../package.json';
 
 export function getDocUrl(ruleName: string): string {
-    return `${homepage}/blob/v${version}/lib/docs/${ruleName}.md`;
+    return `${homepage}/blob/v${version}/src/docs/${ruleName}.md`;
 }
 
 export const createRule = ESLintUtils.RuleCreator((name) => getDocUrl(name));
