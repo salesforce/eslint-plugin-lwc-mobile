@@ -13,6 +13,6 @@ describe('getDocUrl', () => {
         expect(
             docUrl.startsWith('https://github.com/salesforce/eslint-plugin-lwc-mobile/blob/v')
         ).toBe(true);
-        expect(docUrl.endsWith('/lib/docs/ruleNameXYZ.md')).toBe(true);
+        expect(docUrl.endsWith('/src/docs/ruleNameXYZ.md')).toBe(true);
     });
 });

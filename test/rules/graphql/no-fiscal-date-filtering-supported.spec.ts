@@ -12,7 +12,7 @@ import {
 
 import { ruleTester } from '../../shared';
 
-ruleTester.run('@salesforce/lwc-mobile/no-fiscal-date-filtering-supported', rule as any, {
+ruleTester.run(NO_FISCAL_DATE_FILTER_SUPPORTED_RULE_ID, rule as any, {
     valid: [
         {
             code: /* GraphQL */ `
