@@ -23,6 +23,21 @@ $ npm install --save-dev @salesforce/eslint-plugin-lwc-mobile
 The default configurations are now in the flat config format supported by ESLint 9 and beyond. To include `recommendedConfigs ` in your flat config, spread it into your configuration array. Note that `recommendedConfigs` is a collection of preset configs and must be expanded accordingly.:
 
 ```javascript
+// eslint.config.js
+const { defineConfig } = require("eslint/config");
+const lwcMobilePlugin = require("@salesforce/eslint-plugin-lwc-mobile");
+
+module.exports = defineConfig([
+    {
+        plugins: {
+            "@salesforce/lwc-mobile": lwcMobilePlugin,
+        },
+        extends: [...lwcMobilePlugin.recommendedConfigs],
+    },
+]);
+```
+
+```javascript
 // eslint.config.mjs
 import js from '@eslint/js';
 import lwcMobilePlugin from "@salesforce/eslint-plugin-lwc-mobile";
