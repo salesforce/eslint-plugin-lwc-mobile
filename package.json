@@ -62,11 +62,11 @@
         "/dist"
     ],
     "dependencies": {
-        "@babel/core": "^7.27.4",
-        "@babel/eslint-parser": "^7.27.5",
+        "@babel/core": "^7.29.0",
+        "@babel/eslint-parser": "^7.28.6",
         "@graphql-eslint/eslint-plugin": "^3.20.1",
         "@types/eslint": "^9.6.1",
-        "typescript-eslint": "^8.17.0"
+        "typescript-eslint": "^8.59.0"
     },
     "devDependencies": {
         "@commitlint/cli": "^19.7.1",
@@ -90,9 +90,9 @@
         "jest-junit": "^17.0.0",
         "jest-mock-extended": "^3.0.7",
         "jest-sonar-reporter": "^2.0.0",
-        "prettier": "^3.5.2",
+        "prettier": "^3.8.3",
         "semantic-release": "^24.2.3",
-        "ts-jest": "^29.2.6",
+        "ts-jest": "^29.4.9",
         "ts-node": "^10.9.2",
         "typescript": "^5.8.2"
     },
