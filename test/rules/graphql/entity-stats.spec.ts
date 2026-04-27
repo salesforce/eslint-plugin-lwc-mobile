@@ -9,9 +9,7 @@ import { describe } from 'node:test';
 
 import { expect } from '@jest/globals';
 import { FieldNode } from 'graphql';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import { GraphQLESTreeNode } from '@graphql-eslint/eslint-plugin/estree-converter/types';
+import { GraphQLESTreeNode } from '@graphql-eslint/eslint-plugin';
 import { mock } from 'jest-mock-extended';
 
 import {

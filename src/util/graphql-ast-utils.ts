@@ -7,7 +7,7 @@
 
 import { Position } from 'estree';
 import { AST } from 'eslint';
-import { GraphQLESTreeNode } from '@graphql-eslint/eslint-plugin/estree-converter/types';
+import { GraphQLESTreeNode } from '@graphql-eslint/eslint-plugin';
 import { ASTNode, FieldNode, Kind, DocumentNode, OperationDefinitionNode } from 'graphql';
 import { DEFAULT_PAGE_SIZE } from './entity-stats';
 
