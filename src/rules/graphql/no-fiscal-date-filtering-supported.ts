@@ -6,9 +6,12 @@
  */
 
 import { ASTNode, Kind, ArgumentNode } from 'graphql';
-import { GraphQLESLintRule, GraphQLESLintRuleContext } from '@graphql-eslint/eslint-plugin';
+import {
+    GraphQLESLintRule,
+    GraphQLESLintRuleContext,
+    GraphQLESTreeNode
+} from '@graphql-eslint/eslint-plugin';
 import { getClosestAncestorByType } from '../../util/graphql-ast-utils';
-import { GraphQLESTreeNode } from '@graphql-eslint/eslint-plugin/estree-converter/types';
 import { getDocUrl } from '../../util/rule-helpers';
 
 const RULE_NAME = 'no-fiscal-date-filter-supported';
