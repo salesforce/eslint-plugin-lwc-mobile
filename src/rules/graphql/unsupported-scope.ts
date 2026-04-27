@@ -4,17 +4,19 @@
  * SPDX-License-Identifier: MIT
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  */
-import { GraphQLESLintRule, GraphQLESLintRuleContext } from '@graphql-eslint/eslint-plugin';
+import {
+    GraphQLESLintRule,
+    GraphQLESLintRuleContext,
+    GraphQLESTreeNode
+} from '@graphql-eslint/eslint-plugin';
 import { Kind, FieldNode } from 'graphql';
+import { getDocUrl } from '../../util/rule-helpers';
 
 const RULE_NAME = 'unsupported-scope';
 export const UNSUPPORTED_SCOPE_RULE_ID = 'offline-graphql-unsupported-scope';
 
 export const SCOPE_SUPPORTED_FOR_CERTAIN_ENTITIES_ONLY = 'ASSIGNED_TO_ME__SERVICEAPPOINTMENT_ONLY';
 export const OTHER_UNSUPPORTED_SCOPE = 'OTHER_UNSUPPORTED_SCOPE';
-
-import { GraphQLESTreeNode } from '@graphql-eslint/eslint-plugin/estree-converter/types';
-import { getDocUrl } from '../../util/rule-helpers';
 
 // Record key is scope name, value is the array of supported entities. Empty array
 // means that all entities are supported.
