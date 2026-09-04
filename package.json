@@ -62,7 +62,7 @@
         "/dist"
     ],
     "dependencies": {
-        "@babel/core": "^7.27.4",
+        "@babel/core": "^7.29.6",
         "@babel/eslint-parser": "^7.28.6",
         "@graphql-eslint/eslint-plugin": "^4.4.0",
         "@types/eslint": "^9.6.1",
