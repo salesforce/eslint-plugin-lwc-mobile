@@ -63,10 +63,10 @@
     ],
     "dependencies": {
         "@babel/core": "^7.29.6",
-        "@babel/eslint-parser": "^7.28.6",
-        "@graphql-eslint/eslint-plugin": "^4.4.0",
+        "@babel/eslint-parser": "^7.29.9",
+        "@graphql-eslint/eslint-plugin": "^4.4.1",
         "@types/eslint": "^9.6.1",
-        "typescript-eslint": "^8.62.1"
+        "typescript-eslint": "^8.70.1"
     },
     "devDependencies": {
         "@commitlint/cli": "^19.7.1",
@@ -76,7 +76,7 @@
         "@semantic-release/changelog": "^6.0.3",
         "@semantic-release/exec": "^6.0.3",
         "@semantic-release/git": "^10.0.1",
-        "@semantic-release/npm": "^13.1.4",
+        "@semantic-release/npm": "^13.2.0",
         "@types/estree": "^1.0.9",
         "@types/jest": "^29.5.14",
         "conventional-changelog-conventionalcommits": "^9.3.1",
@@ -90,9 +90,9 @@
         "jest-junit": "^17.0.0",
         "jest-mock-extended": "^4.0.1",
         "jest-sonar-reporter": "^2.0.0",
-        "prettier": "^3.9.4",
-        "semantic-release": "^25.0.5",
-        "ts-jest": "^29.4.11",
+        "prettier": "^3.9.9",
+        "semantic-release": "^25.0.9",
+        "ts-jest": "^29.4.14",
         "ts-node": "^10.9.2",
         "typescript": "^5.8.2"
     },
